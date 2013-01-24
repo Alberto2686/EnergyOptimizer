@@ -76,6 +76,9 @@ public class Project {
 		status+="\n\tAssociations enhanced:\n";
 		for(AssociationEnhanced ae:associations)
 			status+="\t\t"+ae.toString()+"\n";
+		status+="\n\tHardware sets:\n";
+		for(HardwareSet hs:hardwareSets)
+			status+="\t\t"+hs.toString()+"\n";
 		status+="\n\tDeployment alternatives:\n";
 		for(DeploymentAlternative da:deploymentAlternatives)
 			status+="\t\t"+da.toString()+"\n";
