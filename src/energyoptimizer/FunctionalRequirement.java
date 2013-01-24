@@ -1,30 +1,47 @@
 package energyoptimizer;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class FunctionalRequirement {
-	private String ID, description;
-	private AssociationEnhanced[] associations;
+	private String name, id;
+	private List<AssociationEnhanced> associations = new LinkedList<>();
 	
-	public FunctionalRequirement(String ID, String description, AssociationEnhanced[] associations){
-		this.ID=ID;
-		this.description=description;
-		this.associations=associations;
+
+	public FunctionalRequirement(String name, List<AssociationEnhanced> associations) {
+		this.name = name;
+		this.associations = associations;
 	}
-	public String getID() {
-		return ID;
+	
+	public FunctionalRequirement(String name, String id) {
+		this.name = name;
+		this.id = id;
 	}
-	public void setID(String iD) {
-		ID = iD;
+	
+	public String getName() {
+		return name;
 	}
-	public String getDescription() {
-		return description;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public AssociationEnhanced[] getAssociations() {
+	public List<AssociationEnhanced> getAssociations() {
 		return associations;
 	}
-	public void setAssociations(AssociationEnhanced[] associations) {
+	public void setAssociations(List<AssociationEnhanced> associations) {
 		this.associations = associations;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	@Override
+	public String toString(){
+		String string=" connected to ";
+		for(AssociationEnhanced as:associations)
+			string+=as.getStakeholder().getName()+" p="+as.getProbability()+" - ";
+		return name+string.substring(0, string.length()-3);
 	}
 }
