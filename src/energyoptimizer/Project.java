@@ -10,6 +10,8 @@ public class Project {
 	private List<AssociationEnhanced> associations = new ArrayList<>();
 	private List<HardwareSet> hardwareSets = new ArrayList<>();
 	private List<Component> components = new ArrayList<>();
+	private List<Connector> connectors = new ArrayList<>();
+	private List<Interface> interfaces = new ArrayList<>();
 	private List<DeploymentAlternative> deploymentAlternatives = new ArrayList<>();
 	
 	public Project(String name){
@@ -65,6 +67,22 @@ public class Project {
 		this.components = components;
 	}
 
+	public List<Connector> getConnectors() {
+		return connectors;
+	}
+
+	public void setConnectors(List<Connector> connectors) {
+		this.connectors = connectors;
+	}
+
+	public List<Interface> getInterfaces() {
+		return interfaces;
+	}
+
+	public void setInterfaces(List<Interface> interfaces) {
+		this.interfaces = interfaces;
+	}
+
 	public boolean isActor(String id){
 		boolean isActor = false;
 		for(Stakeholder stakeholder:stakeholders)
@@ -90,6 +108,9 @@ public class Project {
 			status+="\t\t"+hs.toString()+"\n";
 		status+="\n\tComponents:\n";
 		for(Component c:components)
+			status+="\t\t"+c.toString()+"\n";
+		status+="\n\tConnectors:\n";
+		for(Connector c:connectors)
 			status+="\t\t"+c.toString()+"\n";
 		status+="\n\tDeployment alternatives:\n";
 		for(DeploymentAlternative da:deploymentAlternatives)

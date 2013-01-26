@@ -88,6 +88,6 @@ public class HardwareSet {
 		string+="\n\t\t\tOther:";
 		for(HardwareAlternative alt:otherAlternatives)
 			string+="\n\t\t\t\t"+alt.toString();
-		return name+string;//":\n\t\t\tCPU:\n\t\t\t"+cpuAlternatives.toString()+"\n\t\t\tHDD:\n\t\t\t"+hddAlternatives.toString()+"\n\t\t\tMemory:\n\t\t\t"+memoryAlternatives.toString()+"\n\t\t\tNetwork:\n\t\t\t"+networkAlternatives.toString()+"\n\t\t\tPlatform:\n\t\t\t"+platformAlternatives.toString()+"\n\t\t\tOther:\n\t\t\t"+otherAlternatives.toString();
+		return name+string;
 	}
 }

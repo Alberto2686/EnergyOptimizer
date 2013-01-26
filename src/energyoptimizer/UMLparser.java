@@ -78,7 +78,7 @@ public class UMLparser {
 		
 		NodeList UMLelements = docEle.getElementsByTagName("packagedElement");
 		
-		//First step: UseCase, Stakeholder, Hardware set, Hardware alternative, Hardware component, Software component
+		//First step: UseCase, Stakeholder, Hardware set, Hardware alternative, Hardware component, Software component, Interface
 		if(UMLelements != null && UMLelements.getLength() > 0) {
 			for(int i = 0 ; i < UMLelements.getLength();i++) {
 				Element element = (Element) UMLelements.item(i);
@@ -261,13 +261,16 @@ public class UMLparser {
 										component.getAtomicOperations().add(new AtomicOperation(((Element)atomicOperations.item(k)).getAttribute("name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
 								project.getComponents().add(component);
 							}
-						//TODO: add provided required interfaces
 					break;
+					case "uml:Interface":
+						project.getInterfaces().add(new Interface(element.getAttribute("xmi:id"),element.getAttribute("name")));
+					break;
+					//TODO:sequence!
 				}
 			}
 		}
 		
-		//Second step: Association_Enhanced
+		//Second step: Association_Enhanced, Connector
 		if(UMLelements != null && UMLelements.getLength() > 0) {
 			for(int i = 0 ; i < UMLelements.getLength();i++) {
 				Element element = (Element) UMLelements.item(i);
@@ -287,6 +290,22 @@ public class UMLparser {
 									temp = new AssociationEnhanced(((Element)ownedEnd1).getAttribute("type"), ((Element)ownedEnd2).getAttribute("type"), getDouble(association,j,"probability"));
 								temp.bind(project.getStakeholders(), project.getFunctionalRequirements());
 								project.getAssociations().add(temp);
+							}
+					break;
+					case "uml:Usage":
+						for(int j=0; j<connectors.getLength();j++)
+							if(((Element)connectors.item(j)).getAttribute("base_Usage").equals(element.getAttribute("xmi:id"))){
+								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"function_points"),false);
+								connector.bind(project.getInterfaces(),project.getComponents());
+								project.getConnectors().add(connector);
+							}
+					break;
+					case "uml:InterfaceRealization":
+						for(int j=0; j<connectors.getLength();j++)
+							if(((Element)connectors.item(j)).getAttribute("base_InterfaceRealization").equals(element.getAttribute("xmi:id"))){
+								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"function_points"),true);
+								connector.bind(project.getInterfaces(),project.getComponents());
+								project.getConnectors().add(connector);
 							}
 					break;
 				}

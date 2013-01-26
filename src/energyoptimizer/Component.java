@@ -7,6 +7,8 @@ public class Component {
 	private String id,name;
 	private int functionPoints;
 	private List<AtomicOperation> atomicOperations =new LinkedList<>();
+	private List<Connector> connectors = new LinkedList<>();
+	
 	public Component(String id, String name, int functionPoints) {
 		super();
 		this.id = id;
@@ -37,8 +39,17 @@ public class Component {
 	public void setAtomicOperations(List<AtomicOperation> atomicOperations) {
 		this.atomicOperations = atomicOperations;
 	}
+	public List<Connector> getConnectors() {
+		return connectors;
+	}
+	public void setConnectors(List<Connector> connectors) {
+		this.connectors = connectors;
+	}
 	@Override
 	public String toString(){
-		return name+" fp:"+functionPoints+" atomic operations: "+atomicOperations;
+		String string="";
+		for(Connector c:connectors)
+			string+=c.getName()+"("+(c.isProvided()?"P":"R")+"), ";
+		return name+" fp:"+functionPoints+" atomic operations: "+atomicOperations+" connectors: ["+string.substring(0, string.length()-2)+"]";
 	}
 }
