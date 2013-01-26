@@ -75,6 +75,7 @@ public class UMLparser {
 		NodeList ranges = docEle.getElementsByTagName("Profile:Range");
 		NodeList frequencies = docEle.getElementsByTagName("Profile:Frequency_voltage");
 		NodeList atomicOperations = docEle.getElementsByTagName("Profile:Atomic_operation");
+		NodeList consumptions = docEle.getElementsByTagName("Profile:Consumption");
 		
 		NodeList UMLelements = docEle.getElementsByTagName("packagedElement");
 		
@@ -243,7 +244,9 @@ public class UMLparser {
 														double display=parseDouble(hwComponentProfile.getAttribute("display"));
 														double ups=parseDouble(hwComponentProfile.getAttribute("uninterruptible_power_supply"));
 														Other other= new Other(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),busses,sensors,cooling,peripheralDevices,display,ups);
-														//TODO: aggiungere other[]
+														for(int m=0; m<consumptions.getLength();m++)
+															if(hwComponentProfile.getAttribute("other").contains(((Element)consumptions.item(m)).getAttribute("xmi:id")))
+																other.getOtherConsumption().add(new OtherConsumption(parseString(consumptions,m,"source"), getDouble(consumptions,m,"consumption")));
 														hwAlternative.getHardwareComponents().add(other);
 													}
 												}
@@ -314,6 +317,13 @@ public class UMLparser {
 		
 	}
 
+	private String parseString(NodeList nodelist, int position, String attribute) {
+		try{
+			return ((Element)nodelist.item(position)).getAttribute(attribute);
+		} catch(Exception e){}
+		return "";
+	}
+	
 	private int getInt(NodeList nodelist, int position, String attribute) {
 		return parseInt(((Element)nodelist.item(position)).getAttribute(attribute));
 	}
