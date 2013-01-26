@@ -39,9 +39,6 @@ public class Cpu extends HardwareComponent {
 	}
 	@Override
 	public String toString(){
-		String string="";
-		for(FrequencyVoltage fv:frequenciesVoltages)
-			string+=fv.toString();
-		return getName()+" cores:"+cores+" nm:"+productive_process+" TDP:"+tdp+" f/v: ["+string+"]";
+		return getName()+" cores:"+cores+" nm:"+productive_process+" TDP:"+tdp+" f/v: "+frequenciesVoltages;
 	}
 }

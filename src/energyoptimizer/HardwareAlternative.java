@@ -31,9 +31,6 @@ public class HardwareAlternative {
 	}
 	@Override
 	public String toString(){
-		String string="";
-		for(HardwareComponent hc:hardwareComponents)
-			string+=hc.toString();
-		return name+": "+string;
+		return name+": "+hardwareComponents;
 	}
 }

@@ -70,6 +70,24 @@ public class HardwareSet {
 	}
 	@Override
 	public String toString(){
-		return name+":\nCPU="+cpuAlternatives.toString()+"\nHDD="+hddAlternatives.toString()+"\nMemory="+memoryAlternatives.toString()+"\nNetwork="+networkAlternatives.toString()+"\nPlatform="+platformAlternatives.toString()+"\nOther="+otherAlternatives.toString();
+		String string="\n\t\t\tCPU:";
+		for(HardwareAlternative alt:cpuAlternatives)
+			string+="\n\t\t\t\t"+alt.toString();
+		string+="\n\t\t\tHDD:";
+		for(HardwareAlternative alt:hddAlternatives)
+			string+="\n\t\t\t\t"+alt.toString();
+		string+="\n\t\t\tMemory:";
+		for(HardwareAlternative alt:memoryAlternatives)
+			string+="\n\t\t\t\t"+alt.toString();
+		string+="\n\t\t\tNetwork device:";
+		for(HardwareAlternative alt:networkAlternatives)
+			string+="\n\t\t\t\t"+alt.toString();
+		string+="\n\t\t\tPlatform:";
+		for(HardwareAlternative alt:platformAlternatives)
+			string+="\n\t\t\t\t"+alt.toString();
+		string+="\n\t\t\tOther:";
+		for(HardwareAlternative alt:otherAlternatives)
+			string+="\n\t\t\t\t"+alt.toString();
+		return name+string;//":\n\t\t\tCPU:\n\t\t\t"+cpuAlternatives.toString()+"\n\t\t\tHDD:\n\t\t\t"+hddAlternatives.toString()+"\n\t\t\tMemory:\n\t\t\t"+memoryAlternatives.toString()+"\n\t\t\tNetwork:\n\t\t\t"+networkAlternatives.toString()+"\n\t\t\tPlatform:\n\t\t\t"+platformAlternatives.toString()+"\n\t\t\tOther:\n\t\t\t"+otherAlternatives.toString();
 	}
 }

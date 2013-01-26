@@ -59,9 +59,6 @@ public class Other extends HardwareComponent {
 	}
 	@Override
 	public String toString(){
-		String string="";
-		for(OtherConsumption other:otherConsumption)
-			string+=other.toString();
-		return getName()+" busses:"+busses+" sensors:"+sensors+" cooling:"+cooling+" peripheral devices:"+peripheralDevices+" display:"+display+" ups:"+ups+" "+string;
+		return getName()+" busses:"+busses+" sensors:"+sensors+" cooling:"+cooling+" peripheral devices:"+peripheralDevices+" display:"+display+" ups:"+ups+" others:"+otherConsumption;
 	}
 }

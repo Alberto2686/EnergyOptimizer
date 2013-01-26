@@ -21,6 +21,6 @@ public class FrequencyVoltage {
 	}
 	@Override
 	public String toString(){
-		return "("+frequency+","+voltage+")";
+		return "("+frequency+"MHz,"+voltage+"V)";
 	}
 }

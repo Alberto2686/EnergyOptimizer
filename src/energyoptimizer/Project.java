@@ -9,6 +9,7 @@ public class Project {
 	private List<Stakeholder> stakeholders = new ArrayList<>();
 	private List<AssociationEnhanced> associations = new ArrayList<>();
 	private List<HardwareSet> hardwareSets = new ArrayList<>();
+	private List<Component> components = new ArrayList<>();
 	private List<DeploymentAlternative> deploymentAlternatives = new ArrayList<>();
 	
 	public Project(String name){
@@ -56,6 +57,14 @@ public class Project {
 		this.associations = associations;
 	}
 	
+	public List<Component> getComponents() {
+		return components;
+	}
+
+	public void setComponents(List<Component> components) {
+		this.components = components;
+	}
+
 	public boolean isActor(String id){
 		boolean isActor = false;
 		for(Stakeholder stakeholder:stakeholders)
@@ -79,6 +88,9 @@ public class Project {
 		status+="\n\tHardware sets:\n";
 		for(HardwareSet hs:hardwareSets)
 			status+="\t\t"+hs.toString()+"\n";
+		status+="\n\tComponents:\n";
+		for(Component c:components)
+			status+="\t\t"+c.toString()+"\n";
 		status+="\n\tDeployment alternatives:\n";
 		for(DeploymentAlternative da:deploymentAlternatives)
 			status+="\t\t"+da.toString()+"\n";

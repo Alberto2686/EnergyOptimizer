@@ -74,14 +74,14 @@ public class UMLparser {
 		NodeList connectors = docEle.getElementsByTagName("Profile:Connector_enhanced");
 		NodeList ranges = docEle.getElementsByTagName("Profile:Range");
 		NodeList frequencies = docEle.getElementsByTagName("Profile:Frequency_voltage");
+		NodeList atomicOperations = docEle.getElementsByTagName("Profile:Atomic_operation");
 		
 		NodeList UMLelements = docEle.getElementsByTagName("packagedElement");
 		
-		//First step: UseCase, Stakeholder, Hardware_set
+		//First step: UseCase, Stakeholder, Hardware set, Hardware alternative, Hardware component, Software component
 		if(UMLelements != null && UMLelements.getLength() > 0) {
 			for(int i = 0 ; i < UMLelements.getLength();i++) {
 				Element element = (Element) UMLelements.item(i);
-				//System.out.println(element.getAttribute("xmi:type"));
 				switch(element.getAttribute("xmi:type")){
 					case "uml:UseCase":
 						project.getFunctionalRequirements().add(new FunctionalRequirement(element.getAttribute("name"),element.getAttribute("xmi:id")));
@@ -100,7 +100,7 @@ public class UMLparser {
 								HardwareSet temp = new HardwareSet(element.getAttribute("xmi:id"),element.getAttribute("name"));
 								project.getHardwareSets().add(temp);
 							}
-						//CPU Alternatives
+						//CPU Alternatives and CPUs
 						for(int j=0; j<cpuAlternatives.getLength();j++)
 							if(((Element)cpuAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id")))
 								for(HardwareSet hwSet:project.getHardwareSets())
@@ -113,10 +113,10 @@ public class UMLparser {
 												for(int l=0; l<cpus.getLength();l++){
 													if(((Element)cpus.item(l)).getAttribute("base_Class").equals(hwComponent.getAttribute("xmi:id"))){
 														Element hwComponentProfile=(Element)cpus.item(l);
-														Cpu cpu= new Cpu(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),Integer.parseInt(hwComponentProfile.getAttribute("cores")),Integer.parseInt(hwComponentProfile.getAttribute("productive_process")),Double.parseDouble(hwComponentProfile.getAttribute("thermal_design_power")));
+														Cpu cpu= new Cpu(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),parseInt(hwComponentProfile.getAttribute("cores")),parseInt(hwComponentProfile.getAttribute("productive_process")),parseDouble(hwComponentProfile.getAttribute("thermal_design_power")));
 														for(int m=0; m<frequencies.getLength();m++){
 															if(hwComponentProfile.getAttribute("frequencies_voltages").contains(((Element)frequencies.item(m)).getAttribute("xmi:id")))
-																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(Integer.parseInt(((Element)frequencies.item(m)).getAttribute("frequency")), Double.parseDouble(((Element)frequencies.item(m)).getAttribute("voltage"))));
+																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage")));
 														}
 														hwAlternative.getHardwareComponents().add(cpu);
 													}
@@ -125,7 +125,7 @@ public class UMLparser {
 										hwSet.getCpuAlternatives().add(hwAlternative);
 									}
 							
-						//HDD Alternatives
+						//HDD Alternatives and HDDs
 						for(int j=0; j<hddAlternatives.getLength();j++)
 							if(((Element)hddAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id"))){
 								for(HardwareSet hwSet:project.getHardwareSets())
@@ -149,7 +149,7 @@ public class UMLparser {
 										hwSet.getHddAlternatives().add(hwAlternative);
 									}
 							}
-						//Memory Alternatives
+						//Memory Alternatives and Memories
 						for(int j=0; j<memoryAlternatives.getLength();j++)
 							if(((Element)memoryAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id"))){
 								for(HardwareSet hwSet:project.getHardwareSets())
@@ -173,7 +173,7 @@ public class UMLparser {
 										hwSet.getMemoryAlternatives().add(hwAlternative);
 									}
 							}
-						//Network Alternatives
+						//Network Alternatives and Network devices
 						for(int j=0; j<networkAlternatives.getLength();j++)
 							if(((Element)networkAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id"))){
 								for(HardwareSet hwSet:project.getHardwareSets())
@@ -188,7 +188,7 @@ public class UMLparser {
 														Element hwComponentProfile=(Element)networks.item(l);
 														double bandwidth=parseDouble(hwComponentProfile.getAttribute("bandwidth"));
 														double mbConsumption=parseDouble(hwComponentProfile.getAttribute("MB_consumption"));
-														Network network= new Network(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),bandwidth,mbConsumption);
+														Network network= new Network(hwComponent.getAttribute("xmi:id"),hwComponent.getAttribute("name"),bandwidth,mbConsumption);
 														hwAlternative.getHardwareComponents().add(network);
 													}
 												}
@@ -196,7 +196,7 @@ public class UMLparser {
 										hwSet.getNetworkAlternatives().add(hwAlternative);
 									}
 							}
-						//Platform Alternatives
+						//Platform Alternatives and Platforms
 						for(int j=0; j<platformAlternatives.getLength();j++)
 							if(((Element)platformAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id"))){
 								for(HardwareSet hwSet:project.getHardwareSets())
@@ -223,7 +223,7 @@ public class UMLparser {
 										hwSet.getPlatformAlternatives().add(hwAlternative);
 									}
 							}
-						//Other Alternatives
+						//Other Alternatives and Others
 						for(int j=0; j<otherAlternatives.getLength();j++)
 							if(((Element)otherAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id"))){
 								for(HardwareSet hwSet:project.getHardwareSets())
@@ -252,6 +252,17 @@ public class UMLparser {
 									}
 							}
 					break;
+					case "uml:Component":
+						for(int j=0; j<components.getLength();j++)
+							if(((Element)components.item(j)).getAttribute("base_Component").equals(element.getAttribute("xmi:id"))){
+								Component component=new Component(element.getAttribute("xmi:id"), element.getAttribute("name"),getInt(components,j,"function_points"));
+								for(int k=0; k<atomicOperations.getLength();k++)
+									if(((Element)atomicOperations.item(k)).getAttribute("xmi:id").equals(((Element)components.item(j)).getAttribute("atomic_operations")))
+										component.getAtomicOperations().add(new AtomicOperation(((Element)atomicOperations.item(k)).getAttribute("name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
+								project.getComponents().add(component);
+							}
+						//TODO: add provided required interfaces
+					break;
 				}
 			}
 		}
@@ -271,9 +282,9 @@ public class UMLparser {
 								while (!ownedEnd2.getNodeName().equals("ownedEnd"))
 									ownedEnd2=ownedEnd2.getNextSibling();
 								
-								AssociationEnhanced temp = new AssociationEnhanced(((Element)ownedEnd2).getAttribute("type"), ((Element)ownedEnd1).getAttribute("type"), Double.parseDouble(((Element)association.item(j)).getAttribute("probability")));
+								AssociationEnhanced temp = new AssociationEnhanced(((Element)ownedEnd2).getAttribute("type"), ((Element)ownedEnd1).getAttribute("type"), getDouble(association,j,"probability"));
 								if(project.isActor(((Element)ownedEnd1).getAttribute("type")))
-									temp = new AssociationEnhanced(((Element)ownedEnd1).getAttribute("type"), ((Element)ownedEnd2).getAttribute("type"), Double.parseDouble(((Element)association.item(j)).getAttribute("probability")));
+									temp = new AssociationEnhanced(((Element)ownedEnd1).getAttribute("type"), ((Element)ownedEnd2).getAttribute("type"), getDouble(association,j,"probability"));
 								temp.bind(project.getStakeholders(), project.getFunctionalRequirements());
 								project.getAssociations().add(temp);
 							}
@@ -285,7 +296,11 @@ public class UMLparser {
 	}
 
 	private int getInt(NodeList nodelist, int position, String attribute) {
-		return Integer.parseInt(((Element)nodelist.item(position)).getAttribute(attribute));
+		return parseInt(((Element)nodelist.item(position)).getAttribute(attribute));
+	}
+
+	private double getDouble(NodeList nodelist, int position, String attribute) {
+		return parseDouble(((Element)nodelist.item(position)).getAttribute(attribute));
 	}
 	
 	private int parseInt(String input){

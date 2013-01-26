@@ -3,7 +3,7 @@ package energyoptimizer;
 public class Network extends HardwareComponent {
 	private double bandwidth,mbConsumption;
 
-	public Network(String name, String id, double bandwidth,double mbConsumption) {
+	public Network(String id, String name, double bandwidth,double mbConsumption) {
 		super(name, id);
 		this.bandwidth = bandwidth;
 		this.mbConsumption = mbConsumption;
