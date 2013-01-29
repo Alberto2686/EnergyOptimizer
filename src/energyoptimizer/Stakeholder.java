@@ -1,30 +1,15 @@
 package energyoptimizer;
 
-public class Stakeholder {
-	private String name, id;
+public class Stakeholder extends LifelineElement{
 	private int min, max;
 	
 	public Stakeholder(String name, String id, int min, int max) {
-		this.name=name;
-		this.id=id;
+		super(id,name);
 		this.min=min;
 		this.max=max;
 	}
-	public Stakeholder(String name) {
-		this.name=name;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
+	public Stakeholder(String name, String id) {
+		super(id,name);
 	}
 	public int getMin() {
 		return min;
@@ -40,6 +25,6 @@ public class Stakeholder {
 	}
 	@Override
 	public String toString(){
-		return name+": Min="+min+" Max="+max;
+		return getName()+": Min="+min+" Max="+max;
 	}
 }

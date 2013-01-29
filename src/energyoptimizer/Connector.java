@@ -2,38 +2,18 @@ package energyoptimizer;
 
 import java.util.List;
 
-public class Connector {
-	private String id, name, clientId, supplierId;
-	private int functionPoints;
+public class Connector extends SoftwareComponent {
+	private String clientId, supplierId;
 	private boolean isProvided;
 	private Component component;
 	private Interface toInterface;
 	
 	public Connector(String id, String name, String clientId,
 			String supplierId, int functionPoints, boolean isProvided) {
-		super();
-		this.id = id;
-		this.name = name;
+		super(id,name,functionPoints);
 		this.clientId = clientId;
 		this.supplierId = supplierId;
-		this.functionPoints = functionPoints;
 		this.isProvided = isProvided;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getClientId() {
@@ -50,14 +30,6 @@ public class Connector {
 
 	public void setSupplierId(String supplierId) {
 		this.supplierId = supplierId;
-	}
-
-	public int getFunctionPoints() {
-		return functionPoints;
-	}
-
-	public void setFunctionPoints(int functionPoints) {
-		this.functionPoints = functionPoints;
 	}
 
 	public Component getComponent() {
@@ -97,6 +69,6 @@ public class Connector {
 	
 	@Override
 	public String toString(){
-		return (isProvided?"Provided":"Required")+" interface "+name+" = component:"+component.getName()+" interface:"+toInterface+" fp:"+functionPoints;
+		return (isProvided?"Provided":"Required")+" interface "+getName()+" = component:"+component.getName()+" interface:"+toInterface+" fp:"+getFunctionPoints();
 	}
 }

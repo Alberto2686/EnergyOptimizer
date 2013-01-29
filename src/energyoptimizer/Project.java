@@ -91,6 +91,19 @@ public class Project {
 		return isActor;
 	}
 	
+	public LifelineElement getLifelineElement(String id){
+		for(Component component:components)
+			if(component.getIdProfile().equals(id))
+				return component;
+		for(Connector connector:connectors)
+			if(connector.getIdProfile().equals(id))
+				return connector;
+		for(Stakeholder stakeholder:stakeholders)
+			if(stakeholder.getIdProfile().equals(id))
+				return stakeholder;
+		return null;
+	}
+	
 	@Override
 	public String toString(){
 		String status="Project "+name+" status:\n";
@@ -112,6 +125,10 @@ public class Project {
 		status+="\n\tConnectors:\n";
 		for(Connector c:connectors)
 			status+="\t\t"+c.toString()+"\n";
+		status+="\n\tSequence alternatives:\n";
+		for(FunctionalRequirement fr:functionalRequirements)
+			for(SequenceAlternative sa:fr.getSequenceAlternatives())
+				status+="\t\t"+sa.toString()+"\n";
 		status+="\n\tDeployment alternatives:\n";
 		for(DeploymentAlternative da:deploymentAlternatives)
 			status+="\t\t"+da.toString()+"\n";

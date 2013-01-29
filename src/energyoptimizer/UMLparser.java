@@ -1,6 +1,8 @@
 package energyoptimizer;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -49,7 +51,7 @@ public class UMLparser {
 		//get the root element
 		Element docEle = dom.getDocumentElement();
 
-		//get a nodelist of elements
+		//get profile elements
 		NodeList stakeholders = docEle.getElementsByTagName("Profile:Stakeholder");
 		NodeList association = docEle.getElementsByTagName("Profile:Association_enhanced");
 		NodeList hardwareSets = docEle.getElementsByTagName("Profile:Hardware_set");
@@ -89,10 +91,13 @@ public class UMLparser {
 					break;
 					case "uml:Actor":
 						for(int j=0; j<stakeholders.getLength();j++)
-							if(((Element)stakeholders.item(j)).getAttribute("base_Actor").equals(element.getAttribute("xmi:id")))
+							if(parseString(stakeholders, j, "base_Actor").equals(element.getAttribute("xmi:id")))
 								for(int k=0; k<ranges.getLength();k++)
-									if(((Element)ranges.item(k)).getAttribute("xmi:id").equals(((Element)stakeholders.item(j)).getAttribute("average_number")))
-										project.getStakeholders().add(new Stakeholder(element.getAttribute("name"),element.getAttribute("xmi:id"),getInt(ranges, k,"min"),getInt(ranges, k,"max")));		
+									if(parseString(ranges,k,"xmi:id").equals(parseString(stakeholders, j, "average_number"))){
+										Stakeholder stakeholder = new Stakeholder(element.getAttribute("name"),element.getAttribute("xmi:id"),getInt(ranges, k,"min"),getInt(ranges, k,"max")); 
+										project.getStakeholders().add(stakeholder);
+										stakeholder.setIdProfile(parseString(stakeholders, j, "xmi:id"));
+									}
 					break;
 					case "uml:Package":
 						//Hardware sets
@@ -255,29 +260,32 @@ public class UMLparser {
 									}
 							}
 					break;
+					//Components
 					case "uml:Component":
 						for(int j=0; j<components.getLength();j++)
-							if(((Element)components.item(j)).getAttribute("base_Component").equals(element.getAttribute("xmi:id"))){
+							if(parseString(components, j, "base_Component").equals(element.getAttribute("xmi:id"))){
 								Component component=new Component(element.getAttribute("xmi:id"), element.getAttribute("name"),getInt(components,j,"function_points"));
 								for(int k=0; k<atomicOperations.getLength();k++)
 									if(((Element)atomicOperations.item(k)).getAttribute("xmi:id").equals(((Element)components.item(j)).getAttribute("atomic_operations")))
 										component.getAtomicOperations().add(new AtomicOperation(((Element)atomicOperations.item(k)).getAttribute("name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
 								project.getComponents().add(component);
+								component.setIdProfile(parseString(components, j, "xmi:id"));
 							}
 					break;
+					//Interfaces
 					case "uml:Interface":
 						project.getInterfaces().add(new Interface(element.getAttribute("xmi:id"),element.getAttribute("name")));
-					break;
-					//TODO:sequence!
+					break;	
 				}
 			}
 		}
 		
-		//Second step: Association_Enhanced, Connector
+		//Second step: Association_Enhanced, Connector, Sequences
 		if(UMLelements != null && UMLelements.getLength() > 0) {
 			for(int i = 0 ; i < UMLelements.getLength();i++) {
 				Element element = (Element) UMLelements.item(i);
 				switch(element.getAttribute("xmi:type")){
+					//Associations
 					case "uml:Association":
 						for(int j=0; j<association.getLength();j++)
 							if(((Element)association.item(j)).getAttribute("base_Association").equals(element.getAttribute("xmi:id"))){
@@ -295,28 +303,133 @@ public class UMLparser {
 								project.getAssociations().add(temp);
 							}
 					break;
+					//Connectors
 					case "uml:Usage":
 						for(int j=0; j<connectors.getLength();j++)
-							if(((Element)connectors.item(j)).getAttribute("base_Usage").equals(element.getAttribute("xmi:id"))){
+							if(parseString(connectors, j, "base_Usage").equals(element.getAttribute("xmi:id"))){
 								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"function_points"),false);
 								connector.bind(project.getInterfaces(),project.getComponents());
 								project.getConnectors().add(connector);
+								connector.setIdProfile(parseString(connectors, j, "xmi:id"));
 							}
 					break;
 					case "uml:InterfaceRealization":
 						for(int j=0; j<connectors.getLength();j++)
-							if(((Element)connectors.item(j)).getAttribute("base_InterfaceRealization").equals(element.getAttribute("xmi:id"))){
+							if(parseString(connectors, j, "base_InterfaceRealization").equals(element.getAttribute("xmi:id"))){
 								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"function_points"),true);
 								connector.bind(project.getInterfaces(),project.getComponents());
 								project.getConnectors().add(connector);
+								connector.setIdProfile(parseString(connectors, j, "xmi:id"));
 							}
+					break;
+					//Sequence alternatives
+					case "uml:Interaction":
+						String usecaseId=element.getAttribute("useCase");
+						NodeList interactionElements = element.getChildNodes();
+						List<Element> interactionLifelines = new LinkedList<>();
+						List<Element> interactionMessages = new LinkedList<>();
+						List<Message> messagesList = new LinkedList<>();
+						List<Element> commonSequence= new LinkedList<>();
+						List<List<Element>> sequenceAlternatives = new LinkedList<List<Element>>();
+						
+						for(int j=0; j<element.getElementsByTagName("lifeline").getLength();j++)
+							interactionLifelines.add((Element)element.getElementsByTagName("lifeline").item(j));
+						
+						for(int j=0; j<element.getElementsByTagName("message").getLength();j++)
+							interactionMessages.add((Element)element.getElementsByTagName("message").item(j));
+						
+						commonSequence=getCommons(interactionElements);
+						sequenceAlternatives=getSequenceAlternatives(interactionElements);
+						
+						for(List<Element> seq:sequenceAlternatives){
+							seq.addAll(commonSequence);
+							for(FunctionalRequirement fr:project.getFunctionalRequirements())
+								if(fr.getId().equals(usecaseId)){
+									SequenceAlternative sequenceAlternative=new SequenceAlternative();
+									for(Element seqElement:seq){
+										if(seqElement.getAttribute("xmi:type").equals("uml:MessageOccurrenceSpecification"))
+											for(Element messageElement:interactionMessages)
+												if (messageElement.getAttribute("xmi:id").equals(seqElement.getAttribute("message")))
+													//qua abbiamo seqElement che è un <fragment che punta a messageElement che è il <message
+													//se seqElement identifica un sendmessage creo il messaggio e lo metto da parte
+													if(messageElement.getAttribute("sendEvent").equals(seqElement.getAttribute("xmi:id"))){
+														Message message=new Message(seqElement.getAttribute("message"),messageElement.getAttribute("name"),messageElement.getAttribute("sendEvent"),messageElement.getAttribute("receiveEvent"));
+														message.setSenderId(seqElement.getAttribute("covered"));
+														messagesList.add(message);
+													}
+													//altrimente seqElement identifica un receivedmessage quindi ceerco il sendmessage relativo, lo completo e lo aggiungo ai messaggi della seqAlternative
+													else{
+														for(Message mes:messagesList)
+															if(mes.getReceiveEvent().equals(seqElement.getAttribute("xmi:id"))){
+																//trovato! adesso completo
+																mes.setReceiverId(seqElement.getAttribute("covered"));
+																for(Element lifeline:interactionLifelines){
+																	if(lifeline.getAttribute("xmi:id").equals(mes.getSenderId()))
+																		mes.setSender(project.getLifelineElement(getLifelineElement(mes.getSenderId(),lifelines)));
+																	if(lifeline.getAttribute("xmi:id").equals(mes.getReceiverId()))
+																		mes.setReceiver(project.getLifelineElement(getLifelineElement(mes.getReceiverId(),lifelines)));
+																}
+																sequenceAlternative.getMessages().add(mes);
+															}
+													}
+									}
+									fr.getSequenceAlternatives().add(sequenceAlternative);
+								}
+						}
 					break;
 				}
 			}
 		}
+	}
+	
+	private List<Element> getCommons(NodeList nodelist){
+		List<Element> refined = new LinkedList<>();
+		for(int j=0; j<nodelist.getLength();j++){
+			try{
+				Element element = (Element)nodelist.item(j);
+				if (element.getAttribute("xmi:type").equals("uml:MessageOccurrenceSpecification"))
+						refined.add(element);
+			}catch(Exception e){}
+		}
+		return refined;
+	}
+	
+	private List<List<Element>> getSequenceAlternatives(NodeList nodelist){
+		List<List<Element>> sequenceAlternatives = new LinkedList<>();
+		for(int j=0; j<nodelist.getLength();j++){
+			try{
+				Element element = (Element)nodelist.item(j);
+				if (element.getAttribute("xmi:type").equals("uml:CombinedFragment")){
+					NodeList optionsRaw = element.getChildNodes();
+					for(int i=0; i<optionsRaw.getLength();i++){
+						try{
+							Element option = (Element)optionsRaw.item(i);
+							if (option.getTagName().equals("operand")){
+								int c=option.getChildNodes().getLength();
+								sequenceAlternatives.addAll(getSequenceAlternatives(option.getChildNodes()));
+							}
+						} catch(Exception e){}
+					}
+				}
+			}catch(Exception e){}
+		}
+		if(sequenceAlternatives.isEmpty())
+			sequenceAlternatives.add(new LinkedList<Element>());
+		for(List<Element> seq:sequenceAlternatives)
+			seq.addAll(getCommons(nodelist));
 		
+		return sequenceAlternatives;
 	}
 
+	private String getLifelineElement(String id,NodeList nodelist){
+		for(int j=0; j<nodelist.getLength();j++){
+			Element element = (Element)nodelist.item(j);
+			if(element.getAttribute("base_Lifeline").equals(id))
+				return element.getAttribute("element");
+		}
+		return "";
+	}
+	
 	private String parseString(NodeList nodelist, int position, String attribute) {
 		try{
 			return ((Element)nodelist.item(position)).getAttribute(attribute);

@@ -6,8 +6,8 @@ import java.util.List;
 public class FunctionalRequirement {
 	private String name, id;
 	private List<AssociationEnhanced> associations = new LinkedList<>();
+	private List<SequenceAlternative> sequenceAlternatives = new LinkedList<>();
 	
-
 	public FunctionalRequirement(String name, List<AssociationEnhanced> associations) {
 		this.name = name;
 		this.associations = associations;
@@ -35,6 +35,14 @@ public class FunctionalRequirement {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public List<SequenceAlternative> getSequenceAlternatives() {
+		return sequenceAlternatives;
+	}
+
+	public void setSequenceAlternatives(List<SequenceAlternative> sequenceAlternatives) {
+		this.sequenceAlternatives = sequenceAlternatives;
 	}
 	
 	@Override
