@@ -1,7 +1,7 @@
 package energyoptimizer;
 
 abstract class HardwareComponent {
-	private String name, id;
+	private String name, id, idProfile;
 
 	public HardwareComponent(String name, String id) {
 		super();
@@ -23,5 +23,13 @@ abstract class HardwareComponent {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getIdProfile() {
+		return idProfile;
+	}
+
+	public void setIdProfile(String idProfile) {
+		this.idProfile = idProfile;
 	}
 }

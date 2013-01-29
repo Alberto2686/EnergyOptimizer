@@ -4,8 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class HardwareSet {
-	private String id, name;
-	private HardwareComponent[] hardwareComponents;//used???
+	private String id, name, idProfile;
 	private List<HardwareAlternative> cpuAlternatives=new LinkedList<>(), hddAlternatives=new LinkedList<>(), memoryAlternatives=new LinkedList<>(), networkAlternatives=new LinkedList<>(), platformAlternatives=new LinkedList<>(), otherAlternatives=new LinkedList<>();
 	
 	public HardwareSet(String id, String name) {
@@ -24,12 +23,6 @@ public class HardwareSet {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public HardwareComponent[] getHardwareComponents() {
-		return hardwareComponents;
-	}
-	public void setHardwareComponents(HardwareComponent[] hardwareComponents) {
-		this.hardwareComponents = hardwareComponents;
 	}
 	public List<HardwareAlternative> getCpuAlternatives() {
 		return cpuAlternatives;
@@ -67,6 +60,12 @@ public class HardwareSet {
 	}
 	public void setOtherAlternatives(List<HardwareAlternative> otherAlternatives) {
 		this.otherAlternatives = otherAlternatives;
+	}
+	public String getIdProfile() {
+		return idProfile;
+	}
+	public void setIdProfile(String idProfile) {
+		this.idProfile = idProfile;
 	}
 	@Override
 	public String toString(){

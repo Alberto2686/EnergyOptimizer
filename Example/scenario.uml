@@ -357,20 +357,20 @@
       <lifeline xmi:id="_Yy6cIGktEeKH1oqrNPkAhw" name="Login" coveredBy="_HNOiYGkuEeKH1oqrNPkAhw _HNQXkGkuEeKH1oqrNPkAhw _gRU5AGkuEeKH1oqrNPkAhw _ueWYYGkuEeKH1oqrNPkAhw _ueW_cWkuEeKH1oqrNPkAhw _ueW_cGkuEeKH1oqrNPkAhw _4VVEkGkuEeKH1oqrNPkAhw _5Y4MQGkuEeKH1oqrNPkAhw _-N9E0GkuEeKH1oqrNPkAhw _-8tBMGkuEeKH1oqrNPkAhw _OxjaAGkvEeKH1oqrNPkAhw _OxkoIGkvEeKH1oqrNPkAhw _OxkBEGkvEeKH1oqrNPkAhw _agnCIGkvEeKH1oqrNPkAhw _bqHn4GkvEeKH1oqrNPkAhw"/>
       <lifeline xmi:id="_b8e1IGktEeKH1oqrNPkAhw" name="Publish" coveredBy="_HNOiYGkuEeKH1oqrNPkAhw _HNQXkGkuEeKH1oqrNPkAhw _gRU5AGkuEeKH1oqrNPkAhw _wFptYGkuEeKH1oqrNPkAhw _wFq7gGkuEeKH1oqrNPkAhw _wFqUcGkuEeKH1oqrNPkAhw _A04q0GkvEeKH1oqrNPkAhw _Cq5xQGkvEeKH1oqrNPkAhw _DwKwMGkvEeKH1oqrNPkAhw _HfVJkGkvEeKH1oqrNPkAhw _N-0VgGkvEeKH1oqrNPkAhw _N-1joWkvEeKH1oqrNPkAhw _N-1joGkvEeKH1oqrNPkAhw _ZPLPcGkvEeKH1oqrNPkAhw _agmbEGkvEeKH1oqrNPkAhw _bqIO8GkvEeKH1oqrNPkAhw _cTNoMGkvEeKH1oqrNPkAhw _d7RyMGkvEeKH1oqrNPkAhw _e66qQGkvEeKH1oqrNPkAhw"/>
       <lifeline xmi:id="_dEWcIGktEeKH1oqrNPkAhw" name="Data layer" coveredBy="_HNOiYGkuEeKH1oqrNPkAhw _HNQXkGkuEeKH1oqrNPkAhw _gRU5AGkuEeKH1oqrNPkAhw _voM8YGkuEeKH1oqrNPkAhw _voOKgWkuEeKH1oqrNPkAhw _voOKgGkuEeKH1oqrNPkAhw _wi8tYGkuEeKH1oqrNPkAhw _wi97gGkuEeKH1oqrNPkAhw _wi9UcGkuEeKH1oqrNPkAhw _5Y4zUGkuEeKH1oqrNPkAhw _-N8dwGkuEeKH1oqrNPkAhw _Cq5xQWkvEeKH1oqrNPkAhw _DwKJIGkvEeKH1oqrNPkAhw _PLMCAGkvEeKH1oqrNPkAhw _PLMpEWkvEeKH1oqrNPkAhw _PLMpEGkvEeKH1oqrNPkAhw _cTOPQGkvEeKH1oqrNPkAhw _d7RLIGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_4VT2cGkuEeKH1oqrNPkAhw" name="1:Message" receiveEvent="_4VVEkGkuEeKH1oqrNPkAhw" sendEvent="_4VUdgGkuEeKH1oqrNPkAhw"/>
-      <message xmi:id="_5Y2-IGkuEeKH1oqrNPkAhw" name="2:Message" receiveEvent="_5Y4zUGkuEeKH1oqrNPkAhw" sendEvent="_5Y4MQGkuEeKH1oqrNPkAhw"/>
-      <message xmi:id="_-N7PoGkuEeKH1oqrNPkAhw" name="3:Message" messageSort="reply" receiveEvent="_-N9E0GkuEeKH1oqrNPkAhw" sendEvent="_-N8dwGkuEeKH1oqrNPkAhw"/>
-      <message xmi:id="_-8saIGkuEeKH1oqrNPkAhw" name="4:Message" messageSort="reply" receiveEvent="_-8toQGkuEeKH1oqrNPkAhw" sendEvent="_-8tBMGkuEeKH1oqrNPkAhw"/>
-      <message xmi:id="_A021oGkvEeKH1oqrNPkAhw" name="5:Message" receiveEvent="_A04q0GkvEeKH1oqrNPkAhw" sendEvent="_A04DwGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_Cq5KMGkvEeKH1oqrNPkAhw" name="6:Message" receiveEvent="_Cq5xQWkvEeKH1oqrNPkAhw" sendEvent="_Cq5xQGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_DwI7AGkvEeKH1oqrNPkAhw" name="7:Message" messageSort="reply" receiveEvent="_DwKwMGkvEeKH1oqrNPkAhw" sendEvent="_DwKJIGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_HfUigGkvEeKH1oqrNPkAhw" name="8:Message" messageSort="reply" receiveEvent="_HfVwoGkvEeKH1oqrNPkAhw" sendEvent="_HfVJkGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_ZPJaQGkvEeKH1oqrNPkAhw" name="9:Message" receiveEvent="_ZPLPcGkvEeKH1oqrNPkAhw" sendEvent="_ZPKoYGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_aglM8GkvEeKH1oqrNPkAhw" name="10:Message" receiveEvent="_agnCIGkvEeKH1oqrNPkAhw" sendEvent="_agmbEGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_bqGZwGkvEeKH1oqrNPkAhw" name="11:Message" messageSort="reply" receiveEvent="_bqIO8GkvEeKH1oqrNPkAhw" sendEvent="_bqHn4GkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_cTNBIGkvEeKH1oqrNPkAhw" name="12:Message" receiveEvent="_cTOPQGkvEeKH1oqrNPkAhw" sendEvent="_cTNoMGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_d7P9AGkvEeKH1oqrNPkAhw" name="13:Message" messageSort="reply" receiveEvent="_d7RyMGkvEeKH1oqrNPkAhw" sendEvent="_d7RLIGkvEeKH1oqrNPkAhw"/>
-      <message xmi:id="_e65cIGkvEeKH1oqrNPkAhw" name="14:Message" messageSort="reply" receiveEvent="_e67RUGkvEeKH1oqrNPkAhw" sendEvent="_e66qQGkvEeKH1oqrNPkAhw"/>
+      <message xmi:id="_4VT2cGkuEeKH1oqrNPkAhw" name="1:Message" receiveEvent="_4VVEkGkuEeKH1oqrNPkAhw" sendEvent="_4VUdgGkuEeKH1oqrNPkAhw" signature="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_5Y2-IGkuEeKH1oqrNPkAhw" name="2:Message" receiveEvent="_5Y4zUGkuEeKH1oqrNPkAhw" sendEvent="_5Y4MQGkuEeKH1oqrNPkAhw" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+      <message xmi:id="_-N7PoGkuEeKH1oqrNPkAhw" name="3:Message" messageSort="reply" receiveEvent="_-N9E0GkuEeKH1oqrNPkAhw" sendEvent="_-N8dwGkuEeKH1oqrNPkAhw" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+      <message xmi:id="_-8saIGkuEeKH1oqrNPkAhw" name="4:Message" messageSort="reply" receiveEvent="_-8toQGkuEeKH1oqrNPkAhw" sendEvent="_-8tBMGkuEeKH1oqrNPkAhw" signature="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_A021oGkvEeKH1oqrNPkAhw" name="5:Message" receiveEvent="_A04q0GkvEeKH1oqrNPkAhw" sendEvent="_A04DwGkvEeKH1oqrNPkAhw" signature="_TuYXIFQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_Cq5KMGkvEeKH1oqrNPkAhw" name="6:Message" receiveEvent="_Cq5xQWkvEeKH1oqrNPkAhw" sendEvent="_Cq5xQGkvEeKH1oqrNPkAhw" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+      <message xmi:id="_DwI7AGkvEeKH1oqrNPkAhw" name="7:Message" messageSort="reply" receiveEvent="_DwKwMGkvEeKH1oqrNPkAhw" sendEvent="_DwKJIGkvEeKH1oqrNPkAhw" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+      <message xmi:id="_HfUigGkvEeKH1oqrNPkAhw" name="8:Message" messageSort="reply" receiveEvent="_HfVwoGkvEeKH1oqrNPkAhw" sendEvent="_HfVJkGkvEeKH1oqrNPkAhw" signature="_TuYXIFQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_ZPJaQGkvEeKH1oqrNPkAhw" name="9:Message" receiveEvent="_ZPLPcGkvEeKH1oqrNPkAhw" sendEvent="_ZPKoYGkvEeKH1oqrNPkAhw" signature="_TuYXIFQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_aglM8GkvEeKH1oqrNPkAhw" name="10:Message" receiveEvent="_agnCIGkvEeKH1oqrNPkAhw" sendEvent="_agmbEGkvEeKH1oqrNPkAhw" signature="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_bqGZwGkvEeKH1oqrNPkAhw" name="11:Message" messageSort="reply" receiveEvent="_bqIO8GkvEeKH1oqrNPkAhw" sendEvent="_bqHn4GkvEeKH1oqrNPkAhw" signature="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+      <message xmi:id="_cTNBIGkvEeKH1oqrNPkAhw" name="12:Message" receiveEvent="_cTOPQGkvEeKH1oqrNPkAhw" sendEvent="_cTNoMGkvEeKH1oqrNPkAhw" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+      <message xmi:id="_d7P9AGkvEeKH1oqrNPkAhw" name="13:Message" messageSort="reply" receiveEvent="_d7RyMGkvEeKH1oqrNPkAhw" sendEvent="_d7RLIGkvEeKH1oqrNPkAhw" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+      <message xmi:id="_e65cIGkvEeKH1oqrNPkAhw" name="14:Message" messageSort="reply" receiveEvent="_e67RUGkvEeKH1oqrNPkAhw" sendEvent="_e66qQGkvEeKH1oqrNPkAhw" signature="_TuYXIFQ4EeK1RYrhpF2zLg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:DataType" xmi:id="_j_jSAGVvEeKXIcxpLhBr9A" name="800-1000"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_ssxg0GVvEeKXIcxpLhBr9A" name="5-10"/>

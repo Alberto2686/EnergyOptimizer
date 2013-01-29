@@ -1,6 +1,7 @@
 package energyoptimizer;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Project {
@@ -13,10 +14,6 @@ public class Project {
 	private List<Connector> connectors = new ArrayList<>();
 	private List<Interface> interfaces = new ArrayList<>();
 	private List<DeploymentAlternative> deploymentAlternatives = new ArrayList<>();
-	
-	public Project(String name){
-		this.name=name;
-	}
 	
 	public List<FunctionalRequirement> getFunctionalRequirements() {
 		return functionalRequirements;
@@ -91,6 +88,7 @@ public class Project {
 		return isActor;
 	}
 	
+	//TODO:connector non è più un lifeline element! eliminare qui e togliere estensione
 	public LifelineElement getLifelineElement(String id){
 		for(Component component:components)
 			if(component.getIdProfile().equals(id))
@@ -102,6 +100,50 @@ public class Project {
 			if(stakeholder.getIdProfile().equals(id))
 				return stakeholder;
 		return null;
+	}
+	
+	public void generateDeploymentAlternatives(){
+		for(FunctionalRequirement fr : getFunctionalRequirements()){
+			for(SequenceAlternative sa : fr.getSequenceAlternatives()){
+				List<Component> sequenceComponents = sa.getComponents();
+				List<HardwareSet> sequenceHardwareSets = new LinkedList<>();
+				int hardwarePossibilities[] = new int[sequenceComponents.size()];
+				int repetitions[] = new int[sequenceComponents.size()];
+				int i=0;
+				int alternatives = 1;
+				for(Component sc: sequenceComponents){
+					hardwarePossibilities[i]=sc.getHardwareSets().size();
+					alternatives*=sc.getHardwareSets().size();
+					repetitions[i++]=alternatives/sc.getHardwareSets().size();
+					for(HardwareSet hws:sc.getHardwareSets())
+						addHardwareSetIfNotPresent(sequenceHardwareSets,hws);
+				}
+				generateDeploymentAlternatives(fr,sa,sequenceComponents,sequenceHardwareSets,alternatives,hardwarePossibilities,repetitions);
+			}
+		}
+	}
+	
+	private void generateDeploymentAlternatives(FunctionalRequirement functionalRequirement,SequenceAlternative sequenceAlternative, List<Component>sequenceComponents,List<HardwareSet>sequenceHardwareSets,int alternatives,int[]hardwarePossibilities,int[]repetitions){
+		for(int i=0;i<alternatives;i++){
+			DeploymentAlternative deploymentAlternative = new DeploymentAlternative();
+			deploymentAlternative.getFunctionalRequirementsCovered().add(functionalRequirement);
+			for(int j=0;j<sequenceComponents.size();j++){
+				int index=(i/repetitions[j])%sequenceComponents.get(j).getHardwareSets().size();
+				HardwareSet hws = sequenceComponents.get(j).getHardwareSets().get(index);
+				DeployedComponent deployedComponent = new DeployedComponent(sequenceComponents.get(j),hws);
+				deploymentAlternative.getDeployedComponents().add(deployedComponent);
+			}
+			sequenceAlternative.getDeploymentAlternatives().add(deploymentAlternative);
+			//TODO: aggiungere solo se non esiste già: calcolare hash e verificare. se esiste già aggiungere fr covered se non c'è già
+			deploymentAlternatives.add(deploymentAlternative);
+		}
+	}
+	
+	public void addHardwareSetIfNotPresent(List<HardwareSet> sequenceHardwareSets, HardwareSet hardwareSet){
+		for(HardwareSet hws:sequenceHardwareSets)
+			if(hws.getId().equals(hardwareSet.getId()))
+				return;
+		sequenceHardwareSets.add(hardwareSet);
 	}
 	
 	@Override

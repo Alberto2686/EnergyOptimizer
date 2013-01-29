@@ -52,6 +52,7 @@ public class UMLparser {
 		Element docEle = dom.getDocumentElement();
 
 		//get profile elements
+		NodeList model = docEle.getElementsByTagName("uml:Model");
 		NodeList stakeholders = docEle.getElementsByTagName("Profile:Stakeholder");
 		NodeList association = docEle.getElementsByTagName("Profile:Association_enhanced");
 		NodeList hardwareSets = docEle.getElementsByTagName("Profile:Hardware_set");
@@ -81,6 +82,9 @@ public class UMLparser {
 		
 		NodeList UMLelements = docEle.getElementsByTagName("packagedElement");
 		
+		//set project name
+		project.setName(parseString(model, 0, "name"));
+		
 		//First step: UseCase, Stakeholder, Hardware set, Hardware alternative, Hardware component, Software component, Interface
 		if(UMLelements != null && UMLelements.getLength() > 0) {
 			for(int i = 0 ; i < UMLelements.getLength();i++) {
@@ -102,13 +106,15 @@ public class UMLparser {
 					case "uml:Package":
 						//Hardware sets
 						for(int j=0; j<hardwareSets.getLength();j++)
-							if(((Element)hardwareSets.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id"))){
+							if(parseString(hardwareSets, j, "base_Package").equals(element.getAttribute("xmi:id"))){
 								HardwareSet temp = new HardwareSet(element.getAttribute("xmi:id"),element.getAttribute("name"));
+								temp.setIdProfile(parseString(hardwareSets, j, "xmi:id"));
 								project.getHardwareSets().add(temp);
 							}
 						//CPU Alternatives and CPUs
+						//TODO: spostare questo e le altre componenti HW in step 1.5 altrimenti casini se gli HW non sono stati definiti prima
 						for(int j=0; j<cpuAlternatives.getLength();j++)
-							if(((Element)cpuAlternatives.item(j)).getAttribute("base_Package").equals(element.getAttribute("xmi:id")))
+							if(parseString(cpuAlternatives,j,"base_Package").equals(element.getAttribute("xmi:id")))
 								for(HardwareSet hwSet:project.getHardwareSets())
 									if (hwSet.getId().equals(((Element)element.getParentNode()).getAttribute("xmi:id"))){
 										HardwareAlternative hwAlternative=new HardwareAlternative(element.getAttribute("xmi:id"),element.getAttribute("name"));
@@ -267,9 +273,10 @@ public class UMLparser {
 								Component component=new Component(element.getAttribute("xmi:id"), element.getAttribute("name"),getInt(components,j,"function_points"));
 								for(int k=0; k<atomicOperations.getLength();k++)
 									if(((Element)atomicOperations.item(k)).getAttribute("xmi:id").equals(((Element)components.item(j)).getAttribute("atomic_operations")))
-										component.getAtomicOperations().add(new AtomicOperation(((Element)atomicOperations.item(k)).getAttribute("name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
+										component.getAtomicOperations().add(new AtomicOperation(parseString(atomicOperations, k, "name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
 								project.getComponents().add(component);
 								component.setIdProfile(parseString(components, j, "xmi:id"));
+								component.setHardwareSetId(parseString(components, j, "hardware_set"));
 							}
 					break;
 					//Interfaces
@@ -278,6 +285,13 @@ public class UMLparser {
 					break;	
 				}
 			}
+		}
+		
+		//Components are bound to the hardware sets they can deployed on
+		for(Component component : project.getComponents()){
+			for(HardwareSet hws : project.getHardwareSets())
+				if (component.getHardwareSetId().contains(hws.getIdProfile()))
+						component.getHardwareSets().add(hws);
 		}
 		
 		//Second step: Association_Enhanced, Connector, Sequences
@@ -353,7 +367,7 @@ public class UMLparser {
 													//qua abbiamo seqElement che è un <fragment che punta a messageElement che è il <message
 													//se seqElement identifica un sendmessage creo il messaggio e lo metto da parte
 													if(messageElement.getAttribute("sendEvent").equals(seqElement.getAttribute("xmi:id"))){
-														Message message=new Message(seqElement.getAttribute("message"),messageElement.getAttribute("name"),messageElement.getAttribute("sendEvent"),messageElement.getAttribute("receiveEvent"));
+														Message message=new Message(seqElement.getAttribute("message"),messageElement.getAttribute("name"),messageElement.getAttribute("sendEvent"),messageElement.getAttribute("receiveEvent"),messageElement.getAttribute("signature"));
 														message.setSenderId(seqElement.getAttribute("covered"));
 														messagesList.add(message);
 													}
@@ -369,17 +383,25 @@ public class UMLparser {
 																	if(lifeline.getAttribute("xmi:id").equals(mes.getReceiverId()))
 																		mes.setReceiver(project.getLifelineElement(getLifelineElement(mes.getReceiverId(),lifelines)));
 																}
+																for(Interface in : project.getInterfaces())
+																	if (mes.getSignatureId().equals(in.getId()))
+																		mes.setSignature(in);
+																
 																sequenceAlternative.getMessages().add(mes);
 															}
 													}
 									}
 									fr.getSequenceAlternatives().add(sequenceAlternative);
+									sequenceAlternative.initializeComponents();
 								}
 						}
 					break;
 				}
 			}
 		}
+		//TODO: DEPLOYMENTALTERNATIVE GENERATION
+		project.generateDeploymentAlternatives();
+		
 	}
 	
 	private List<Element> getCommons(NodeList nodelist){
@@ -405,7 +427,6 @@ public class UMLparser {
 						try{
 							Element option = (Element)optionsRaw.item(i);
 							if (option.getTagName().equals("operand")){
-								int c=option.getChildNodes().getLength();
 								sequenceAlternatives.addAll(getSequenceAlternatives(option.getChildNodes()));
 							}
 						} catch(Exception e){}
