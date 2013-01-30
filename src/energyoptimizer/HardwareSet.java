@@ -5,6 +5,7 @@ import java.util.List;
 
 public class HardwareSet extends ModelElement{
 	private List<HardwareAlternative> cpuAlternatives=new LinkedList<>(), hddAlternatives=new LinkedList<>(), memoryAlternatives=new LinkedList<>(), networkAlternatives=new LinkedList<>(), platformAlternatives=new LinkedList<>(), otherAlternatives=new LinkedList<>();
+	private List<List<HardwareAlternative>> hardwareSetAlternatives=new LinkedList<>();
 	
 	public HardwareSet(String id, String name) {
 		setName(name);
@@ -46,6 +47,47 @@ public class HardwareSet extends ModelElement{
 	}
 	public void setOtherAlternatives(List<HardwareAlternative> otherAlternatives) {
 		this.otherAlternatives = otherAlternatives;
+	}
+	
+	public List<List<HardwareAlternative>> getHardwareSetAlternatives() {
+		return hardwareSetAlternatives;
+	}
+	public void setHardwareSetAlternatives(
+			List<List<HardwareAlternative>> hardwareSetAlternatives) {
+		this.hardwareSetAlternatives = hardwareSetAlternatives;
+	}
+	public void generateHardwareSetAlternatives(){
+		generateDummyHardwareAlternatives();
+		for(HardwareAlternative cpuAlternative: cpuAlternatives)
+			for(HardwareAlternative hddAlternative:hddAlternatives)
+				for(HardwareAlternative memoryAlternative:memoryAlternatives)
+					for(HardwareAlternative networkAlternative:networkAlternatives) 
+						for(HardwareAlternative platformAlternative:platformAlternatives) 
+							for(HardwareAlternative otherAlternative:otherAlternatives){
+								LinkedList<HardwareAlternative> hardwareSetAlternative=new LinkedList<>();
+								hardwareSetAlternative.add(cpuAlternative);
+								hardwareSetAlternative.add(hddAlternative);
+								hardwareSetAlternative.add(memoryAlternative);
+								hardwareSetAlternative.add(networkAlternative);
+								hardwareSetAlternative.add(platformAlternative);
+								hardwareSetAlternative.add(otherAlternative);
+								hardwareSetAlternatives.add(hardwareSetAlternative);
+							}
+	}
+	
+	private void generateDummyHardwareAlternatives() {
+		if(cpuAlternatives.size()==0)
+			cpuAlternatives.add(new HardwareAlternative("", ""));
+		if(hddAlternatives.size()==0)
+			hddAlternatives.add(new HardwareAlternative("", ""));
+		if(memoryAlternatives.size()==0)
+			memoryAlternatives.add(new HardwareAlternative("", ""));
+		if(networkAlternatives.size()==0)
+			networkAlternatives.add(new HardwareAlternative("", ""));
+		if(platformAlternatives.size()==0)
+			platformAlternatives.add(new HardwareAlternative("", ""));
+		if(otherAlternatives.size()==0)
+			otherAlternatives.add(new HardwareAlternative("", ""));
 	}
 	
 	@Override

@@ -398,9 +398,6 @@ public class UMLparser {
 				}
 			}
 		}
-		//TODO: DEPLOYMENTALTERNATIVE GENERATION
-		project.generateDeploymentAlternatives();
-		
 	}
 	
 	private List<Element> getCommons(NodeList nodelist){

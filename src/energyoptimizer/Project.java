@@ -98,7 +98,17 @@ public class Project {
 		return null;
 	}
 	
-	public void generateDeploymentAlternatives(){
+	public void generateAlternatives(){
+		generateHardwareSetAlternatives();
+		generateDeploymentAlternatives();
+	}
+	
+	private void generateHardwareSetAlternatives(){
+		for(HardwareSet hws:hardwareSets)
+			hws.generateHardwareSetAlternatives();
+	}
+	
+	private void generateDeploymentAlternatives(){
 		for(FunctionalRequirement fr : getFunctionalRequirements()){
 			for(SequenceAlternative sa : fr.getSequenceAlternatives()){
 				List<Component> sequenceComponents = sa.getComponents();
@@ -158,6 +168,8 @@ public class Project {
 	@Override
 	public String toString(){
 		String status="Project "+name+" status:\n";
+		int i=1;
+		
 		status+="\n\tFunctional requirements:\n";
 		for(FunctionalRequirement fr:functionalRequirements)
 			status+="\t\t"+fr.toString()+"\n";
@@ -168,8 +180,8 @@ public class Project {
 		for(AssociationEnhanced ae:associations)
 			status+="\t\t"+ae.toString()+"\n";
 		status+="\n\tHardware sets:\n";
-		for(HardwareSet hs:hardwareSets)
-			status+="\t\t"+hs.toString()+"\n";
+		for(HardwareSet hws:hardwareSets)
+			status+="\t\t"+hws.toString()+"\n";
 		status+="\n\tComponents:\n";
 		for(Component c:components)
 			status+="\t\t"+c.toString()+"\n";
@@ -182,7 +194,19 @@ public class Project {
 				status+="\t\t"+sa.toString()+"\n";
 		status+="\n\tDeployment alternatives:\n";
 		for(DeploymentAlternative da:deploymentAlternatives)
-			status+="\t\t"+da.toString()+"\n";
+			status+="\t\t"+(i++)+" "+da.toString()+"\n";
+		status+="\n\tHardware set alternatives:\n";
+		i=1;
+		for(HardwareSet hws:hardwareSets){
+			status+="\t\t"+hws.getName()+":\n";
+			for(List<HardwareAlternative> hwsa: hws.getHardwareSetAlternatives()){
+				status+="\t\t"+(i++)+": ";
+				for(HardwareAlternative ha:hwsa)
+					status+=ha.getName()+" - ";
+				status=status.substring(0,status.length()-3);
+				status+="\n";
+			}
+		}
 		return status;
 	}
 }
