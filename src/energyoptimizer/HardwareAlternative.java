@@ -3,25 +3,12 @@ package energyoptimizer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class HardwareAlternative {
-	private String id, name;
+public class HardwareAlternative extends ModelElement{
 	private List<HardwareComponent> hardwareComponents=new LinkedList<>();
+	
 	public HardwareAlternative(String id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+		setId(id);
+		setName(name);
 	}
 	public List<HardwareComponent> getHardwareComponents() {
 		return hardwareComponents;
@@ -31,6 +18,6 @@ public class HardwareAlternative {
 	}
 	@Override
 	public String toString(){
-		return name+": "+hardwareComponents;
+		return getName()+": "+hardwareComponents;
 	}
 }

@@ -3,38 +3,24 @@ package energyoptimizer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FunctionalRequirement {
-	private String name, id;
+public class FunctionalRequirement extends ModelElement {
 	private List<AssociationEnhanced> associations = new LinkedList<>();
 	private List<SequenceAlternative> sequenceAlternatives = new LinkedList<>();
 	
 	public FunctionalRequirement(String name, List<AssociationEnhanced> associations) {
-		this.name = name;
+		setName(name);
 		this.associations = associations;
 	}
 	
 	public FunctionalRequirement(String name, String id) {
-		this.name = name;
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+		setName(name);
+		setId(id);
 	}
 	public List<AssociationEnhanced> getAssociations() {
 		return associations;
 	}
 	public void setAssociations(List<AssociationEnhanced> associations) {
 		this.associations = associations;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public List<SequenceAlternative> getSequenceAlternatives() {
@@ -50,6 +36,6 @@ public class FunctionalRequirement {
 		String string=" connected to ";
 		for(AssociationEnhanced as:associations)
 			string+=as.getStakeholder().getName()+" p="+as.getProbability()+" - ";
-		return name+string.substring(0, string.length()-3);
+		return getName()+string.substring(0, string.length()-3);
 	}
 }

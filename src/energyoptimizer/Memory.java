@@ -4,7 +4,8 @@ public class Memory extends HardwareComponent {
 	private double bandwidth,workConsumption,idleConsumption;
 
 	public Memory(String name, String id, double bandwidth,double workConsumption, double idleConsumption) {
-		super(name, id);
+		setName(name);
+		setId(id);
 		this.bandwidth = bandwidth;
 		this.workConsumption = workConsumption;
 		this.idleConsumption = idleConsumption;

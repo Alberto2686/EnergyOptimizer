@@ -4,7 +4,8 @@ public class Platform extends HardwareComponent {
 	private double virtualization,scheduling,framework,jvm,gc,os;
 	
 	public Platform(String name, String id, double virtualization, double scheduling, double framework, double jvm, double gc, double os) {
-		super(name, id);
+		setName(name);
+		setId(id);
 		this.virtualization = virtualization;
 		this.scheduling = scheduling;
 		this.framework = framework;

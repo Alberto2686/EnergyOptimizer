@@ -24,11 +24,18 @@ public class DeploymentAlternative {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void initializeId(){
+		String hashSequence="";
+		for(DeployedComponent dc:deployedComponents)
+			hashSequence+=dc.getId();
+		id=Utils.getHash(hashSequence);
 	}
-	public void generateId(){
-		//TODO:generate idS
+	
+	public void addFunctionalRequirementsCoveredIfNotPresent(FunctionalRequirement functionalRequirement) {
+		for(FunctionalRequirement fr:functionalRequirementsCovered)
+			if(functionalRequirement.getId().equals(fr.getId()))
+				return;
+		functionalRequirementsCovered.add(functionalRequirement);
 	}
 
 	@Override

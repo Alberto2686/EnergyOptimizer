@@ -88,14 +88,10 @@ public class Project {
 		return isActor;
 	}
 	
-	//TODO:connector non è più un lifeline element! eliminare qui e togliere estensione
 	public LifelineElement getLifelineElement(String id){
 		for(Component component:components)
 			if(component.getIdProfile().equals(id))
 				return component;
-		for(Connector connector:connectors)
-			if(connector.getIdProfile().equals(id))
-				return connector;
 		for(Stakeholder stakeholder:stakeholders)
 			if(stakeholder.getIdProfile().equals(id))
 				return stakeholder;
@@ -126,16 +122,14 @@ public class Project {
 	private void generateDeploymentAlternatives(FunctionalRequirement functionalRequirement,SequenceAlternative sequenceAlternative, List<Component>sequenceComponents,List<HardwareSet>sequenceHardwareSets,int alternatives,int[]hardwarePossibilities,int[]repetitions){
 		for(int i=0;i<alternatives;i++){
 			DeploymentAlternative deploymentAlternative = new DeploymentAlternative();
-			deploymentAlternative.getFunctionalRequirementsCovered().add(functionalRequirement);
 			for(int j=0;j<sequenceComponents.size();j++){
 				int index=(i/repetitions[j])%sequenceComponents.get(j).getHardwareSets().size();
 				HardwareSet hws = sequenceComponents.get(j).getHardwareSets().get(index);
 				DeployedComponent deployedComponent = new DeployedComponent(sequenceComponents.get(j),hws);
 				deploymentAlternative.getDeployedComponents().add(deployedComponent);
 			}
-			sequenceAlternative.getDeploymentAlternatives().add(deploymentAlternative);
-			//TODO: aggiungere solo se non esiste già: calcolare hash e verificare. se esiste già aggiungere fr covered se non c'è già
-			deploymentAlternatives.add(deploymentAlternative);
+			deploymentAlternative.initializeId();
+			addDeploymentAlternativeIfNotPresent(deploymentAlternative, sequenceAlternative, functionalRequirement);
 		}
 	}
 	
@@ -144,6 +138,21 @@ public class Project {
 			if(hws.getId().equals(hardwareSet.getId()))
 				return;
 		sequenceHardwareSets.add(hardwareSet);
+	}
+	
+	public void addDeploymentAlternativeIfNotPresent(DeploymentAlternative deploymentAlternative,SequenceAlternative sequenceAlternative,FunctionalRequirement functionalRequirement){
+		for(DeploymentAlternative da:deploymentAlternatives)
+			if(da.getId().equals(deploymentAlternative.getId())){//deploymentAlternative already present
+				da.addFunctionalRequirementsCoveredIfNotPresent(functionalRequirement);
+				for(DeploymentAlternative sda:sequenceAlternative.getDeploymentAlternatives())
+					if(sda.getId().equals(da.getId()))
+						return;
+				sequenceAlternative.getDeploymentAlternatives().add(da);
+				return;
+			}
+		deploymentAlternatives.add(deploymentAlternative);
+		sequenceAlternative.getDeploymentAlternatives().add(deploymentAlternative);
+		deploymentAlternative.getFunctionalRequirementsCovered().add(functionalRequirement);
 	}
 	
 	@Override

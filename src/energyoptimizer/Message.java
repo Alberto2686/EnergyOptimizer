@@ -1,28 +1,16 @@
 package energyoptimizer;
 
-public class Message {
-	private String id,name, sendEvent,receiveEvent,senderId,receiverId,signatureId;
+public class Message extends ModelElement{
+	private String sendEvent,receiveEvent,senderId,receiverId,signatureId;
 	private LifelineElement sender, receiver;
 	private Interface signature;
 	
 	public Message(String id, String name, String sendEvent, String receiveEvent, String signatureId) {
-		this.id = id;
-		this.name = name;
+		setName(name);
+		setId(id);
 		this.sendEvent = sendEvent;
 		this.receiveEvent = receiveEvent;
 		this.setSignatureId(signatureId);
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getSendEvent() {
 		return sendEvent;
@@ -74,6 +62,6 @@ public class Message {
 	}
 	@Override
 	public String toString(){
-		return name+" from: "+sender.getName()+" to: "+receiver.getName()+" interface: "+signature.getName();
+		return getName()+" from: "+sender.getName()+" to: "+receiver.getName()+" interface: "+signature.getName();
 	}
 }

@@ -4,7 +4,8 @@ public class Network extends HardwareComponent {
 	private double bandwidth,mbConsumption;
 
 	public Network(String id, String name, double bandwidth,double mbConsumption) {
-		super(name, id);
+		setName(name);
+		setId(id);
 		this.bandwidth = bandwidth;
 		this.mbConsumption = mbConsumption;
 	}

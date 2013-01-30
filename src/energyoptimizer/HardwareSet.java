@@ -3,26 +3,12 @@ package energyoptimizer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class HardwareSet {
-	private String id, name, idProfile;
+public class HardwareSet extends ModelElement{
 	private List<HardwareAlternative> cpuAlternatives=new LinkedList<>(), hddAlternatives=new LinkedList<>(), memoryAlternatives=new LinkedList<>(), networkAlternatives=new LinkedList<>(), platformAlternatives=new LinkedList<>(), otherAlternatives=new LinkedList<>();
 	
 	public HardwareSet(String id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+		setName(name);
+		setId(id);
 	}
 	public List<HardwareAlternative> getCpuAlternatives() {
 		return cpuAlternatives;
@@ -61,12 +47,7 @@ public class HardwareSet {
 	public void setOtherAlternatives(List<HardwareAlternative> otherAlternatives) {
 		this.otherAlternatives = otherAlternatives;
 	}
-	public String getIdProfile() {
-		return idProfile;
-	}
-	public void setIdProfile(String idProfile) {
-		this.idProfile = idProfile;
-	}
+	
 	@Override
 	public String toString(){
 		String string="\n\t\t\tCPU:";
@@ -87,6 +68,6 @@ public class HardwareSet {
 		string+="\n\t\t\tOther:";
 		for(HardwareAlternative alt:otherAlternatives)
 			string+="\n\t\t\t\t"+alt.toString();
-		return name+string;
+		return getName()+string;
 	}
 }

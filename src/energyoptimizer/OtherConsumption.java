@@ -1,18 +1,11 @@
 package energyoptimizer;
 
-public class OtherConsumption {
-	private String name;
+public class OtherConsumption extends ModelElement {
 	private double consumption;
+	
 	public OtherConsumption(String name, double consumption) {
-		super();
-		this.name = name;
+		setName(name);
 		this.consumption = consumption;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public double getConsumption() {
 		return consumption;
@@ -22,6 +15,6 @@ public class OtherConsumption {
 	}
 	@Override
 	public String toString(){
-		return name+" "+consumption;
+		return getName()+" "+consumption;
 	}
 }

@@ -2,7 +2,7 @@ package energyoptimizer;
 
 import java.util.List;
 
-public class AssociationEnhanced {
+public class AssociationEnhanced extends ModelElement{
 	private Stakeholder stakeholder;
 	private FunctionalRequirement functionalRequirement;
 	private String stakeholderId, functionalRequirementID;

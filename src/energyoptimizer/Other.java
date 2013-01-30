@@ -7,7 +7,8 @@ public class Other extends HardwareComponent {
 	private double busses,sensors,cooling,peripheralDevices,display,ups;
 	private List<OtherConsumption> otherConsumption=new LinkedList<>();
 	public Other(String name, String id, double busses, double sensors, double cooling, double peripheralDevices, double display, double ups) {
-		super(name, id);
+		setName(name);
+		setId(id);
 		this.busses = busses;
 		this.sensors = sensors;
 		this.cooling = cooling;

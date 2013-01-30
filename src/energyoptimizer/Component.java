@@ -3,7 +3,7 @@ package energyoptimizer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Component extends SoftwareComponent {
+public class Component extends SoftwareComponent implements LifelineElement{
 	private List<AtomicOperation> atomicOperations =new LinkedList<>();
 	private List<Connector> connectors = new LinkedList<>();
 	private String hardwareSetId;

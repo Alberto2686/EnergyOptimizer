@@ -3,12 +3,13 @@ package energyoptimizer;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class SoftwareComponent extends LifelineElement{
+public abstract class SoftwareComponent extends ModelElement{
 	private int functionPoints;
 	private List<HardwareSet> deploymentPossibilities=new LinkedList<>();
 	
 	public SoftwareComponent(String id, String name,int functionPoints) {
-		super(id,name);
+		setId(id);
+		setName(name);
 		this.setFunctionPoints(functionPoints);
 	}
 	public List<HardwareSet> getDeploymentPossibilities() {

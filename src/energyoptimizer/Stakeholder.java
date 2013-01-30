@@ -1,15 +1,17 @@
 package energyoptimizer;
 
-public class Stakeholder extends LifelineElement{
+public class Stakeholder extends ModelElement implements LifelineElement{
 	private int min, max;
 	
 	public Stakeholder(String name, String id, int min, int max) {
-		super(id,name);
+		setName(name);
+		setId(id);
 		this.min=min;
 		this.max=max;
 	}
 	public Stakeholder(String name, String id) {
-		super(id,name);
+		setName(name);
+		setId(id);
 	}
 	public int getMin() {
 		return min;

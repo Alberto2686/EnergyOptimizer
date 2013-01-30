@@ -112,7 +112,6 @@ public class UMLparser {
 								project.getHardwareSets().add(temp);
 							}
 						//CPU Alternatives and CPUs
-						//TODO: spostare questo e le altre componenti HW in step 1.5 altrimenti casini se gli HW non sono stati definiti prima
 						for(int j=0; j<cpuAlternatives.getLength();j++)
 							if(parseString(cpuAlternatives,j,"base_Package").equals(element.getAttribute("xmi:id")))
 								for(HardwareSet hwSet:project.getHardwareSets())
