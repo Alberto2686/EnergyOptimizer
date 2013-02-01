@@ -14,6 +14,8 @@ public class Project {
 	private List<Connector> connectors = new ArrayList<>();
 	private List<Interface> interfaces = new ArrayList<>();
 	private List<DeploymentAlternative> deploymentAlternatives = new ArrayList<>();
+	private List<HardwareSystem> hardwareSystems = new ArrayList<>();
+	private List<SoftwareSystem> systems = new ArrayList<>();
 	
 	public List<FunctionalRequirement> getFunctionalRequirements() {
 		return functionalRequirements;
@@ -101,6 +103,39 @@ public class Project {
 	public void generateAlternatives(){
 		generateHardwareSetAlternatives();
 		generateDeploymentAlternatives();
+		generateHardwareSystemAlternatives();
+		generateSystems();
+	}
+	
+	private void generateSystems() {
+		for(HardwareSystem hardwareSystem : hardwareSystems)
+			for(DeploymentAlternative deploymentAlternative : deploymentAlternatives)
+				systems.add(new SoftwareSystem(hardwareSystem,deploymentAlternative));
+	}
+	
+	private void generateHardwareSystemAlternatives() {
+		int alternatives = 1;
+		int possibilities[] = new int[hardwareSets.size()];
+		int repetitions[] = new int[hardwareSets.size()];
+		int i=0;
+		for(HardwareSet hws:hardwareSets){
+			alternatives*=hws.getHardwareSetAlternatives().size();
+			possibilities[i]=hws.getHardwareSetAlternatives().size();
+			repetitions[i++]=alternatives/hws.getHardwareSetAlternatives().size();
+		}
+		generateHardwareSystems(alternatives,possibilities,repetitions);
+	}
+	
+	private void generateHardwareSystems(int alternatives,int[]possibilities,int[]repetitions){
+		for(int i=0;i<alternatives;i++){
+			HardwareSystem hardwareSystem = new HardwareSystem();
+			for(int j=0;j<hardwareSets.size();j++){
+				int index=(i/repetitions[j])%hardwareSets.get(j).getHardwareSetAlternatives().size();
+				HardwareSetAlternative hwa = hardwareSets.get(j).getHardwareSetAlternatives().get(index);
+				hardwareSystem.getHardwareSetAlternatives().add(hwa);
+			}
+			hardwareSystems.add(hardwareSystem);
+		}
 	}
 	
 	private void generateHardwareSetAlternatives(){
@@ -196,17 +231,22 @@ public class Project {
 		for(DeploymentAlternative da:deploymentAlternatives)
 			status+="\t\t"+(i++)+" "+da.toString()+"\n";
 		status+="\n\tHardware set alternatives:\n";
-		i=1;
 		for(HardwareSet hws:hardwareSets){
+			i=1;
 			status+="\t\t"+hws.getName()+":\n";
-			for(List<HardwareAlternative> hwsa: hws.getHardwareSetAlternatives()){
-				status+="\t\t"+(i++)+": ";
-				for(HardwareAlternative ha:hwsa)
-					status+=ha.getName()+" - ";
-				status=status.substring(0,status.length()-3);
+			for(HardwareSetAlternative hsa: hws.getHardwareSetAlternatives()){
+				status+="\t\t"+(i++)+": "+hsa.toString();
 				status+="\n";
 			}
 		}
+		i=1;
+		status+="\n\tHardware systems:\n";
+		for(HardwareSystem hs:hardwareSystems)
+			status+="\t\t"+(i++)+" "+hs.toString()+"\n";
+		i=1;
+		status+="\n\tSystems:\n";
+		for(SoftwareSystem sys:systems)
+			status+="\t\t"+(i++)+" "+sys.toString()+"\n";
 		return status;
 	}
 }

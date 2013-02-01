@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HardwareSet extends ModelElement{
 	private List<HardwareAlternative> cpuAlternatives=new LinkedList<>(), hddAlternatives=new LinkedList<>(), memoryAlternatives=new LinkedList<>(), networkAlternatives=new LinkedList<>(), platformAlternatives=new LinkedList<>(), otherAlternatives=new LinkedList<>();
-	private List<List<HardwareAlternative>> hardwareSetAlternatives=new LinkedList<>();
+	private List<HardwareSetAlternative> hardwareSetAlternatives=new LinkedList<>();
 	
 	public HardwareSet(String id, String name) {
 		setName(name);
@@ -48,15 +48,14 @@ public class HardwareSet extends ModelElement{
 	public void setOtherAlternatives(List<HardwareAlternative> otherAlternatives) {
 		this.otherAlternatives = otherAlternatives;
 	}
-	
-	public List<List<HardwareAlternative>> getHardwareSetAlternatives() {
+	public List<HardwareSetAlternative> getHardwareSetAlternatives() {
 		return hardwareSetAlternatives;
 	}
 	public void setHardwareSetAlternatives(
-			List<List<HardwareAlternative>> hardwareSetAlternatives) {
+			List<HardwareSetAlternative> hardwareSetAlternatives) {
 		this.hardwareSetAlternatives = hardwareSetAlternatives;
 	}
-	public void generateHardwareSetAlternatives(){
+	public void generateHardwareSetAlternatives(){  
 		generateDummyHardwareAlternatives();
 		for(HardwareAlternative cpuAlternative: cpuAlternatives)
 			for(HardwareAlternative hddAlternative:hddAlternatives)
@@ -64,13 +63,13 @@ public class HardwareSet extends ModelElement{
 					for(HardwareAlternative networkAlternative:networkAlternatives) 
 						for(HardwareAlternative platformAlternative:platformAlternatives) 
 							for(HardwareAlternative otherAlternative:otherAlternatives){
-								LinkedList<HardwareAlternative> hardwareSetAlternative=new LinkedList<>();
-								hardwareSetAlternative.add(cpuAlternative);
-								hardwareSetAlternative.add(hddAlternative);
-								hardwareSetAlternative.add(memoryAlternative);
-								hardwareSetAlternative.add(networkAlternative);
-								hardwareSetAlternative.add(platformAlternative);
-								hardwareSetAlternative.add(otherAlternative);
+								HardwareSetAlternative hardwareSetAlternative = new HardwareSetAlternative(this);
+								hardwareSetAlternative.setCpuAlternative(cpuAlternative);
+								hardwareSetAlternative.setHddAlternatives(hddAlternative);
+								hardwareSetAlternative.setMemoryAlternative(memoryAlternative);
+								hardwareSetAlternative.setNetworkAlternatives(networkAlternative);
+								hardwareSetAlternative.setPlatformAlternatives(platformAlternative);
+								hardwareSetAlternative.setOtherAlternatives(otherAlternative);
 								hardwareSetAlternatives.add(hardwareSetAlternative);
 							}
 	}

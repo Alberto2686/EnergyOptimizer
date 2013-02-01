@@ -7,6 +7,6 @@ public class EnergyOptimizer {
 		parser.parseXmlFile("Example/scenario.uml");
 		//TODO: DEPLOYMENTALTERNATIVE GENERATION
 		project.generateAlternatives();
-		System.out.print(project.toString());
+		System.out.print(project);
 	}
 }
