@@ -20,4 +20,7 @@ public class Size {
 	public long getSize(){
 		return B;
 	}
+	public String toString(){
+		return B+"B";
+	}
 }

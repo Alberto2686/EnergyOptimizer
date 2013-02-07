@@ -4,6 +4,7 @@ public class Message extends ModelElement{
 	private String sendEvent,receiveEvent,senderId,receiverId,signatureId;
 	private LifelineElement sender, receiver;
 	private Interface signature;
+	private Size size;
 	
 	public Message(String id, String name, String sendEvent, String receiveEvent, String signatureId) {
 		setName(name);
@@ -59,6 +60,12 @@ public class Message extends ModelElement{
 	}
 	public void setSignatureId(String signatureId) {
 		this.signatureId = signatureId;
+	}
+	public Size getSize() {
+		return size;
+	}
+	public void setSize(Size size) {
+		this.size = size;
 	}
 	@Override
 	public String toString(){

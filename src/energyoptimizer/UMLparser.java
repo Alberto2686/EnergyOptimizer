@@ -68,10 +68,6 @@ public class UMLparser {
 		NodeList networks = docEle.getElementsByTagName("Profile:Network");
 		NodeList platforms = docEle.getElementsByTagName("Profile:Platform");
 		NodeList others = docEle.getElementsByTagName("Profile:Other");
-		NodeList cpusUsages = docEle.getElementsByTagName("Profile:CPU_usage");
-		NodeList hddsUsages = docEle.getElementsByTagName("Profile:HDD_usage");
-		NodeList memoriesUsages = docEle.getElementsByTagName("Profile:Memory_usage");
-		NodeList networksUsages = docEle.getElementsByTagName("Profile:Network_usage");
 		NodeList lifelines = docEle.getElementsByTagName("Profile:Lifeline_enhanced");
 		NodeList components= docEle.getElementsByTagName("Profile:Component_enhanced");
 		NodeList connectors = docEle.getElementsByTagName("Profile:Connector_enhanced");
@@ -79,41 +75,49 @@ public class UMLparser {
 		NodeList frequencies = docEle.getElementsByTagName("Profile:Frequency_voltage");
 		NodeList atomicOperations = docEle.getElementsByTagName("Profile:Atomic_operation");
 		NodeList consumptions = docEle.getElementsByTagName("Profile:Consumption");
+		NodeList cpuUsages = docEle.getElementsByTagName("Profile:CPU_usage");
+		NodeList hddUsages = docEle.getElementsByTagName("Profile:HDD_usage");
+		NodeList memoryUsages = docEle.getElementsByTagName("Profile:Memory_usage");
+		NodeList times = docEle.getElementsByTagName("Profile:Time");
+		NodeList sizes = docEle.getElementsByTagName("Profile:Size");
+		NodeList cpuTimes = docEle.getElementsByTagName("Profile:CPU_time");
+		NodeList defaultCpu = docEle.getElementsByTagName("Profile:Default_CPU");
 		
 		NodeList UMLelements = docEle.getElementsByTagName("packagedElement");
 		
-		//set project name
-		project.setName(parseString(model, 0, "name"));
+		//set project name and defaults
+		project.setName(getString(model, 0, "name"));
+		project.setDefaultCpuScore(getInt(defaultCpu, 0, "performance_score"));
 		
 		//First step: UseCase, Stakeholder, Hardware set, Hardware alternative, Hardware component, Software component, Interface
 		if(UMLelements != null && UMLelements.getLength() > 0) {
 			for(int i = 0 ; i < UMLelements.getLength();i++) {
 				Element element = (Element) UMLelements.item(i);
 				switch(element.getAttribute("xmi:type")){
-					case "uml:UseCase":
+				case "uml:UseCase":
 						project.getFunctionalRequirements().add(new FunctionalRequirement(element.getAttribute("name"),element.getAttribute("xmi:id")));
 					break;
 					case "uml:Actor":
 						for(int j=0; j<stakeholders.getLength();j++)
-							if(parseString(stakeholders, j, "base_Actor").equals(element.getAttribute("xmi:id")))
+							if(getString(stakeholders, j, "base_Actor").equals(element.getAttribute("xmi:id")))
 								for(int k=0; k<ranges.getLength();k++)
-									if(parseString(ranges,k,"xmi:id").equals(parseString(stakeholders, j, "average_number"))){
+									if(getString(ranges,k,"xmi:id").equals(getString(stakeholders, j, "average_number"))){
 										Stakeholder stakeholder = new Stakeholder(element.getAttribute("name"),element.getAttribute("xmi:id"),getInt(ranges, k,"min"),getInt(ranges, k,"max")); 
 										project.getStakeholders().add(stakeholder);
-										stakeholder.setIdProfile(parseString(stakeholders, j, "xmi:id"));
+										stakeholder.setIdProfile(getString(stakeholders, j, "xmi:id"));
 									}
 					break;
 					case "uml:Package":
 						//Hardware sets
 						for(int j=0; j<hardwareSets.getLength();j++)
-							if(parseString(hardwareSets, j, "base_Package").equals(element.getAttribute("xmi:id"))){
+							if(getString(hardwareSets, j, "base_Package").equals(element.getAttribute("xmi:id"))){
 								HardwareSet temp = new HardwareSet(element.getAttribute("xmi:id"),element.getAttribute("name"));
-								temp.setIdProfile(parseString(hardwareSets, j, "xmi:id"));
+								temp.setIdProfile(getString(hardwareSets, j, "xmi:id"));
 								project.getHardwareSets().add(temp);
 							}
 						//CPU Alternatives and CPUs
 						for(int j=0; j<cpuAlternatives.getLength();j++)
-							if(parseString(cpuAlternatives,j,"base_Package").equals(element.getAttribute("xmi:id")))
+							if(getString(cpuAlternatives,j,"base_Package").equals(element.getAttribute("xmi:id")))
 								for(HardwareSet hwSet:project.getHardwareSets())
 									if (hwSet.getId().equals(((Element)element.getParentNode()).getAttribute("xmi:id"))){
 										HardwareAlternative hwAlternative=new HardwareAlternative(element.getAttribute("xmi:id"),element.getAttribute("name"));
@@ -125,10 +129,10 @@ public class UMLparser {
 													if(((Element)cpus.item(l)).getAttribute("base_Class").equals(hwComponent.getAttribute("xmi:id"))){
 														Element hwComponentProfile=(Element)cpus.item(l);
 														Cpu cpu= new Cpu(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),parseInt(hwComponentProfile.getAttribute("cores")),parseInt(hwComponentProfile.getAttribute("productive_process")),parseDouble(hwComponentProfile.getAttribute("thermal_design_power")));
+														cpu.setIdProfile(getString(cpus, l, "xmi:id"));
 														for(int m=0; m<frequencies.getLength();m++){
 															if(hwComponentProfile.getAttribute("frequencies_voltages").contains(((Element)frequencies.item(m)).getAttribute("xmi:id")))
-																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage")));
-														}
+																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage"), getInt(frequencies, m, "energy_points")));}
 														hwAlternative.getHardwareComponents().add(cpu);
 													}
 												}
@@ -256,7 +260,7 @@ public class UMLparser {
 														Other other= new Other(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),busses,sensors,cooling,peripheralDevices,display,ups);
 														for(int m=0; m<consumptions.getLength();m++)
 															if(hwComponentProfile.getAttribute("other").contains(((Element)consumptions.item(m)).getAttribute("xmi:id")))
-																other.getOtherConsumption().add(new OtherConsumption(parseString(consumptions,m,"source"), getDouble(consumptions,m,"consumption")));
+																other.getOtherConsumption().add(new OtherConsumption(getString(consumptions,m,"source"), getDouble(consumptions,m,"consumption")));
 														hwAlternative.getHardwareComponents().add(other);
 													}
 												}
@@ -268,14 +272,42 @@ public class UMLparser {
 					//Components
 					case "uml:Component":
 						for(int j=0; j<components.getLength();j++)
-							if(parseString(components, j, "base_Component").equals(element.getAttribute("xmi:id"))){
-								Component component=new Component(element.getAttribute("xmi:id"), element.getAttribute("name"),getInt(components,j,"function_points"));
+							if(getString(components, j, "base_Component").equals(element.getAttribute("xmi:id"))){
+								Component component=new Component(element.getAttribute("xmi:id"), element.getAttribute("name"));
 								for(int k=0; k<atomicOperations.getLength();k++)
-									if(((Element)atomicOperations.item(k)).getAttribute("xmi:id").equals(((Element)components.item(j)).getAttribute("atomic_operations")))
-										component.getAtomicOperations().add(new AtomicOperation(parseString(atomicOperations, k, "name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
+									if(getString(atomicOperations,k,"xmi:id").equals(getString(components,j,"bytecode")))
+										component.getAtomicOperations().add(new AtomicOperation(getString(atomicOperations, k, "name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
+								for(int k=0; k<cpuUsages.getLength();k++)
+									if(getString(cpuUsages,k,"xmi:id").equals(getString(components,j,"cpu_usage"))){
+										UsageCPU usageCPU = new UsageCPU();
+										usageCPU.setCycles(getInt(cpuUsages,k,"cycles"));
+										usageCPU.setEnergyPoints(getInt(cpuUsages, k, "energy_points"));
+										usageCPU.setEstimatedMilliseconds(getTime(getString(cpuUsages, k, "time"),times));
+										usageCPU.setExactTimes(getExactTimes(getString(cpuUsages, k, "exact_time"),times,cpuTimes));
+										usageCPU.setUtilization(getDouble(cpuUsages, k, "utilization"));
+										component.setUsageCPU(usageCPU);
+									}
+								for(int k=0; k<hddUsages.getLength();k++)
+									if(getString(hddUsages,k,"xmi:id").equals(getString(components,j,"hdd_usage"))){
+										UsageHDD usageHDD = new UsageHDD();
+										usageHDD.setEnergyPoints(getInt(hddUsages, k, "energy_points"));
+										usageHDD.setEstimatedMilliseconds(getTime(getString(hddUsages, k, "time"),times));
+										usageHDD.setSize(getSize(getString(hddUsages, k, "size"),sizes));
+										usageHDD.setUtilization(getDouble(hddUsages, k, "utilization"));
+										component.setUsageHDD(usageHDD);
+									}
+								for(int k=0; k<memoryUsages.getLength();k++)
+									if(getString(memoryUsages,k,"xmi:id").equals(getString(components,j,"memory_usage"))){
+										UsageMemory usageMemory = new UsageMemory();
+										usageMemory.setEnergyPoints(getInt(memoryUsages, k, "energy_points"));
+										usageMemory.setEstimatedMilliseconds(getTime(getString(memoryUsages, k, "time"),times));
+										usageMemory.setSize(getSize(getString(memoryUsages, k, "size"),sizes));
+										usageMemory.setUtilization(getDouble(memoryUsages, k, "utilization"));
+										component.setUsageMemory(usageMemory);
+									}
 								project.getComponents().add(component);
-								component.setIdProfile(parseString(components, j, "xmi:id"));
-								component.setHardwareSetId(parseString(components, j, "hardware_set"));
+								component.setIdProfile(getString(components, j, "xmi:id"));
+								component.setHardwareSetId(getString(components, j, "hardware_set"));
 							}
 					break;
 					//Interfaces
@@ -319,20 +351,22 @@ public class UMLparser {
 					//Connectors
 					case "uml:Usage":
 						for(int j=0; j<connectors.getLength();j++)
-							if(parseString(connectors, j, "base_Usage").equals(element.getAttribute("xmi:id"))){
-								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"function_points"),false);
+							if(getString(connectors, j, "base_Usage").equals(element.getAttribute("xmi:id"))){
+								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"energy_points"),false);
+								connector.setSize(getSize(getString(connectors, j, "size"),sizes));
 								connector.bind(project.getInterfaces(),project.getComponents());
 								project.getConnectors().add(connector);
-								connector.setIdProfile(parseString(connectors, j, "xmi:id"));
+								connector.setIdProfile(getString(connectors, j, "xmi:id"));
 							}
 					break;
 					case "uml:InterfaceRealization":
 						for(int j=0; j<connectors.getLength();j++)
-							if(parseString(connectors, j, "base_InterfaceRealization").equals(element.getAttribute("xmi:id"))){
-								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"function_points"),true);
+							if(getString(connectors, j, "base_InterfaceRealization").equals(element.getAttribute("xmi:id"))){
+								Connector connector = new Connector(element.getAttribute("xmi:id"),element.getAttribute("name"),element.getAttribute("client"),element.getAttribute("supplier"),getInt(connectors,j,"energy_points"),true);
+								connector.setSize(getSize(getString(connectors, j, "size"),sizes));
 								connector.bind(project.getInterfaces(),project.getComponents());
 								project.getConnectors().add(connector);
-								connector.setIdProfile(parseString(connectors, j, "xmi:id"));
+								connector.setIdProfile(getString(connectors, j, "xmi:id"));
 							}
 					break;
 					//Sequence alternatives
@@ -399,7 +433,43 @@ public class UMLparser {
 			}
 		}
 	}
-	
+
+	private Size getSize(String sizeId, NodeList sizes) {
+		Size size= new Size(0, 0, 0, 0, 0);
+		for(int i=0; i<sizes.getLength();i++)
+			if(getString(sizes,i,"xmi:id").equals(sizeId)){
+				size.addB(getInt(sizes, i, "B"));
+				size.addKB(getInt(sizes, i, "KB"));
+				size.addMB(getInt(sizes, i, "MB"));
+				size.addGB(getInt(sizes, i, "GB"));
+				size.addTB(getInt(sizes, i, "TB"));
+			}
+		return size;
+	}
+
+	private List<ExactTime> getExactTimes(String exactTimeIds, NodeList times, NodeList cpuTimes) {
+		List<ExactTime> exactTimes = new LinkedList<>();
+		for(int i=0; i<cpuTimes.getLength();i++)
+			if(exactTimeIds.contains(getString(cpuTimes,i,"xmi:id"))){
+				ExactTime exactTime = new ExactTime();
+				exactTime.setMilliseconds(getTime(getString(cpuTimes, i, "time"), times));
+				for(HardwareSet hs:project.getHardwareSets())
+					for(HardwareAlternative ha:hs.getCpuAlternatives())
+						for(HardwareComponent cpu: ha.getHardwareComponents())
+							if(((Cpu)cpu).getIdProfile().equals(getString(cpuTimes,i,"CPU")))
+								exactTime.setCpu((Cpu)cpu);
+				exactTimes.add(exactTime);
+			}
+		return exactTimes;
+	}
+
+	private int getTime(String timeId, NodeList times) {
+		for(int i=0; i<times.getLength();i++)
+			if(getString(times,i,"xmi:id").equals(timeId))
+				return (((getInt(times,i,"hours")*60+getInt(times,i,"minutes"))*60)+getInt(times,i,"seconds"))*1000+getInt(times,i,"milliseconds");
+		return 0;
+	}
+
 	private List<Element> getCommons(NodeList nodelist){
 		List<Element> refined = new LinkedList<>();
 		for(int j=0; j<nodelist.getLength();j++){
@@ -447,7 +517,7 @@ public class UMLparser {
 		return "";
 	}
 	
-	private String parseString(NodeList nodelist, int position, String attribute) {
+	private String getString(NodeList nodelist, int position, String attribute) {
 		try{
 			return ((Element)nodelist.item(position)).getAttribute(attribute);
 		} catch(Exception e){}

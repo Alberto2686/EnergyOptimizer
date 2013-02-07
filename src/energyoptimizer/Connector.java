@@ -7,13 +7,15 @@ public class Connector extends SoftwareComponent {
 	private boolean isProvided;
 	private Component component;
 	private Interface toInterface;
+	private Size size;
+	private int energyPoints;
 	
-	public Connector(String id, String name, String clientId,
-			String supplierId, int functionPoints, boolean isProvided) {
-		super(id,name,functionPoints);
+	public Connector(String id, String name, String clientId, String supplierId, int energyPoints, boolean isProvided) {
+		super(id,name);
 		this.clientId = clientId;
 		this.supplierId = supplierId;
 		this.isProvided = isProvided;
+		this.energyPoints = energyPoints;
 	}
 
 	public String getClientId() {
@@ -48,6 +50,20 @@ public class Connector extends SoftwareComponent {
 		this.toInterface = toInterface;
 	}
 	
+	public Size getSize() {
+		return size;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
+	}
+	public int getEnergyPoints() {
+		return energyPoints;
+	}
+	public void setEnergyPoints(int functionPoints) {
+		this.energyPoints = functionPoints;
+	}
+
 	public boolean isProvided() {
 		return isProvided;
 	}
@@ -69,6 +85,6 @@ public class Connector extends SoftwareComponent {
 	
 	@Override
 	public String toString(){
-		return (isProvided?"Provided":"Required")+" interface "+getName()+" = component:"+component.getName()+" interface:"+toInterface+" fp:"+getFunctionPoints();
+		return (isProvided?"Provided":"Required")+" interface "+getName()+" = component:"+component.getName()+" interface:"+toInterface+" EP:"+getEnergyPoints()+" size:"+size;
 	}
 }

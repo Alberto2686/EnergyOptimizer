@@ -8,9 +8,12 @@ public class Component extends SoftwareComponent implements LifelineElement{
 	private List<Connector> connectors = new LinkedList<>();
 	private String hardwareSetId;
 	private List<HardwareSet> hardwareSets = new LinkedList<>();
+	private UsageCPU usageCPU;
+	private UsageHDD usageHDD;
+	private UsageMemory usageMemory;
 	
-	public Component(String id, String name, int functionPoints) {
-		super(id,name,functionPoints);
+	public Component(String id, String name) {
+		super(id,name);
 	}
 	public List<AtomicOperation> getAtomicOperations() {
 		return atomicOperations;
@@ -36,6 +39,24 @@ public class Component extends SoftwareComponent implements LifelineElement{
 	public void setHardwareSets(List<HardwareSet> hardwareSets) {
 		this.hardwareSets = hardwareSets;
 	}
+	public UsageCPU getUsageCPU() {
+		return usageCPU;
+	}
+	public void setUsageCPU(UsageCPU usageCPU) {
+		this.usageCPU = usageCPU;
+	}
+	public UsageHDD getUsageHDD() {
+		return usageHDD;
+	}
+	public void setUsageHDD(UsageHDD usageHDD) {
+		this.usageHDD = usageHDD;
+	}
+	public UsageMemory getUsageMemory() {
+		return usageMemory;
+	}
+	public void setUsageMemory(UsageMemory usageMemory) {
+		this.usageMemory = usageMemory;
+	}
 	@Override
 	public String toString(){
 		String string="",string2="";
@@ -43,6 +64,6 @@ public class Component extends SoftwareComponent implements LifelineElement{
 			string+=c.getName()+"("+(c.isProvided()?"P":"R")+"), ";
 		for(HardwareSet hws:hardwareSets)
 			string2+=hws.getName() + " or ";
-		return getName()+" fp:"+getFunctionPoints()+" atomic operations: "+atomicOperations+" connectors: ["+string.substring(0, string.length()-2)+"]+ deployable on: "+string2.substring(0, string2.length()-4);
+		return getName()+" atomic operations: "+atomicOperations+" connectors: ["+string.substring(0, string.length()-2)+"]+ deployable on: "+string2.substring(0, string2.length()-4)+" - Usage: CPU: "+usageCPU+" HDD: "+usageHDD+" Memory: "+usageMemory;
 	}
 }
