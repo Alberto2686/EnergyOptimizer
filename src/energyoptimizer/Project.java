@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Project {
 	private String name;
-	private int defaultCpuScore;
+	private double defaultCpuScore;
 	private List<FunctionalRequirement> functionalRequirements = new ArrayList<>();
 	private List<Stakeholder> stakeholders = new ArrayList<>();
 	private List<AssociationEnhanced> associations = new ArrayList<>();
@@ -19,10 +19,10 @@ public class Project {
 	private List<SoftwareSystem> systems = new ArrayList<>();
 	private List<SoftwareSystem> validSystems = new ArrayList<>();
 	
-	public int getDefaultCpuScore() {
+	public double getDefaultCpuScore() {
 		return defaultCpuScore;
 	}
-	public void setDefaultCpuScore(int defaultCpuScore) {
+	public void setDefaultCpuScore(double defaultCpuScore) {
 		this.defaultCpuScore = defaultCpuScore;
 	}
 	public List<FunctionalRequirement> getFunctionalRequirements() {
@@ -210,7 +210,7 @@ public class Project {
 	
 	public void refineSystems(){
 		for(SoftwareSystem system:systems)
-			if(!checkCoverage(system))//TODO: only for test: remove exclamation mark when done
+			if(checkCoverage(system))
 				validSystems.add(system);
 	}
 	

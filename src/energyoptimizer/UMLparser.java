@@ -87,7 +87,7 @@ public class UMLparser {
 		
 		//set project name and defaults
 		project.setName(getString(model, 0, "name"));
-		project.setDefaultCpuScore(getInt(defaultCpu, 0, "performance_score"));
+		project.setDefaultCpuScore(getDouble(defaultCpu, 0, "performance_score"));
 		
 		//First step: UseCase, Stakeholder, Hardware set, Hardware alternative, Hardware component, Software component, Interface
 		if(UMLelements != null && UMLelements.getLength() > 0) {
@@ -132,7 +132,7 @@ public class UMLparser {
 														cpu.setIdProfile(getString(cpus, l, "xmi:id"));
 														for(int m=0; m<frequencies.getLength();m++){
 															if(hwComponentProfile.getAttribute("frequencies_voltages").contains(((Element)frequencies.item(m)).getAttribute("xmi:id")))
-																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage"), getInt(frequencies, m, "energy_points")));}
+																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage"), getInt(frequencies, m, "energy_points"),getDouble(frequencies, m,"performance_score")));}
 														hwAlternative.getHardwareComponents().add(cpu);
 													}
 												}
@@ -404,7 +404,7 @@ public class UMLparser {
 														message.setSenderId(seqElement.getAttribute("covered"));
 														messagesList.add(message);
 													}
-													//altrimente seqElement identifica un receivedmessage quindi ceerco il sendmessage relativo, lo completo e lo aggiungo ai messaggi della seqAlternative
+													//altrimente seqElement identifica un receivedmessage quindi cerco il sendmessage relativo, lo completo e lo aggiungo ai messaggi della seqAlternative
 													else{
 														for(Message mes:messagesList)
 															if(mes.getReceiveEvent().equals(seqElement.getAttribute("xmi:id"))){

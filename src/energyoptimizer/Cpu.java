@@ -7,6 +7,7 @@ public class Cpu extends HardwareComponent {
 	private int cores, productive_process;
 	private double tdp;
 	private List<FrequencyVoltage> frequenciesVoltages=new LinkedList<>();
+	
 	public Cpu(String name, String id, int cores, int productive_process, double tdp) {
 		setName(name);
 		setId(id);
