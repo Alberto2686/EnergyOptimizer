@@ -333,7 +333,7 @@ public class UMLparser {
 					//Associations
 					case "uml:Association":
 						for(int j=0; j<association.getLength();j++)
-							if(((Element)association.item(j)).getAttribute("base_Association").equals(element.getAttribute("xmi:id"))){
+							if(getString(association, i, "base_Association").equals(element.getAttribute("xmi:id"))){
 								Node ownedEnd1 = element.getFirstChild();
 								while (!ownedEnd1.getNodeName().equals("ownedEnd"))
 									ownedEnd1=ownedEnd1.getNextSibling();
@@ -376,7 +376,7 @@ public class UMLparser {
 						List<Element> interactionLifelines = new LinkedList<>();
 						List<Element> interactionMessages = new LinkedList<>();
 						List<Message> messagesList = new LinkedList<>();
-						List<Element> commonSequence= new LinkedList<>();
+						//List<Element> commonSequence= new LinkedList<>();
 						List<List<Element>> sequenceAlternatives = new LinkedList<List<Element>>();
 						
 						for(int j=0; j<element.getElementsByTagName("lifeline").getLength();j++)
@@ -385,11 +385,11 @@ public class UMLparser {
 						for(int j=0; j<element.getElementsByTagName("message").getLength();j++)
 							interactionMessages.add((Element)element.getElementsByTagName("message").item(j));
 						
-						commonSequence=getCommons(interactionElements);
+						//commonSequence=getCommons(interactionElements);
 						sequenceAlternatives=getSequenceAlternatives(interactionElements);
 						
 						for(List<Element> seq:sequenceAlternatives){
-							seq.addAll(commonSequence);
+							//seq.addAll(commonSequence);
 							for(FunctionalRequirement fr:project.getFunctionalRequirements())
 								if(fr.getId().equals(usecaseId)){
 									SequenceAlternative sequenceAlternative=new SequenceAlternative();

@@ -2,6 +2,7 @@ package energyoptimizer;
 
 public class Stakeholder extends ModelElement implements LifelineElement{
 	private int min, max;
+	private double coefficient;//TODO:impostarlo e utilizzarlo!
 	
 	public Stakeholder(String name, String id, int min, int max) {
 		setName(name);

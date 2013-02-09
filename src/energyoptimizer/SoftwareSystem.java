@@ -60,8 +60,7 @@ public class SoftwareSystem {
 		return bestSequenceAlternativesWatt;
 	}
 
-	public void setBestSequenceAlternativesWatt(
-			SequenceAlternative[] bestSequenceAlternativesWatt) {
+	public void setBestSequenceAlternativesWatt(SequenceAlternative[] bestSequenceAlternativesWatt) {
 		this.bestSequenceAlternativesWatt = bestSequenceAlternativesWatt;
 	}
 
@@ -69,8 +68,7 @@ public class SoftwareSystem {
 		return bestSequenceAlternativesEnergyPoint;
 	}
 
-	public void setBestSequenceAlternativesEnergyPoint(
-			SequenceAlternative[] bestSequenceAlternativesEnergyPoint) {
+	public void setBestSequenceAlternativesEnergyPoint(SequenceAlternative[] bestSequenceAlternativesEnergyPoint) {
 		this.bestSequenceAlternativesEnergyPoint = bestSequenceAlternativesEnergyPoint;
 	}
 
@@ -80,6 +78,13 @@ public class SoftwareSystem {
 
 	public double getSystemConsumptionW() {
 		return systemConsumptionW;
+	}
+
+	public void calculateTotals() {
+		for(double ep:consumptionEnergyPoints)
+			systemConsumptionEP+=ep;
+		for(double w:consumptionWatt)
+			systemConsumptionW+=w;
 	}
 
 	@Override
@@ -98,12 +103,12 @@ public class SoftwareSystem {
 		return string;
 	}
 
-	public void calculateTotals() {//TODO:rimuovere controllo maxvalue quando ci saranno tutti i FR definiti
-		for(double ep:consumptionEnergyPoints)
-			if(ep!=Double.MAX_VALUE)
-				systemConsumptionEP+=ep;
-		for(double w:consumptionWatt)
-			if(w!=Double.MAX_VALUE)
-				systemConsumptionW+=w;
+	public void printAnalysisResults(){
+		String string="";
+		for(int i=0;i<bestSequenceAlternativesEnergyPoint.length;i++)
+			string+=i+": "+bestSequenceAlternativesEnergyPoint[i]+"CONSUMPTION:"+consumptionEnergyPoints[i]+"EP\n";
+		for(int i=0;i<bestSequenceAlternativesWatt.length;i++)
+			string+=i+": "+bestSequenceAlternativesWatt[i]+"CONSUMPTION:"+consumptionWatt[i]+"W\n";
+		System.out.println(string);
 	}
 }
