@@ -256,23 +256,20 @@ public class Project {
 			System.out.println((i++)+") Evaluating "+system);
 			int j=0;
 			for(FunctionalRequirement functionalRequirement:functionalRequirements){
-				System.out.println("\tEvaluating FR["+j+"] = "+functionalRequirement.getName());
 				for(SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()){
-						System.out.println("\t\tEvaluating "+sequenceAlternative.getMessages());
 						double[] consumption = calculateEnergyConsumption(system,functionalRequirement,sequenceAlternative);
-						System.out.println("\t\tConsumption = "+consumption[0]+"EP "+consumption[1]+"W");
 						if(consumption[0]<system.getConsumptionEnergyPoints()[j]){
 							system.getConsumptionEnergyPoints()[j]=consumption[0];
-							system.getBestSequenceAlternativesEnergyPoint()[j]=sequenceAlternative;
+							system.getBestSequenceAlternativesEnergyPoint().add(j,sequenceAlternative);
 						}
 						if(consumption[1]<system.getConsumptionWatt()[j]){
 							system.getConsumptionWatt()[j]=consumption[1];
-							system.getBestSequenceAlternativesWatt()[j]=sequenceAlternative;
+							system.getBestSequenceAlternativesWatt().add(j,sequenceAlternative);
 						}
 				}
 				j++;
 			}
-			system.printAnalysisResults();
+			//system.printAnalysisResults();
 		}
 	}
 
@@ -291,6 +288,8 @@ public class Project {
 					isWReliable=false;
 			}
 		}
+		consumption[0]*=functionalRequirement.getCoefficient();
+		consumption[1]*=functionalRequirement.getCoefficient();
 		return consumption;
 	}
 
@@ -412,8 +411,10 @@ public class Project {
 	}
 	
 	public void findBestSystem() {
-		for(SoftwareSystem softwareSystem:systems)
+		for(SoftwareSystem softwareSystem:systems){
+			softwareSystem.refine();
 			softwareSystem.calculateTotals();
+		}
 		SoftwareSystem bestSoftwareSystemEP=systems.get(0);
 		SoftwareSystem bestSoftwareSystemW=systems.get(0);
 		for(SoftwareSystem softwareSystem:systems){
@@ -427,7 +428,11 @@ public class Project {
 	
 	private void visualizeBestSystem(SoftwareSystem bestSoftwareSystemEP,SoftwareSystem bestSoftwareSystemW) {
 		String reliability=isWReliable?"":"but some consumption parameters were missing";
-		System.out.println("\n\n\nBEST SYSTEMS:\nEVALUATING ENERGY POINTS:\n"+bestSoftwareSystemEP+"\n"+bestSoftwareSystemEP.getSystemConsumptionEP()+"EP\nEVALUATING WATT CONSUMPTION:\n"+bestSoftwareSystemW+"\n"+bestSoftwareSystemW.getSystemConsumptionW()+"W "+reliability);
+		System.out.println("\n\n\nBEST SYSTEMS:\nEVALUATING ENERGY POINTS:\n"+bestSoftwareSystemEP.bestEpToString()+"\n"+bestSoftwareSystemEP.getSystemConsumptionEP()+"EP\nEVALUATING WATT CONSUMPTION:\n"+bestSoftwareSystemW.bestWToString()+"\n"+bestSoftwareSystemW.getSystemConsumptionW()+"W "+reliability);
+	}
+	public void finalizeFunctionalRequirements() {
+		for(FunctionalRequirement functionalRequirement:functionalRequirements)
+			functionalRequirement.calculateCoefficient();
 	}
 	
 	@Override

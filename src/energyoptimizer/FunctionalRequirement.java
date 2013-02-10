@@ -6,6 +6,7 @@ import java.util.List;
 public class FunctionalRequirement extends ModelElement {
 	private List<AssociationEnhanced> associations = new LinkedList<>();
 	private List<SequenceAlternative> sequenceAlternatives = new LinkedList<>();
+	private double coefficient;
 	
 	public FunctionalRequirement(String name, List<AssociationEnhanced> associations) {
 		setName(name);
@@ -31,11 +32,20 @@ public class FunctionalRequirement extends ModelElement {
 		this.sequenceAlternatives = sequenceAlternatives;
 	}
 	
+	public double getCoefficient() {
+		return coefficient;
+	}
+
+	public void calculateCoefficient(){
+		for(AssociationEnhanced association:associations)
+			coefficient+=((association.getStakeholder().getMax()+association.getStakeholder().getMin())/2)*association.getProbability();
+	}
+	
 	@Override
 	public String toString(){
 		String string=" connected to ";
 		for(AssociationEnhanced as:associations)
 			string+=as.getStakeholder().getName()+" p="+as.getProbability()+" - ";
-		return getName()+string.substring(0, string.length()-3);
+		return getName()+" coeff.="+coefficient+string.substring(0, string.length()-3);
 	}
 }

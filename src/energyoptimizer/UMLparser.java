@@ -333,7 +333,7 @@ public class UMLparser {
 					//Associations
 					case "uml:Association":
 						for(int j=0; j<association.getLength();j++)
-							if(getString(association, i, "base_Association").equals(element.getAttribute("xmi:id"))){
+							if(getString(association, j, "base_Association").equals(element.getAttribute("xmi:id"))){
 								Node ownedEnd1 = element.getFirstChild();
 								while (!ownedEnd1.getNodeName().equals("ownedEnd"))
 									ownedEnd1=ownedEnd1.getNextSibling();
@@ -432,6 +432,7 @@ public class UMLparser {
 				}
 			}
 		}
+		project.finalizeFunctionalRequirements();
 	}
 
 	private Size getSize(String sizeId, NodeList sizes) {

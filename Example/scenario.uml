@@ -989,21 +989,21 @@
   <Profile:Lifeline_enhanced xmi:id="_vCNCAGmfEeKRz_FKTRlpeg" element="_p40qkHE4EeKnfu10FQG0SA" base_Lifeline="_X6OgoGktEeKH1oqrNPkAhw"/>
   <Profile:Lifeline_enhanced xmi:id="_zvepcGmfEeKRz_FKTRlpeg" element="_pVZNYHE4EeKnfu10FQG0SA" base_Lifeline="_b8e1IGktEeKH1oqrNPkAhw"/>
   <Profile:Lifeline_enhanced xmi:id="_16uZAGmfEeKRz_FKTRlpeg" element="_Sqx2oHE4EeKnfu10FQG0SA" base_Lifeline="_dEWcIGktEeKH1oqrNPkAhw"/>
-  <Profile:CPU_usage xmi:id="_k3plAG7uEeKSofGnGAP8Vw" utilization="0.0" time="_kx5nsG8BEeKSofGnGAP8Vw" base_DataType="_gzNUoG7tEeKSofGnGAP8Vw" energy_points="10"/>
-  <Profile:CPU_usage xmi:id="_qfuAwG7uEeKSofGnGAP8Vw" utilization="0.0" time="_G1pdEG8GEeKX2YoV3TfYvQ" base_DataType="_qRzWAG7tEeKSofGnGAP8Vw" energy_points="3" exact_time="_K6qHcG8CEeKSofGnGAP8Vw _HLrhsHBqEeKWKs1tFu5E7w"/>
-  <Profile:CPU_usage xmi:id="_rhwFgG7uEeKSofGnGAP8Vw" utilization="0.0" base_DataType="_trUPgG7tEeKSofGnGAP8Vw" energy_points="15"/>
-  <Profile:CPU_usage xmi:id="_Wy66cG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_x4Fx8G7tEeKSofGnGAP8Vw" energy_points="2"/>
-  <Profile:CPU_usage xmi:id="_XixDAG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_GsiRQG7uEeKSofGnGAP8Vw" energy_points="4"/>
-  <Profile:HDD_usage xmi:id="_ZGVHgG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_oHokgG7tEeKSofGnGAP8Vw"/>
-  <Profile:HDD_usage xmi:id="_aHwvUG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_rWiwgG7tEeKSofGnGAP8Vw"/>
-  <Profile:HDD_usage xmi:id="_bAyCAG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_un_6MG7tEeKSofGnGAP8Vw" energy_points="5"/>
-  <Profile:HDD_usage xmi:id="_byCf0G74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_y-UaMG7tEeKSofGnGAP8Vw" energy_points="4"/>
-  <Profile:HDD_usage xmi:id="_cmSnQG74EeKSofGnGAP8Vw" utilization="0.0" size="_uCB2oG7-EeKSofGnGAP8Vw" base_DataType="_Hyw5gG7uEeKSofGnGAP8Vw" energy_points="6"/>
-  <Profile:Memory_usage xmi:id="_eBRXgG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_pQMIAG7tEeKSofGnGAP8Vw"/>
-  <Profile:Memory_usage xmi:id="_e4MYcG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_sr7PEG7tEeKSofGnGAP8Vw" energy_points="1"/>
-  <Profile:Memory_usage xmi:id="_fuz3YG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_wQ9cEG7tEeKSofGnGAP8Vw" energy_points="3"/>
-  <Profile:Memory_usage xmi:id="_gmqscG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_FYAuUG7uEeKSofGnGAP8Vw" energy_points="2"/>
-  <Profile:Memory_usage xmi:id="_iAPHcG74EeKSofGnGAP8Vw" utilization="0.0" base_DataType="_IsogwG7uEeKSofGnGAP8Vw" energy_points="3"/>
+  <Profile:CPU_usage xmi:id="_k3plAG7uEeKSofGnGAP8Vw" utilization="1.0" time="_kx5nsG8BEeKSofGnGAP8Vw" base_DataType="_gzNUoG7tEeKSofGnGAP8Vw" energy_points="10"/>
+  <Profile:CPU_usage xmi:id="_qfuAwG7uEeKSofGnGAP8Vw" utilization="1.0" time="_G1pdEG8GEeKX2YoV3TfYvQ" base_DataType="_qRzWAG7tEeKSofGnGAP8Vw" energy_points="3" exact_time="_K6qHcG8CEeKSofGnGAP8Vw _HLrhsHBqEeKWKs1tFu5E7w"/>
+  <Profile:CPU_usage xmi:id="_rhwFgG7uEeKSofGnGAP8Vw" utilization="1.0" base_DataType="_trUPgG7tEeKSofGnGAP8Vw" energy_points="15"/>
+  <Profile:CPU_usage xmi:id="_Wy66cG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_x4Fx8G7tEeKSofGnGAP8Vw" energy_points="2"/>
+  <Profile:CPU_usage xmi:id="_XixDAG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_GsiRQG7uEeKSofGnGAP8Vw" energy_points="4"/>
+  <Profile:HDD_usage xmi:id="_ZGVHgG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_oHokgG7tEeKSofGnGAP8Vw"/>
+  <Profile:HDD_usage xmi:id="_aHwvUG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_rWiwgG7tEeKSofGnGAP8Vw"/>
+  <Profile:HDD_usage xmi:id="_bAyCAG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_un_6MG7tEeKSofGnGAP8Vw" energy_points="5"/>
+  <Profile:HDD_usage xmi:id="_byCf0G74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_y-UaMG7tEeKSofGnGAP8Vw" energy_points="4"/>
+  <Profile:HDD_usage xmi:id="_cmSnQG74EeKSofGnGAP8Vw" utilization="1.0" size="_uCB2oG7-EeKSofGnGAP8Vw" base_DataType="_Hyw5gG7uEeKSofGnGAP8Vw" energy_points="6"/>
+  <Profile:Memory_usage xmi:id="_eBRXgG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_pQMIAG7tEeKSofGnGAP8Vw"/>
+  <Profile:Memory_usage xmi:id="_e4MYcG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_sr7PEG7tEeKSofGnGAP8Vw" energy_points="1"/>
+  <Profile:Memory_usage xmi:id="_fuz3YG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_wQ9cEG7tEeKSofGnGAP8Vw" energy_points="3"/>
+  <Profile:Memory_usage xmi:id="_gmqscG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_FYAuUG7uEeKSofGnGAP8Vw" energy_points="2"/>
+  <Profile:Memory_usage xmi:id="_iAPHcG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_IsogwG7uEeKSofGnGAP8Vw" energy_points="3"/>
   <Profile:Size xmi:id="_RKGT8G78EeKSofGnGAP8Vw" KB="2" base_DataType="_JBTdUG77EeKSofGnGAP8Vw"/>
   <Profile:Size xmi:id="_UJzw4G79EeKSofGnGAP8Vw" KB="30" base_DataType="_Kh9XwG77EeKSofGnGAP8Vw"/>
   <Profile:Size xmi:id="_Yf5AUG79EeKSofGnGAP8Vw" KB="70" base_DataType="_OQgGEG77EeKSofGnGAP8Vw"/>
