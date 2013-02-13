@@ -2,7 +2,7 @@ package energyoptimizer;
 
 public class HardwareSetAlternative {
 	private HardwareSet hardwareSet;
-	private HardwareAlternative cpuAlternative, hddAlternatives, memoryAlternative, networkAlternatives, platformAlternatives, otherAlternatives;
+	private HardwareAlternative cpuAlternative, hddAlternative, memoryAlternative, networkAlternative, platformAlternative, otherAlternative;
 
 	public HardwareSetAlternative(HardwareSet hardwareSet) {
 		this.hardwareSet=hardwareSet;
@@ -16,12 +16,12 @@ public class HardwareSetAlternative {
 		this.cpuAlternative = cpuAlternative;
 	}
 
-	public HardwareAlternative getHddAlternatives() {
-		return hddAlternatives;
+	public HardwareAlternative getHddAlternative() {
+		return hddAlternative;
 	}
 
-	public void setHddAlternatives(HardwareAlternative hddAlternatives) {
-		this.hddAlternatives = hddAlternatives;
+	public void setHddAlternative(HardwareAlternative hddAlternative) {
+		this.hddAlternative = hddAlternative;
 	}
 
 	public HardwareAlternative getMemoryAlternative() {
@@ -32,28 +32,28 @@ public class HardwareSetAlternative {
 		this.memoryAlternative = memoryAlternative;
 	}
 
-	public HardwareAlternative getNetworkAlternatives() {
-		return networkAlternatives;
+	public HardwareAlternative getNetworkAlternative() {
+		return networkAlternative;
 	}
 
-	public void setNetworkAlternatives(HardwareAlternative networkAlternatives) {
-		this.networkAlternatives = networkAlternatives;
+	public void setNetworkAlternative(HardwareAlternative networkAlternative) {
+		this.networkAlternative = networkAlternative;
 	}
 
-	public HardwareAlternative getPlatformAlternatives() {
-		return platformAlternatives;
+	public HardwareAlternative getPlatformAlternative() {
+		return platformAlternative;
 	}
 
-	public void setPlatformAlternatives(HardwareAlternative platformAlternatives) {
-		this.platformAlternatives = platformAlternatives;
+	public void setPlatformAlternatives(HardwareAlternative platformAlternative) {
+		this.platformAlternative = platformAlternative;
 	}
 
-	public HardwareAlternative getOtherAlternatives() {
-		return otherAlternatives;
+	public HardwareAlternative getOtherAlternative() {
+		return otherAlternative;
 	}
 
-	public void setOtherAlternatives(HardwareAlternative otherAlternatives) {
-		this.otherAlternatives = otherAlternatives;
+	public void setOtherAlternative(HardwareAlternative otherAlternative) {
+		this.otherAlternative = otherAlternative;
 	}
 	public HardwareSet getHardwareSet() {
 		return hardwareSet;
@@ -61,6 +61,6 @@ public class HardwareSetAlternative {
 
 	@Override
 	public String toString(){
-		return hardwareSet.getName()+"= "+cpuAlternative.getName()+" "+hddAlternatives.getName()+" "+memoryAlternative.getName()+" "+platformAlternatives.getName()+" "+otherAlternatives.getName();
+		return hardwareSet.getName()+"= "+cpuAlternative.getName()+" "+hddAlternative.getName()+" "+memoryAlternative.getName()+" "+platformAlternative.getName()+" "+otherAlternative.getName();
 	}
 }

@@ -65,11 +65,11 @@ public class HardwareSet extends ModelElement{
 							for(HardwareAlternative otherAlternative:otherAlternatives){
 								HardwareSetAlternative hardwareSetAlternative = new HardwareSetAlternative(this);
 								hardwareSetAlternative.setCpuAlternative(cpuAlternative);
-								hardwareSetAlternative.setHddAlternatives(hddAlternative);
+								hardwareSetAlternative.setHddAlternative(hddAlternative);
 								hardwareSetAlternative.setMemoryAlternative(memoryAlternative);
-								hardwareSetAlternative.setNetworkAlternatives(networkAlternative);
+								hardwareSetAlternative.setNetworkAlternative(networkAlternative);
 								hardwareSetAlternative.setPlatformAlternatives(platformAlternative);
-								hardwareSetAlternative.setOtherAlternatives(otherAlternative);
+								hardwareSetAlternative.setOtherAlternative(otherAlternative);
 								hardwareSetAlternatives.add(hardwareSetAlternative);
 							}
 	}

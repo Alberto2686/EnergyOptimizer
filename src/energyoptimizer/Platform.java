@@ -2,8 +2,9 @@ package energyoptimizer;
 
 public class Platform extends HardwareComponent {
 	private double virtualization,scheduling,framework,jvm,gc,os;
+	private int energyPoints;
 	
-	public Platform(String name, String id, double virtualization, double scheduling, double framework, double jvm, double gc, double os) {
+	public Platform(String name, String id, double virtualization, double scheduling, double framework, double jvm, double gc, double os, int ep) {
 		setName(name);
 		setId(id);
 		this.virtualization = virtualization;
@@ -12,6 +13,7 @@ public class Platform extends HardwareComponent {
 		this.jvm = jvm;
 		this.gc = gc;
 		this.os = os;
+		this.energyPoints=ep;
 	}
 
 
@@ -74,9 +76,17 @@ public class Platform extends HardwareComponent {
 		this.os = os;
 	}
 
+	public int getEnergyPoints() {
+		return energyPoints;
+	}
 
-	@Override
+
+	public void setEnergyPoints(int energyPoints) {
+		this.energyPoints = energyPoints;
+	}
+
+
 	public String toString(){
-		return getName()+" virtualization:"+virtualization+" scheduling:"+scheduling+" framework:"+framework+" jvm:"+jvm+" gc:"+gc+" os:"+os;
+		return getName()+" energy points:"+energyPoints+"EP, virtualization:"+virtualization+", scheduling:"+scheduling+" framework:"+framework+", jvm:"+jvm+", gc:"+gc+", os:"+os;
 	}
 }

@@ -2,10 +2,12 @@ package energyoptimizer;
 
 public class OtherConsumption extends ModelElement {
 	private double consumption;
+	private int energyPoints;
 	
-	public OtherConsumption(String name, double consumption) {
+	public OtherConsumption(String name, double consumption, int energyPoints) {
 		setName(name);
 		this.consumption = consumption;
+		this.energyPoints=energyPoints;
 	}
 	public double getConsumption() {
 		return consumption;
@@ -13,8 +15,13 @@ public class OtherConsumption extends ModelElement {
 	public void setConsumption(double consumption) {
 		this.consumption = consumption;
 	}
-	@Override
+	public int getEnergyPoints() {
+		return energyPoints;
+	}
+	public void setEnergyPoints(int energyPoints) {
+		this.energyPoints = energyPoints;
+	}
 	public String toString(){
-		return getName()+" "+consumption;
+		return getName()+" "+consumption+"W, "+energyPoints+"EP";
 	}
 }

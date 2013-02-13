@@ -74,6 +74,7 @@ public class UMLparser {
 		NodeList ranges = docEle.getElementsByTagName("Profile:Range");
 		NodeList frequencies = docEle.getElementsByTagName("Profile:Frequency_voltage");
 		NodeList atomicOperations = docEle.getElementsByTagName("Profile:Atomic_operation");
+		NodeList atomicOperationConsumptions = docEle.getElementsByTagName("Profile:Atomic_operation_consumption");
 		NodeList consumptions = docEle.getElementsByTagName("Profile:Consumption");
 		NodeList cpuUsages = docEle.getElementsByTagName("Profile:CPU_usage");
 		NodeList hddUsages = docEle.getElementsByTagName("Profile:HDD_usage");
@@ -132,7 +133,7 @@ public class UMLparser {
 														cpu.setIdProfile(getString(cpus, l, "xmi:id"));
 														for(int m=0; m<frequencies.getLength();m++){
 															if(hwComponentProfile.getAttribute("frequencies_voltages").contains(((Element)frequencies.item(m)).getAttribute("xmi:id")))
-																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage"), getInt(frequencies, m, "energy_points"),getDouble(frequencies, m,"performance_score")));}
+																cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies,m,"frequency"), getDouble(frequencies,m,"voltage"),getDouble(frequencies, m,"performance_score")));}
 														hwAlternative.getHardwareComponents().add(cpu);
 													}
 												}
@@ -230,7 +231,8 @@ public class UMLparser {
 														double jvm=parseDouble(hwComponentProfile.getAttribute("JVM"));
 														double gc=parseDouble(hwComponentProfile.getAttribute("garbage_collector"));
 														double os=parseDouble(hwComponentProfile.getAttribute("operative_system"));
-														Platform platform= new Platform(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),virtualization,scheduling,framework,jvm,gc,os);
+														int ep=parseInt(hwComponentProfile.getAttribute("energy_points"));
+														Platform platform= new Platform(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),virtualization,scheduling,framework,jvm,gc,os,ep);
 														hwAlternative.getHardwareComponents().add(platform);
 													}
 												}
@@ -257,10 +259,11 @@ public class UMLparser {
 														double peripheralDevices=parseDouble(hwComponentProfile.getAttribute("peripheral_devices"));
 														double display=parseDouble(hwComponentProfile.getAttribute("display"));
 														double ups=parseDouble(hwComponentProfile.getAttribute("uninterruptible_power_supply"));
-														Other other= new Other(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),busses,sensors,cooling,peripheralDevices,display,ups);
+														int ep=parseInt(hwComponentProfile.getAttribute("energy_points"));
+														Other other= new Other(hwComponent.getAttribute("name"),hwComponent.getAttribute("xmi:id"),busses,sensors,cooling,peripheralDevices,display,ups,ep);
 														for(int m=0; m<consumptions.getLength();m++)
 															if(hwComponentProfile.getAttribute("other").contains(((Element)consumptions.item(m)).getAttribute("xmi:id")))
-																other.getOtherConsumption().add(new OtherConsumption(getString(consumptions,m,"source"), getDouble(consumptions,m,"consumption")));
+																other.getOtherConsumption().add(new OtherConsumption(getString(consumptions,m,"source"), getDouble(consumptions,m,"consumption"),getInt(consumptions, m, "energy_points")));
 														hwAlternative.getHardwareComponents().add(other);
 													}
 												}
@@ -275,8 +278,11 @@ public class UMLparser {
 							if(getString(components, j, "base_Component").equals(element.getAttribute("xmi:id"))){
 								Component component=new Component(element.getAttribute("xmi:id"), element.getAttribute("name"));
 								for(int k=0; k<atomicOperations.getLength();k++)
-									if(getString(atomicOperations,k,"xmi:id").equals(getString(components,j,"bytecode")))
-										component.getAtomicOperations().add(new AtomicOperation(getString(atomicOperations, k, "name"),getDouble(atomicOperations, k, "cost"),getInt(atomicOperations, k,"number")));
+									if(getString(components,j,"bytecode").contains(getString(atomicOperations,k,"xmi:id")))
+										component.getAtomicOperations().add(new AtomicOperation(getString(atomicOperations, k, "id"),getString(atomicOperations, k, "name"),getInt(atomicOperations, k,"number")));
+								for(int k=0; k<atomicOperationConsumptions.getLength();k++)
+									if(getString(components,j,"bytecode_consumption").contains(getString(atomicOperationConsumptions,k,"xmi:id")))
+										component.getAtomicOperationConsumptions().add(new AtomicOperationConsumption(getString(atomicOperationConsumptions, k, "id"),getString(atomicOperationConsumptions, k, "name"),getDouble(atomicOperationConsumptions, k, "cost"),getString(atomicOperationConsumptions, k,"cpu")));
 								for(int k=0; k<cpuUsages.getLength();k++)
 									if(getString(cpuUsages,k,"xmi:id").equals(getString(components,j,"cpu_usage"))){
 										UsageCPU usageCPU = new UsageCPU();
@@ -318,11 +324,17 @@ public class UMLparser {
 			}
 		}
 		
-		//Components are bound to the hardware sets they can deployed on
+		//Components are bound to the hardware sets they can deployed on and CPUs to their AtomicOperationConsumption
 		for(Component component : project.getComponents()){
-			for(HardwareSet hws : project.getHardwareSets())
+			for(HardwareSet hws : project.getHardwareSets()){
 				if (component.getHardwareSetId().contains(hws.getIdProfile()))
 						component.getHardwareSets().add(hws);
+				for(HardwareAlternative cpuAlternative : hws.getCpuAlternatives())
+					for(HardwareComponent cpu: cpuAlternative.getHardwareComponents())
+						for(AtomicOperationConsumption aoc:component.getAtomicOperationConsumptions())
+							if(((Cpu)cpu).getIdProfile().equals(aoc.getCpuId()))
+								aoc.setCpu((Cpu)cpu);
+			}
 		}
 		
 		//Second step: Association_Enhanced, Connector, Sequences

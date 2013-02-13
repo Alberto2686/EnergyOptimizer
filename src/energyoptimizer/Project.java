@@ -255,16 +255,20 @@ public class Project {
 		for(SoftwareSystem system : systems){//was:validsystem
 			System.out.println((i++)+") Evaluating "+system);
 			int j=0;
+
 			for(FunctionalRequirement functionalRequirement:functionalRequirements){
 				for(SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()){
+					system.getActuallyUsedHardwareSets().clear();
 						double[] consumption = calculateEnergyConsumption(system,functionalRequirement,sequenceAlternative);
-						if(consumption[0]<system.getConsumptionEnergyPoints()[j]){
-							system.getConsumptionEnergyPoints()[j]=consumption[0];
-							system.getBestSequenceAlternativesEnergyPoint().add(j,sequenceAlternative);
+						double[] staticConsumption = calculatePlatformAndOtherConsuptions(system, functionalRequirement);
+						
+						if(system.getConsumptionEnergyPoints()[j]==-1||consumption[0]<system.getConsumptionEnergyPoints()[j]){
+							system.getConsumptionEnergyPoints()[j]=Math.rint(consumption[0]+staticConsumption[0]);
+							system.getBestSequenceAlternativesEnergyPoint().add(sequenceAlternative);
 						}
-						if(consumption[1]<system.getConsumptionWatt()[j]){
-							system.getConsumptionWatt()[j]=consumption[1];
-							system.getBestSequenceAlternativesWatt().add(j,sequenceAlternative);
+						if(system.getConsumptionWatt()[j]==-1||consumption[1]>0&&consumption[1]<system.getConsumptionWatt()[j]){
+							system.getConsumptionWatt()[j]=Math.rint((consumption[1]+staticConsumption[1])/1000.0);
+							system.getBestSequenceAlternativesWatt().add(sequenceAlternative);
 						}
 				}
 				j++;
@@ -278,7 +282,8 @@ public class Project {
 		for(Message message:sequenceAlternative.getMessages()){
 			double[] componentConsumption=calculateComponentConsumption(message.getReceiver(), system);
 			consumption[0]+=componentConsumption[0];
-			consumption[1]+=componentConsumption[1];
+			if(componentConsumption[1]!=-1)
+				consumption[1]+=componentConsumption[1];
 			if(usesNetwork(message,system)){
 				double[] networkConsumption=calculateNetworkConsumption(message, system);
 				consumption[0]+=networkConsumption[0];
@@ -293,6 +298,21 @@ public class Project {
 		return consumption;
 	}
 
+	private double[] calculatePlatformAndOtherConsuptions(SoftwareSystem system, FunctionalRequirement functionalRequirement) {
+		double consumption[]={0,0};
+		for(HardwareSetAlternative hardwareSetAlternative:system.getHardwareSystem().getHardwareSetAlternatives())
+			if(system.getActuallyUsedHardwareSets().contains(hardwareSetAlternative.getHardwareSet())){
+				double consumptionOther[]=Utils.consumptionOther((Other)hardwareSetAlternative.getOtherAlternative().getHardwareComponents().toArray()[0]);
+				double consumptionPlatform[]=Utils.consumptionPlatform((Platform)hardwareSetAlternative.getPlatformAlternative().getHardwareComponents().toArray()[0]);
+				consumption[0]+=consumptionOther[0]+consumptionPlatform[0];
+				consumption[1]+=consumptionOther[1]+consumptionPlatform[1];
+			}
+		consumption[0]*=functionalRequirement.getCoefficient();
+		consumption[1]*=functionalRequirement.getCoefficient();
+			
+		return consumption;
+	}
+	
 	private boolean usesNetwork(Message message,SoftwareSystem system){
 		try{
 			Component sender = (Component)message.getSender();
@@ -308,22 +328,25 @@ public class Project {
 		}catch(Exception e){}
 		return false;
 	}
-	
+
+	//retrieves network devices and updates the used HWset list if needed
 	private List<Network> getNetworkDevices(Component component, SoftwareSystem system){
 		HardwareSet hardwareSet=null;
 		List<Network> networkDevices=new LinkedList<>();
 		for(DeployedComponent deployedComponent:system.getDeploymentAlternative().getDeployedComponents())
 			if(deployedComponent.getComponent().equals(component))
 				hardwareSet=deployedComponent.getHardwareSet();
+		if(!system.getActuallyUsedHardwareSets().contains(hardwareSet))
+			system.getActuallyUsedHardwareSets().add(hardwareSet);
 		for(HardwareSetAlternative hardwareSetAlternative:system.getHardwareSystem().getHardwareSetAlternatives())
 			if(hardwareSetAlternative.getHardwareSet().equals(hardwareSet))
-				for(HardwareComponent networkDevice:hardwareSetAlternative.getNetworkAlternatives().getHardwareComponents())
+				for(HardwareComponent networkDevice:hardwareSetAlternative.getNetworkAlternative().getHardwareComponents())
 					networkDevices.add((Network)networkDevice);
 		return networkDevices;
 	}
 
 	private double[] calculateComponentConsumption(LifelineElement receiver,SoftwareSystem system) {
-		double componentConsumption[]={0,0};
+		double componentConsumption[]={-1,-1};
 		try{
 			Component component = (Component) receiver;
 			HardwareSetAlternative hardwareSetAlternative=null;
@@ -333,7 +356,7 @@ public class Project {
 						if(dc.getHardwareSet().equals(hsa.getHardwareSet()))
 							hardwareSetAlternative=hsa;
 			double componentConsumptionCPU[] = calculateCPUConsumption(component,hardwareSetAlternative.getCpuAlternative());
-			double componentConsumptionHDD[] = calculateHDDConsumption(component,hardwareSetAlternative.getHddAlternatives());
+			double componentConsumptionHDD[] = calculateHDDConsumption(component,hardwareSetAlternative.getHddAlternative());
 			double componentConsumptionMemory[] = calculateMemoryConsumption(component, hardwareSetAlternative.getMemoryAlternative());
 			componentConsumption[0]=componentConsumptionCPU[0]+componentConsumptionHDD[0]+componentConsumptionMemory[0];
 			if(componentConsumptionCPU[1]==-1||componentConsumptionHDD[1]==-1||componentConsumptionMemory[1]==-1)
@@ -353,7 +376,7 @@ public class Project {
 		for(Connector connector:connectors)
 			if(connector.getComponent().equals(message.getSender())&&connector.getToInterface().equals(message.getSignature())){
 				consumption[0]=connector.getEnergyPoints();
-				consumption[1]=Utils.ConsumptionNetwork(connector.getSize().getSize(),getNetworkDevices((Component)message.getSender(),system),getNetworkDevices((Component)message.getReceiver(),system));
+				consumption[1]=Utils.consumptionNetwork(connector.getSize().getSize(),getNetworkDevices((Component)message.getSender(),system),getNetworkDevices((Component)message.getReceiver(),system));
 			}
 		return consumption;
 	}
@@ -362,7 +385,7 @@ public class Project {
 		double consumption[]={-1,-1};
 		consumption[0]=component.getUsageCPU().getEnergyPoints();
 		for(HardwareComponent cpu:hardwareAlternative.getHardwareComponents()){
-			Double temp = Utils.ConsumptionCPU((Cpu)cpu, component.getUsageCPU(), defaultCpuScore);
+			Double temp = Utils.consumptionCPU((Cpu)cpu, component.getUsageCPU(), defaultCpuScore,component.getAtomicOperations(),component.getAtomicOperationConsumptions());
 			if(temp!=-1&&(temp<consumption[1]||consumption[1]==-1))
 				consumption[1]=temp;
 		}
@@ -372,7 +395,7 @@ public class Project {
 		double consumption[]={-1,-1};
 		consumption[0]=component.getUsageHDD().getEnergyPoints();
 		for(HardwareComponent hdd:hardwareAlternative.getHardwareComponents()){
-			Double temp = Utils.ConsumptionHDD((Hdd)hdd, component.getUsageHDD());
+			Double temp = Utils.consumptionHDD((Hdd)hdd, component.getUsageHDD());
 			if(temp!=-1&&(temp<consumption[1]||consumption[1]==-1))
 				consumption[1]=temp;
 		}
@@ -382,7 +405,7 @@ public class Project {
 		double consumption[]={-1,-1};
 		consumption[0]=component.getUsageMemory().getEnergyPoints();
 		for(HardwareComponent memory:hardwareAlternative.getHardwareComponents()){
-			Double temp = Utils.ConsumptionMemory((Memory)memory, component.getUsageMemory());
+			Double temp = Utils.consumptionMemory((Memory)memory, component.getUsageMemory());
 			if(temp!=-1&&(temp<consumption[1]||consumption[1]==-1))
 				consumption[1]=temp;
 		}

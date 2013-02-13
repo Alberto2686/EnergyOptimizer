@@ -22,23 +22,31 @@ public class Utils {
 		return null;
 	}
 	
-	public static double ConsumptionCPU(Cpu cpu, UsageCPU usageCPU,double defaultCpuScore){
-		double f1Min=Double.MAX_VALUE;
-		double f2Min=Double.MAX_VALUE;
+	public static double consumptionCPU(Cpu cpu, UsageCPU usageCPU,double defaultCpuScore, List<AtomicOperation> atomicOperations, List<AtomicOperationConsumption> atomicOperationConsumptions){
+		double f1Min=Double.MAX_VALUE, f2Min=Double.MAX_VALUE, f3Min=Double.MAX_VALUE;
 		for(FrequencyVoltage frequencyVoltage:cpu.getFrequenciesVoltages()){
 			double fv2=frequencyVoltage.getFrequency()*Math.pow(frequencyVoltage.getVoltage(), 2);
-			double time1=usageCPU.getEstimatedMilliseconds()*defaultCpuScore/frequencyVoltage.getPerformanceScore();
+			double time1=(usageCPU.getEstimatedMilliseconds()/1000.0)*defaultCpuScore/frequencyVoltage.getPerformanceScore();
 			double time2=0;
 			for(ExactTime et:usageCPU.getExactTimes())
 				if(et.getCpu().equals(cpu))
-					time2=et.getMilliseconds();
+					time2=et.getMilliseconds()/1000.0;
 			double f1=0.7*cpu.getTdp()*fv2*usageCPU.getUtilization()*time1;
 			double f2=0.7*cpu.getTdp()*fv2*usageCPU.getUtilization()*time2;
-			if(f1<f1Min)
+			double f3=0;
+			for(AtomicOperation ao:atomicOperations)
+				for(AtomicOperationConsumption aoc:atomicOperationConsumptions)
+					if(ao.getId().equals(aoc.getId())&&aoc.getCpu().equals(cpu))
+						f3+=ao.getNumber()*aoc.getCost();
+			if(f1<f1Min&f1!=0)
 				f1Min=f1;
-			if(f2<f2Min)
+			if(f2<f2Min&f2!=0)
 				f2Min=f2;
+			if(f3<f3Min&f3!=0)
+				f3Min=f3;
 		}
+		if(f3Min!=Double.MAX_VALUE&&f3Min!=0)
+			return f3Min;
 		if(f2Min!=Double.MAX_VALUE&&f2Min!=0)
 			return f2Min;
 		if(f1Min!=Double.MAX_VALUE&&f1Min!=0)
@@ -46,8 +54,8 @@ public class Utils {
 		return -1;
 	}
 
-	public static double ConsumptionHDD(Hdd hdd, UsageHDD usageHDD) {
-		double f1=usageHDD.getEstimatedMilliseconds()*(usageHDD.getUtilization()*hdd.getWorkConsumption()+(1-usageHDD.getUtilization())*hdd.getIdleConsumption());
+	public static double consumptionHDD(Hdd hdd, UsageHDD usageHDD) {
+		double f1=(usageHDD.getEstimatedMilliseconds()/1000)*(usageHDD.getUtilization()*hdd.getWorkConsumption()+(1-usageHDD.getUtilization())*hdd.getIdleConsumption());
 		double f2=usageHDD.getSize().getSize()*hdd.getBandwidth()*hdd.getWorkConsumption();
 		if(f2!=0)
 			return f2;
@@ -56,8 +64,8 @@ public class Utils {
 		return -1;
 	}
 
-	public static double ConsumptionMemory(Memory memory, UsageMemory usageMemory) {
-		double f1=usageMemory.getEstimatedMilliseconds()*(usageMemory.getUtilization()*memory.getWorkConsumption()+(1-usageMemory.getUtilization())*memory.getIdleConsumption());
+	public static double consumptionMemory(Memory memory, UsageMemory usageMemory) {
+		double f1=(usageMemory.getEstimatedMilliseconds()/1000)*(usageMemory.getUtilization()*memory.getWorkConsumption()+(1-usageMemory.getUtilization())*memory.getIdleConsumption());
 		double f2=usageMemory.getSize().getSize()*memory.getBandwidth()*memory.getWorkConsumption();
 		if(f2!=0)
 			return f2;
@@ -66,15 +74,15 @@ public class Utils {
 		return -1;
 	}
 
-	public static double ConsumptionNetwork(long size, List<Network> networkDevicesSender, List<Network> networkDevicesReceiver) {
-		double consumptionSender=ConsumptionNetwork(size, networkDevicesSender);
-		double consumptionReceiver=ConsumptionNetwork(size, networkDevicesReceiver);
+	public static double consumptionNetwork(long size, List<Network> networkDevicesSender, List<Network> networkDevicesReceiver) {
+		double consumptionSender=consumptionNetwork(size, networkDevicesSender);
+		double consumptionReceiver=consumptionNetwork(size, networkDevicesReceiver);
 		if(consumptionSender!=-1&&consumptionReceiver!=-1)
 			return consumptionSender+consumptionReceiver;
 		return -1;
 	}
 	
-	private static double ConsumptionNetwork(long size, List<Network> networkDevices){
+	private static double consumptionNetwork(long size, List<Network> networkDevices){
 		double consumptionMin=Double.MAX_VALUE,consumption=0;
 		for(Network networkDevice : networkDevices){
 			consumption=size*networkDevice.getBandwidth()*networkDevice.getWorkConsumption();
@@ -84,5 +92,24 @@ public class Utils {
 		if(consumptionMin==Double.MAX_VALUE)
 			return -1;
 		return consumptionMin;
+	}
+
+	public static double[] consumptionOther(Other otherAlternative) {
+		double consumption[]={0,0};
+		consumption[0]=otherAlternative.getEnergyPoints();
+		consumption[1]=otherAlternative.getBusses()+otherAlternative.getCooling()+otherAlternative.getDisplay()+otherAlternative.getPeripheralDevices()+otherAlternative.getSensors()+otherAlternative.getUps();
+		for(OtherConsumption otherConsumption:otherAlternative.getOtherConsumption()){
+			consumption[0]+=otherConsumption.getEnergyPoints();
+			consumption[1]+=otherConsumption.getConsumption();
+		}
+		
+		return consumption;
+	}
+
+	public static double[] consumptionPlatform(Platform platform) {
+		double consumption[]={0,0};
+		consumption[0]=platform.getEnergyPoints();
+		consumption[1]=platform.getFramework()+platform.getGc()+platform.getJvm()+platform.getOs()+platform.getScheduling()+platform.getVirtualization();
+		return consumption;
 	}
 }

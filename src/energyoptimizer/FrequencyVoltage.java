@@ -3,13 +3,11 @@ package energyoptimizer;
 public class FrequencyVoltage {
 	private int frequency;
 	private double voltage;
-	private int energyPoints;
 	private double performanceScore;
 	
-	public FrequencyVoltage(int frequency, double voltage, int energyPoints, double performanceScore) {
+	public FrequencyVoltage(int frequency, double voltage, double performanceScore) {
 		this.frequency = frequency;
 		this.voltage = voltage;
-		this.energyPoints = energyPoints;
 		this.setPerformanceScore(performanceScore);
 	}
 	public int getFrequency() {
@@ -24,12 +22,6 @@ public class FrequencyVoltage {
 	public void setVoltage(double voltage) {
 		this.voltage = voltage;
 	}
-	public int getEnergyPoints() {
-		return energyPoints;
-	}
-	public void setEnergyPoints(int energyPoints) {
-		this.energyPoints = energyPoints;
-	}
 	public double getPerformanceScore() {
 		return performanceScore;
 	}
@@ -38,6 +30,6 @@ public class FrequencyVoltage {
 	}
 	@Override
 	public String toString(){
-		return "("+frequency+"MHz,"+voltage+"V,"+energyPoints+"maxEP,"+performanceScore+"PerformanceScore)";
+		return "("+frequency+"MHz,"+voltage+"V,"+performanceScore+"PerformanceScore)";
 	}
 }

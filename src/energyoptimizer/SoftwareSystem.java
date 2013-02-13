@@ -6,6 +6,7 @@ import java.util.List;
 
 public class SoftwareSystem {
 	private HardwareSystem hardwareSystem;
+	private List<HardwareSet> actuallyUsedHardwareSets=new LinkedList<>();
 	private DeploymentAlternative deploymentAlternative,deploymentEP=new DeploymentAlternative(),deploymentW=new DeploymentAlternative();
 	private double consumptionWatt[];
 	private double consumptionEnergyPoints[];
@@ -22,8 +23,10 @@ public class SoftwareSystem {
 		bestSequenceAlternativesWatt=new ArrayList<>(numberOfFunctionalRequirements);
 		bestSequenceAlternativesEnergyPoint=new ArrayList<>(numberOfFunctionalRequirements);
 		for(int i=0; i<numberOfFunctionalRequirements;i++){
-			consumptionWatt[i]=Double.MAX_VALUE;
-			consumptionEnergyPoints[i]=Double.MAX_VALUE;
+			bestSequenceAlternativesEnergyPoint.add(i, new SequenceAlternative());
+			bestSequenceAlternativesWatt.add(i, new SequenceAlternative());
+			consumptionWatt[i]=-1;
+			consumptionEnergyPoints[i]=-1;
 		}
 	}
 	
@@ -110,6 +113,14 @@ public class SoftwareSystem {
 		this.deploymentW = deploymentW;
 	}
 
+	public List<HardwareSet> getActuallyUsedHardwareSets() {
+		return actuallyUsedHardwareSets;
+	}
+
+	public void setActuallyUsedHardwareSets(List<HardwareSet> actuallyUsedHardwareSets) {
+		this.actuallyUsedHardwareSets = actuallyUsedHardwareSets;
+	}
+
 	public void calculateTotals() {
 		for(double ep:consumptionEnergyPoints)
 			systemConsumptionEP+=ep;
@@ -141,7 +152,6 @@ public class SoftwareSystem {
 		return necessaryComponents;
 	}
 
-	@Override
 	public String toString(){
 		String string="System covering: ";
 		for(FunctionalRequirement functionalRequirement : deploymentAlternative.getFunctionalRequirementsCovered())
@@ -167,10 +177,7 @@ public class SoftwareSystem {
 	}
 
 	public String bestEpToString() {
-		String string="System covering: ";
-		for(FunctionalRequirement functionalRequirement : deploymentAlternative.getFunctionalRequirementsCovered())
-			string+=functionalRequirement.getName()+", ";
-		string=string.substring(0,string.length()-2)+"\n\t\t";
+		String string="";
 		for(HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()){
 			string+=hardwareSetAlternative+" hosts ";
 			for(DeployedComponent deployedComponent : deploymentEP.getDeployedComponents())
@@ -178,20 +185,29 @@ public class SoftwareSystem {
 					string+=deployedComponent.getComponent().getName()+", ";
 			string=string.substring(0,string.length()-2)+"\n\t\t";
 		}
+		for(int i=0; i<consumptionEnergyPoints.length;i++){
+			String res="uncalculable\n";
+			if(consumptionEnergyPoints[i]>0)
+				res=consumptionEnergyPoints[i]+"EP\n";
+			string+="FR"+i+" = "+res;
+		}
 		return string;
 	}
 
 	public String bestWToString() {
-		String string="System covering: ";
-		for(FunctionalRequirement functionalRequirement : deploymentAlternative.getFunctionalRequirementsCovered())
-			string+=functionalRequirement.getName()+", ";
-		string=string.substring(0,string.length()-2)+"\n\t\t";
+		String string="";
 		for(HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()){
 			string+=hardwareSetAlternative+" hosts ";
 			for(DeployedComponent deployedComponent : deploymentW.getDeployedComponents())
 				if(deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
 					string+=deployedComponent.getComponent().getName()+", ";
 			string=string.substring(0,string.length()-2)+"\n\t\t";
+		}
+		for(int i=0; i<consumptionWatt.length;i++){
+			String res="uncalculable\n";
+			if(consumptionWatt[i]>0)
+				res=consumptionWatt[i]+"KW\n";
+			string+="FR"+i+" = "+res;
 		}
 		return string;
 	}

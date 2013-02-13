@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Component extends SoftwareComponent implements LifelineElement{
-	private List<AtomicOperation> atomicOperations =new LinkedList<>();
+	private List<AtomicOperation> atomicOperations = new LinkedList<>();
+	private List<AtomicOperationConsumption> atomicOperationConsumptions = new LinkedList<>();
 	private List<Connector> connectors = new LinkedList<>();
 	private String hardwareSetId;
 	private List<HardwareSet> hardwareSets = new LinkedList<>();
@@ -57,6 +58,13 @@ public class Component extends SoftwareComponent implements LifelineElement{
 	public void setUsageMemory(UsageMemory usageMemory) {
 		this.usageMemory = usageMemory;
 	}
+	public List<AtomicOperationConsumption> getAtomicOperationConsumptions() {
+		return atomicOperationConsumptions;
+	}
+	public void setAtomicOperationConsumptions(
+			List<AtomicOperationConsumption> atomicOperationConsumptions) {
+		this.atomicOperationConsumptions = atomicOperationConsumptions;
+	}
 	@Override
 	public String toString(){
 		String string="",string2="";
@@ -64,6 +72,6 @@ public class Component extends SoftwareComponent implements LifelineElement{
 			string+=c.getName()+"("+(c.isProvided()?"P":"R")+"), ";
 		for(HardwareSet hws:hardwareSets)
 			string2+=hws.getName() + " or ";
-		return getName()+" atomic operations: "+atomicOperations+" connectors: ["+string.substring(0, string.length()-2)+"]+ deployable on: "+string2.substring(0, string2.length()-4)+" - Usage: CPU: "+usageCPU+" HDD: "+usageHDD+" Memory: "+usageMemory;
+		return getName()+" atomic operations: "+atomicOperations+" atomic operation consumptions: "+atomicOperationConsumptions+" connectors: ["+string.substring(0, string.length()-2)+"]+ deployable on: "+string2.substring(0, string2.length()-4)+" - Usage: CPU: "+usageCPU+" HDD: "+usageHDD+" Memory: "+usageMemory;
 	}
 }

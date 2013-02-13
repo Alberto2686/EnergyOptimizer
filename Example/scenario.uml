@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_j1atwHEkEeKQKqN68dgp7A/37" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_j1atwHEkEeKQKqN68dgp7A/37 ../EnergyProfile/model.profile.uml#_j1eYIHEkEeKQKqN68dgp7A">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_FnnikHV7EeKBcuE7uf71lg/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_FnnikHV7EeKBcuE7uf71lg/1 ../EnergyProfile/model.profile.uml#_FnrM8HV7EeKBcuE7uf71lg">
   <uml:Model xmi:id="_-hEZEFBLEeK2F7oZgBNjVA" name="model">
     <packagedElement xmi:type="uml:Actor" xmi:id="_rE--UFEQEeKk3_6OgfcoOw" name="User"/>
     <packagedElement xmi:type="uml:Actor" xmi:id="_8M-kkFEREeKk3_6OgfcoOw" name="Journalist"/>
@@ -171,11 +171,11 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_7f4LoFNOEeKHZKGWw06VCQ" name="HDD alt 2">
         <packagedElement xmi:type="uml:Component" xmi:id="_0YyNIFNOEeKHZKGWw06VCQ" name="Seagate Barracuda XT 3TB"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_frjD0GesEeKR3dOgglitKw" name="Other alt 2">
+      <packagedElement xmi:type="uml:Package" xmi:id="_frjD0GesEeKR3dOgglitKw" name="Other alt 1">
         <packagedElement xmi:type="uml:Component" xmi:id="_kNmSsGesEeKR3dOgglitKw" name="Other"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_Efy1cFG5EeKJ8Nvo-F5dJA" clientDependency="_uJv6IGepEeKR3dOgglitKw" name="PC">
+    <packagedElement xmi:type="uml:Package" xmi:id="_Efy1cFG5EeKJ8Nvo-F5dJA" name="PC">
       <packagedElement xmi:type="uml:Package" xmi:id="_RAWzAFG5EeKJ8Nvo-F5dJA" name="HDD alt 1">
         <packagedElement xmi:type="uml:Component" xmi:id="_wAdYkFG6EeKJ8Nvo-F5dJA" name="Seagate 500GB 7200RPM"/>
       </packagedElement>
@@ -198,7 +198,6 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_SW8LcFG5EeKJ8Nvo-F5dJA" name="Network alt 1">
         <packagedElement xmi:type="uml:Component" xmi:id="_DnoQgFM8EeKHZKGWw06VCQ" name="Netger DGN2200 Modem Router ADSL2+"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Usage" xmi:id="_uJv6IGepEeKR3dOgglitKw" name="prova" client="_Efy1cFG5EeKJ8Nvo-F5dJA" supplier="_F_YY4FG5EeKJ8Nvo-F5dJA"/>
       <packagedElement xmi:type="uml:Package" xmi:id="_tPLdYGerEeKR3dOgglitKw" name="Other alt 1">
         <packagedElement xmi:type="uml:Component" xmi:id="_2LJ54GerEeKR3dOgglitKw" name="Other"/>
       </packagedElement>
@@ -206,21 +205,6 @@
     <packagedElement xmi:type="uml:Interface" xmi:id="_5vbh0FQ3EeK1RYrhpF2zLg" name="writeToDB"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_S1ve8FQ4EeK1RYrhpF2zLg" name="login"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_TuYXIFQ4EeK1RYrhpF2zLg" name="publish"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_8Z3HwFQ3EeK1RYrhpF2zLg" name="read_DB" client="_3BTOoHE2EeKnfu10FQG0SA" supplier="_vT4CMHExEeKnfu10FQG0SA"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_WEn1wFQ4EeK1RYrhpF2zLg" name="write_DB" client="_mwdygHE4EeKnfu10FQG0SA" supplier="_5vbh0FQ3EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_ZS-BEFQ4EeK1RYrhpF2zLg" name="authorization" client="_mwdygHE4EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_co3l4FQ4EeK1RYrhpF2zLg" name="send_data" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_TuYXIFQ4EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_drqfoFQ4EeK1RYrhpF2zLg" name="send_data" client="_j4s7MHE4EeKnfu10FQG0SA" supplier="_TuYXIFQ4EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_jYbOIFQ4EeK1RYrhpF2zLg" name="request_login" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_E7sl8FQ4EeK1RYrhpF2zLg" name="DB_response" client="_CSmuUHE4EeKnfu10FQG0SA" supplier="_5vbh0FQ3EeK1RYrhpF2zLg" contract="_5vbh0FQ3EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_kCYKEFQ4EeK1RYrhpF2zLg" name="publish_response" client="_mwdygHE4EeKnfu10FQG0SA" supplier="_TuYXIFQ4EeK1RYrhpF2zLg" contract="_TuYXIFQ4EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_k1aJgFQ4EeK1RYrhpF2zLg" name="login_response" client="_3BTOoHE2EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg" contract="_S1ve8FQ4EeK1RYrhpF2zLg"/>
-    <packagedElement xmi:type="uml:Node" xmi:id="_gWAgAFR6EeK3W9FjE8UozQ" clientDependency="_FLpaYGeoEeKR3dOgglitKw" name="PC">
-      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_tbJxUFR6EeK3W9FjE8UozQ" name="Component set PC"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Node" xmi:id="_U-rssFTNEeKKKcJffokMsA" name="Server">
-      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_YH0n4FTNEeKKKcJffokMsA" name="Component set Server"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:DataType" xmi:id="_j_jSAGVvEeKXIcxpLhBr9A" name="800-1000"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_ssxg0GVvEeKXIcxpLhBr9A" name="5-10"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_62hpwGVvEeKXIcxpLhBr9A" name="1-1"/>
@@ -229,31 +213,38 @@
     <packagedElement xmi:type="uml:DataType" xmi:id="_a1TqMG-aEeK72N11LS0TbQ" name="3300,10"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_cETM4G-aEeK72N11LS0TbQ" name="3500,10"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_OAPm0G-bEeK72N11LS0TbQ" name="3900,10"/>
-    <packagedElement xmi:type="uml:Dependency" xmi:id="_FLpaYGeoEeKR3dOgglitKw" name="Dependency1" client="_gWAgAFR6EeK3W9FjE8UozQ" supplier="_U-rssFTNEeKKKcJffokMsA"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_QbaecGeoEeKR3dOgglitKw" name="aaload"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_tbI9IGeoEeKR3dOgglitKw" name="anewarray"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_XsW1IGerEeKR3dOgglitKw" name="other1"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_fy-W8GerEeKR3dOgglitKw" name="lights"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_muF9kGktEeKH1oqrNPkAhw" name="Data layer"/>
-    <packagedElement xmi:type="uml:Component" xmi:id="_sDet4GktEeKH1oqrNPkAhw" name="Component1"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_gzNUoG7tEeKSofGnGAP8Vw" name="publishCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_oHokgG7tEeKSofGnGAP8Vw" name="publishHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_pQMIAG7tEeKSofGnGAP8Vw" name="publishMemory"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_HmpDgHEnEeKQKqN68dgp7A" name="browserCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_IiKQkHEnEeKQKqN68dgp7A" name="browserHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_JjrX8HEnEeKQKqN68dgp7A" name="browserMemory"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_qRzWAG7tEeKSofGnGAP8Vw" name="loginCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_rWiwgG7tEeKSofGnGAP8Vw" name="loginHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_sr7PEG7tEeKSofGnGAP8Vw" name="loginMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_ALFacHEzEeKnfu10FQG0SA" name="administrationCPU"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_trUPgG7tEeKSofGnGAP8Vw" name="applicationCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_un_6MG7tEeKSofGnGAP8Vw" name="applicationHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_wQ9cEG7tEeKSofGnGAP8Vw" name="applicationMemory"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_x4Fx8G7tEeKSofGnGAP8Vw" name="websiteCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_y-UaMG7tEeKSofGnGAP8Vw" name="websiteHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_FYAuUG7uEeKSofGnGAP8Vw" name="websiteMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_3te8AHEyEeKnfu10FQG0SA" name="browserCPU"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_8cRmYHEyEeKnfu10FQG0SA" name="commentCPU"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_D5atYHEzEeKnfu10FQG0SA" name="content_visualizerCPU"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_GsiRQG7uEeKSofGnGAP8Vw" name="datalayerCPU"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_qRzWAG7tEeKSofGnGAP8Vw" name="loginCPU"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_gzNUoG7tEeKSofGnGAP8Vw" name="publishCPU"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_x4Fx8G7tEeKSofGnGAP8Vw" name="websiteCPU"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_BW67cHEzEeKnfu10FQG0SA" name="administrationHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_un_6MG7tEeKSofGnGAP8Vw" name="applicationHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_5YSQ8HEyEeKnfu10FQG0SA" name="browserHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_9nWSYHEyEeKnfu10FQG0SA" name="commentHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_E03B8HEzEeKnfu10FQG0SA" name="content_visualizerHDD"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Hyw5gG7uEeKSofGnGAP8Vw" name="datalayerHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_rWiwgG7tEeKSofGnGAP8Vw" name="loginHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_oHokgG7tEeKSofGnGAP8Vw" name="publishHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_y-UaMG7tEeKSofGnGAP8Vw" name="websiteHDD"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_CnGJ4HEzEeKnfu10FQG0SA" name="administrationMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_wQ9cEG7tEeKSofGnGAP8Vw" name="applicationMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_6zdOcHEyEeKnfu10FQG0SA" name="browserMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_-pWh8HEyEeKnfu10FQG0SA" name="commentMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_F3xQcHEzEeKnfu10FQG0SA" name="content_visualizerMemory"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_IsogwG7uEeKSofGnGAP8Vw" name="datalayerMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_sr7PEG7tEeKSofGnGAP8Vw" name="loginMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_pQMIAG7tEeKSofGnGAP8Vw" name="publishMemory"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_FYAuUG7uEeKSofGnGAP8Vw" name="websiteMemory"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_JBTdUG77EeKSofGnGAP8Vw" name="publish_publish"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Kh9XwG77EeKSofGnGAP8Vw" name="publish_login"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_OQgGEG77EeKSofGnGAP8Vw" name="publish_operationsdb"/>
@@ -264,19 +255,32 @@
     <packagedElement xmi:type="uml:DataType" xmi:id="_bOAeUG77EeKSofGnGAP8Vw" name="login_login"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_cKWx0G77EeKSofGnGAP8Vw" name="datalayer_operationsdb"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_s5dsEG7-EeKSofGnGAP8Vw" name="datalayerHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_i736MG8BEeKSofGnGAP8Vw" name="publish_time"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Bp674G8CEeKSofGnGAP8Vw" name="login_exact_time"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_B01Y0HBqEeKWKs1tFu5E7w" name="login_exact_time1"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_i736MG8BEeKSofGnGAP8Vw" name="publish_time"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_SHDcsG8CEeKSofGnGAP8Vw" name="login_exact_time"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_D0ZSkG8GEeKX2YoV3TfYvQ" name="login_time"/>
-    <packagedElement xmi:type="uml:Component" xmi:id="_Iox9cG-cEeK72N11LS0TbQ" name="AMD Athlon Dual-Core QL-62"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_B01Y0HBqEeKWKs1tFu5E7w" name="login_exact_time1"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_KqubcHBqEeKWKs1tFu5E7w" name="login_exact_time1"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_ol4rwHEnEeKQKqN68dgp7A" name="browse"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_-eORAHEnEeKQKqN68dgp7A" name="Usage0" client="_1Nor4HEmEeKQKqN68dgp7A" supplier="_ol4rwHEnEeKQKqN68dgp7A"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_Amx48HEoEeKQKqN68dgp7A" name="Realization0" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_ol4rwHEnEeKQKqN68dgp7A" contract="_ol4rwHEnEeKQKqN68dgp7A"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_jHcXAHEwEeKnfu10FQG0SA" name="postComment"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_kS9H4HEwEeKnfu10FQG0SA" name="adminOperations"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_ol4rwHEnEeKQKqN68dgp7A" name="browse"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_jHcXAHEwEeKnfu10FQG0SA" name="postComment"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_vT4CMHExEeKnfu10FQG0SA" name="readFromDB"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_moI2kHEwEeKnfu10FQG0SA" name="visualize"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_Iox9cG-cEeK72N11LS0TbQ" name="AMD Athlon Dual-Core QL-62"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_Amx48HEoEeKQKqN68dgp7A" name="Realization0" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_ol4rwHEnEeKQKqN68dgp7A" contract="_ol4rwHEnEeKQKqN68dgp7A"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_k1aJgFQ4EeK1RYrhpF2zLg" name="login_response" client="_3BTOoHE2EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg" contract="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_kCYKEFQ4EeK1RYrhpF2zLg" name="publish_response" client="_mwdygHE4EeKnfu10FQG0SA" supplier="_TuYXIFQ4EeK1RYrhpF2zLg" contract="_TuYXIFQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_E7sl8FQ4EeK1RYrhpF2zLg" name="DB_response" client="_CSmuUHE4EeKnfu10FQG0SA" supplier="_5vbh0FQ3EeK1RYrhpF2zLg" contract="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_6wmZoHEwEeKnfu10FQG0SA" name="Realization1" client="_akfegHEwEeKnfu10FQG0SA" supplier="_jHcXAHEwEeKnfu10FQG0SA" contract="_jHcXAHEwEeKnfu10FQG0SA"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_8cfTsHEwEeKnfu10FQG0SA" name="Realization2" client="_U87ZEHEwEeKnfu10FQG0SA" supplier="_kS9H4HEwEeKnfu10FQG0SA" contract="_kS9H4HEwEeKnfu10FQG0SA"/>
+    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_9N0C8HEwEeKnfu10FQG0SA" name="Realization3" client="_TEnzoHEwEeKnfu10FQG0SA" supplier="_moI2kHEwEeKnfu10FQG0SA" contract="_moI2kHEwEeKnfu10FQG0SA"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_-eORAHEnEeKQKqN68dgp7A" name="Usage0" client="_1Nor4HEmEeKQKqN68dgp7A" supplier="_ol4rwHEnEeKQKqN68dgp7A"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_WEn1wFQ4EeK1RYrhpF2zLg" name="write_DB" client="_mwdygHE4EeKnfu10FQG0SA" supplier="_5vbh0FQ3EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_co3l4FQ4EeK1RYrhpF2zLg" name="send_data" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_TuYXIFQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_ZS-BEFQ4EeK1RYrhpF2zLg" name="authorization" client="_mwdygHE4EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_drqfoFQ4EeK1RYrhpF2zLg" name="send_data" client="_j4s7MHE4EeKnfu10FQG0SA" supplier="_TuYXIFQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_jYbOIFQ4EeK1RYrhpF2zLg" name="request_login" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_8Z3HwFQ3EeK1RYrhpF2zLg" name="read_DB" client="_3BTOoHE2EeKnfu10FQG0SA" supplier="_vT4CMHExEeKnfu10FQG0SA"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_pOU1sHEwEeKnfu10FQG0SA" name="Usage1" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_moI2kHEwEeKnfu10FQG0SA"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_zwoW0HEwEeKnfu10FQG0SA" name="Usage2" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_kS9H4HEwEeKnfu10FQG0SA"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_0k990HEwEeKnfu10FQG0SA" name="Usage3" client="_lKiWgHE4EeKnfu10FQG0SA" supplier="_jHcXAHEwEeKnfu10FQG0SA"/>
@@ -284,26 +288,11 @@
     <packagedElement xmi:type="uml:Usage" xmi:id="_4OykMHEwEeKnfu10FQG0SA" name="Usage5" client="_akfegHEwEeKnfu10FQG0SA" supplier="_5vbh0FQ3EeK1RYrhpF2zLg"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_4306IHEwEeKnfu10FQG0SA" name="Usage6" client="_U87ZEHEwEeKnfu10FQG0SA" supplier="_5vbh0FQ3EeK1RYrhpF2zLg"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_5qQcoHEwEeKnfu10FQG0SA" name="Usage7" client="_TEnzoHEwEeKnfu10FQG0SA" supplier="_vT4CMHExEeKnfu10FQG0SA"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_6wmZoHEwEeKnfu10FQG0SA" name="Realization1" client="_akfegHEwEeKnfu10FQG0SA" supplier="_jHcXAHEwEeKnfu10FQG0SA" contract="_jHcXAHEwEeKnfu10FQG0SA"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_8cfTsHEwEeKnfu10FQG0SA" name="Realization2" client="_U87ZEHEwEeKnfu10FQG0SA" supplier="_kS9H4HEwEeKnfu10FQG0SA" contract="_kS9H4HEwEeKnfu10FQG0SA"/>
-    <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_9N0C8HEwEeKnfu10FQG0SA" name="Realization3" client="_TEnzoHEwEeKnfu10FQG0SA" supplier="_moI2kHEwEeKnfu10FQG0SA" contract="_moI2kHEwEeKnfu10FQG0SA"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_vT4CMHExEeKnfu10FQG0SA" name="readFromDB"/>
     <packagedElement xmi:type="uml:Usage" xmi:id="_35f0MHExEeKnfu10FQG0SA" name="Usage8" client="_U87ZEHEwEeKnfu10FQG0SA" supplier="_vT4CMHExEeKnfu10FQG0SA"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_KT1OcHFnEeKnfu10FQG0SA" name="Usage9" client="_U87ZEHEwEeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
     <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_8UyTwHExEeKnfu10FQG0SA" name="Realization4" client="_CSmuUHE4EeKnfu10FQG0SA" supplier="_vT4CMHExEeKnfu10FQG0SA" contract="_vT4CMHExEeKnfu10FQG0SA"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_3te8AHEyEeKnfu10FQG0SA" name="browserCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_5YSQ8HEyEeKnfu10FQG0SA" name="browserHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_6zdOcHEyEeKnfu10FQG0SA" name="browserMemory"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_8cRmYHEyEeKnfu10FQG0SA" name="commentCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_9nWSYHEyEeKnfu10FQG0SA" name="commentHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_-pWh8HEyEeKnfu10FQG0SA" name="commentMemory"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_ALFacHEzEeKnfu10FQG0SA" name="administrationCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_BW67cHEzEeKnfu10FQG0SA" name="administrationHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_CnGJ4HEzEeKnfu10FQG0SA" name="administrationMemory"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_D5atYHEzEeKnfu10FQG0SA" name="content_visualizerCPU"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_E03B8HEzEeKnfu10FQG0SA" name="content_visualizerHDD"/>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_F3xQcHEzEeKnfu10FQG0SA" name="content_visualizerMemory"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_U87ZEHEwEeKnfu10FQG0SA" clientDependency="_4306IHEwEeKnfu10FQG0SA _8cfTsHEwEeKnfu10FQG0SA _35f0MHExEeKnfu10FQG0SA _KT1OcHFnEeKnfu10FQG0SA" name="Administration"/>
-    <packagedElement xmi:type="uml:Component" xmi:id="_j4s7MHE4EeKnfu10FQG0SA" clientDependency="_3AOfUHEwEeKnfu10FQG0SA _drqfoFQ4EeK1RYrhpF2zLg" name="Application"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_j4s7MHE4EeKnfu10FQG0SA" clientDependency="_3AOfUHEwEeKnfu10FQG0SA _drqfoFQ4EeK1RYrhpF2zLg _TgOtoHV6EeKBcuE7uf71lg" name="Application"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_1Nor4HEmEeKQKqN68dgp7A" clientDependency="_-eORAHEnEeKQKqN68dgp7A" name="Browser"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_akfegHEwEeKnfu10FQG0SA" clientDependency="_4OykMHEwEeKnfu10FQG0SA _6wmZoHEwEeKnfu10FQG0SA" name="Comment"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_TEnzoHEwEeKnfu10FQG0SA" clientDependency="_5qQcoHEwEeKnfu10FQG0SA _9N0C8HEwEeKnfu10FQG0SA" name="Content visualizer"/>
@@ -311,15 +300,26 @@
     <packagedElement xmi:type="uml:Component" xmi:id="_3BTOoHE2EeKnfu10FQG0SA" clientDependency="_8Z3HwFQ3EeK1RYrhpF2zLg _k1aJgFQ4EeK1RYrhpF2zLg" name="Login"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_mwdygHE4EeKnfu10FQG0SA" clientDependency="_kCYKEFQ4EeK1RYrhpF2zLg _ZS-BEFQ4EeK1RYrhpF2zLg _WEn1wFQ4EeK1RYrhpF2zLg" name="Publish"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_lKiWgHE4EeKnfu10FQG0SA" clientDependency="_jYbOIFQ4EeK1RYrhpF2zLg _co3l4FQ4EeK1RYrhpF2zLg _pOU1sHEwEeKnfu10FQG0SA _zwoW0HEwEeKnfu10FQG0SA _Amx48HEoEeKQKqN68dgp7A _0k990HEwEeKnfu10FQG0SA" name="Website"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_EJc1gHT5EeK9e8Ets8RhBQ" name="ao1"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_GXvSAHT5EeK9e8Ets8RhBQ" name="ao2"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_HikGYHT5EeK9e8Ets8RhBQ" name="ao3"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_InixcHT5EeK9e8Ets8RhBQ" name="cao1"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_JmE2QHT5EeK9e8Ets8RhBQ" name="cao2"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_hKlpcHT5EeK9e8Ets8RhBQ" name="cao3"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_gWAqgHT8EeK9e8Ets8RhBQ" name="cao4"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_hg9asHT8EeK9e8Ets8RhBQ" name="cao5"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_EFbPIHUPEeK9e8Ets8RhBQ" name="kilos"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_D05lAHT9EeK9e8Ets8RhBQ" name="short_time"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_vb-HkHT9EeK9e8Ets8RhBQ" name="seconds"/>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_fXiLMHE6EeKnfu10FQG0SA" name="FR1-read" useCase="_-BBxoFBMEeK2F7oZgBNjVA">
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_SMNnUHFkEeKnfu10FQG0SA" name="ActionExecSpec2Start" covered="_MfsJYHFkEeKnfu10FQG0SA" execution="_SMO1cHFkEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Rgz54HFkEeKnfu10FQG0SA" name="ActionExecSpec1Start" covered="_KcF58HFkEeKnfu10FQG0SA" execution="_Rg1IAHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_OfKGwHFkEeKnfu10FQG0SA" name="ActionExecSpecStart" covered="_IP8ygHFkEeKnfu10FQG0SA" execution="_OfKt0HFkEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Rgz54HFkEeKnfu10FQG0SA" name="ActionExecSpec1Start" covered="_KcF58HFkEeKnfu10FQG0SA" execution="_Rg1IAHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_QcZPgHFkEeKnfu10FQG0SA" name="ActionExecSpec0Start" covered="_JKr8cHFkEeKnfu10FQG0SA" execution="_QcadoHFkEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_SMO1cHFkEeKnfu10FQG0SA" name="ActionExecSpec2" covered="_MfsJYHFkEeKnfu10FQG0SA" finish="_SMO1cXFkEeKnfu10FQG0SA" start="_SMNnUHFkEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_SMNnUHFkEeKnfu10FQG0SA" name="ActionExecSpec2Start" covered="_MfsJYHFkEeKnfu10FQG0SA" execution="_SMO1cHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_QcadoHFkEeKnfu10FQG0SA" name="ActionExecSpec0" covered="_JKr8cHFkEeKnfu10FQG0SA" finish="_QcadoXFkEeKnfu10FQG0SA" start="_QcZPgHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_OfKt0HFkEeKnfu10FQG0SA" name="ActionExecSpec" covered="_IP8ygHFkEeKnfu10FQG0SA" finish="_OfLU4HFkEeKnfu10FQG0SA" start="_OfKGwHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_Rg1IAHFkEeKnfu10FQG0SA" name="ActionExecSpec1" covered="_KcF58HFkEeKnfu10FQG0SA" finish="_Rg1IAXFkEeKnfu10FQG0SA" start="_Rgz54HFkEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_SMO1cHFkEeKnfu10FQG0SA" name="ActionExecSpec2" covered="_MfsJYHFkEeKnfu10FQG0SA" finish="_SMO1cXFkEeKnfu10FQG0SA" start="_SMNnUHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Tc9dgHFkEeKnfu10FQG0SA" name="MessageSend" covered="_IP8ygHFkEeKnfu10FQG0SA" message="_Tc8PYHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Tc-EkHFkEeKnfu10FQG0SA" name="MessageRecv" covered="_JKr8cHFkEeKnfu10FQG0SA" message="_Tc8PYHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_UejdYHFkEeKnfu10FQG0SA" name="MessageSend0" covered="_JKr8cHFkEeKnfu10FQG0SA" message="_UeiPQHFkEeKnfu10FQG0SA"/>
@@ -327,14 +327,14 @@
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VUwFkHFkEeKnfu10FQG0SA" name="MessageSend1" covered="_KcF58HFkEeKnfu10FQG0SA" message="_VUu3cHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VUwsoHFkEeKnfu10FQG0SA" name="MessageRecv1" covered="_MfsJYHFkEeKnfu10FQG0SA" message="_VUu3cHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_X9iFsHFkEeKnfu10FQG0SA" name="MessageSend2" covered="_MfsJYHFkEeKnfu10FQG0SA" message="_X9g3kHFkEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_X9iswHFkEeKnfu10FQG0SA" name="MessageRecv2" covered="_KcF58HFkEeKnfu10FQG0SA" message="_X9g3kHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_SMO1cXFkEeKnfu10FQG0SA" name="ActionExecSpec2Finish" covered="_MfsJYHFkEeKnfu10FQG0SA" execution="_SMO1cHFkEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_X9iswHFkEeKnfu10FQG0SA" name="MessageRecv2" covered="_KcF58HFkEeKnfu10FQG0SA" message="_X9g3kHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_dvHp0HFkEeKnfu10FQG0SA" name="MessageSend3" covered="_KcF58HFkEeKnfu10FQG0SA" message="_dvGbsHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Rg1IAXFkEeKnfu10FQG0SA" name="ActionExecSpec1Finish" covered="_KcF58HFkEeKnfu10FQG0SA" execution="_Rg1IAHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_dvIQ4HFkEeKnfu10FQG0SA" name="MessageRecv3" covered="_JKr8cHFkEeKnfu10FQG0SA" message="_dvGbsHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_fPlXAHFkEeKnfu10FQG0SA" name="MessageSend4" covered="_JKr8cHFkEeKnfu10FQG0SA" message="_fPkI4HFkEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_QcadoXFkEeKnfu10FQG0SA" name="ActionExecSpec0Finish" covered="_JKr8cHFkEeKnfu10FQG0SA" execution="_QcadoHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_fPl-EHFkEeKnfu10FQG0SA" name="MessageRecv4" covered="_IP8ygHFkEeKnfu10FQG0SA" message="_fPkI4HFkEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_QcadoXFkEeKnfu10FQG0SA" name="ActionExecSpec0Finish" covered="_JKr8cHFkEeKnfu10FQG0SA" execution="_QcadoHFkEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_OfLU4HFkEeKnfu10FQG0SA" name="ActionExecSpecFinish" covered="_IP8ygHFkEeKnfu10FQG0SA" execution="_OfKt0HFkEeKnfu10FQG0SA"/>
       <lifeline xmi:id="_IP8ygHFkEeKnfu10FQG0SA" name="Browser" coveredBy="_OfKGwHFkEeKnfu10FQG0SA _OfLU4HFkEeKnfu10FQG0SA _OfKt0HFkEeKnfu10FQG0SA _Tc9dgHFkEeKnfu10FQG0SA _fPl-EHFkEeKnfu10FQG0SA"/>
       <lifeline xmi:id="_JKr8cHFkEeKnfu10FQG0SA" name="Website" coveredBy="_QcZPgHFkEeKnfu10FQG0SA _QcadoXFkEeKnfu10FQG0SA _QcadoHFkEeKnfu10FQG0SA _Tc-EkHFkEeKnfu10FQG0SA _UejdYHFkEeKnfu10FQG0SA _dvIQ4HFkEeKnfu10FQG0SA _fPlXAHFkEeKnfu10FQG0SA"/>
@@ -348,14 +348,14 @@
       <message xmi:id="_fPkI4HFkEeKnfu10FQG0SA" name="6:Message" messageSort="reply" receiveEvent="_fPl-EHFkEeKnfu10FQG0SA" sendEvent="_fPlXAHFkEeKnfu10FQG0SA" signature="_ol4rwHEnEeKQKqN68dgp7A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_iIKfwHE6EeKnfu10FQG0SA" name="FR2-comment" useCase="_bakegFBNEeK2F7oZgBNjVA">
-      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_P8cHoHFlEeKnfu10FQG0SA" name="ActionExecSpec0Start" covered="_B3Y4gHFlEeKnfu10FQG0SA" execution="_P8dVwHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Q1HcEHFlEeKnfu10FQG0SA" name="ActionExecSpec1Start" covered="_LVaSIHFlEeKnfu10FQG0SA" execution="_Q1IDIHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_OrVsIHFlEeKnfu10FQG0SA" name="ActionExecSpecStart" covered="_-qYxAHFkEeKnfu10FQG0SA" execution="_OrWTMHFlEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_P8cHoHFlEeKnfu10FQG0SA" name="ActionExecSpec0Start" covered="_B3Y4gHFlEeKnfu10FQG0SA" execution="_P8dVwHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Rh0KAHFlEeKnfu10FQG0SA" name="ActionExecSpec2Start" covered="_D2uTAHFlEeKnfu10FQG0SA" execution="_Rh0xEHFlEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_Q1IDIHFlEeKnfu10FQG0SA" name="ActionExecSpec1" covered="_LVaSIHFlEeKnfu10FQG0SA" finish="_Q1IDIXFlEeKnfu10FQG0SA" start="_Q1HcEHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_P8dVwHFlEeKnfu10FQG0SA" name="ActionExecSpec0" covered="_B3Y4gHFlEeKnfu10FQG0SA" finish="_P8dVwXFlEeKnfu10FQG0SA" start="_P8cHoHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_OrWTMHFlEeKnfu10FQG0SA" name="ActionExecSpec" covered="_-qYxAHFkEeKnfu10FQG0SA" finish="_OrWTMXFlEeKnfu10FQG0SA" start="_OrVsIHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_Rh0xEHFlEeKnfu10FQG0SA" name="ActionExecSpec2" covered="_D2uTAHFlEeKnfu10FQG0SA" finish="_Rh1YIHFlEeKnfu10FQG0SA" start="_Rh0KAHFlEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_Q1IDIHFlEeKnfu10FQG0SA" name="ActionExecSpec1" covered="_LVaSIHFlEeKnfu10FQG0SA" finish="_Q1IDIXFlEeKnfu10FQG0SA" start="_Q1HcEHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_STb0MHFlEeKnfu10FQG0SA" name="MessageSend" covered="_-qYxAHFkEeKnfu10FQG0SA" message="_STamEHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_STcbQHFlEeKnfu10FQG0SA" name="MessageRecv" covered="_B3Y4gHFlEeKnfu10FQG0SA" message="_STamEHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_S-SIAHFlEeKnfu10FQG0SA" name="MessageSend0" covered="_B3Y4gHFlEeKnfu10FQG0SA" message="_S-Q54HFlEeKnfu10FQG0SA"/>
@@ -363,14 +363,14 @@
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_TmeJYHFlEeKnfu10FQG0SA" name="MessageSend1" covered="_LVaSIHFlEeKnfu10FQG0SA" message="_Tmc7QHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_TmewcHFlEeKnfu10FQG0SA" name="MessageRecv1" covered="_D2uTAHFlEeKnfu10FQG0SA" message="_Tmc7QHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Xw9z4HFlEeKnfu10FQG0SA" name="MessageSend2" covered="_D2uTAHFlEeKnfu10FQG0SA" message="_Xw8lwHFlEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Xw-a8HFlEeKnfu10FQG0SA" name="MessageRecv2" covered="_LVaSIHFlEeKnfu10FQG0SA" message="_Xw8lwHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Rh1YIHFlEeKnfu10FQG0SA" name="ActionExecSpec2Finish" covered="_D2uTAHFlEeKnfu10FQG0SA" execution="_Rh0xEHFlEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Xw-a8HFlEeKnfu10FQG0SA" name="MessageRecv2" covered="_LVaSIHFlEeKnfu10FQG0SA" message="_Xw8lwHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YvvwUHFlEeKnfu10FQG0SA" name="MessageSend3" covered="_LVaSIHFlEeKnfu10FQG0SA" message="_YvuiMHFlEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YvwXYHFlEeKnfu10FQG0SA" name="MessageRecv3" covered="_B3Y4gHFlEeKnfu10FQG0SA" message="_YvuiMHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Q1IDIXFlEeKnfu10FQG0SA" name="ActionExecSpec1Finish" covered="_LVaSIHFlEeKnfu10FQG0SA" execution="_Q1IDIHFlEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YvwXYHFlEeKnfu10FQG0SA" name="MessageRecv3" covered="_B3Y4gHFlEeKnfu10FQG0SA" message="_YvuiMHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_ZV9bwHFlEeKnfu10FQG0SA" name="MessageSend4" covered="_B3Y4gHFlEeKnfu10FQG0SA" message="_ZV7mkHFlEeKnfu10FQG0SA"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_ZV-C0HFlEeKnfu10FQG0SA" name="MessageRecv4" covered="_-qYxAHFkEeKnfu10FQG0SA" message="_ZV7mkHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_P8dVwXFlEeKnfu10FQG0SA" name="ActionExecSpec0Finish" covered="_B3Y4gHFlEeKnfu10FQG0SA" execution="_P8dVwHFlEeKnfu10FQG0SA"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_ZV-C0HFlEeKnfu10FQG0SA" name="MessageRecv4" covered="_-qYxAHFkEeKnfu10FQG0SA" message="_ZV7mkHFlEeKnfu10FQG0SA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_OrWTMXFlEeKnfu10FQG0SA" name="ActionExecSpecFinish" covered="_-qYxAHFkEeKnfu10FQG0SA" execution="_OrWTMHFlEeKnfu10FQG0SA"/>
       <lifeline xmi:id="_-qYxAHFkEeKnfu10FQG0SA" name="Browser" coveredBy="_OrVsIHFlEeKnfu10FQG0SA _OrWTMXFlEeKnfu10FQG0SA _OrWTMHFlEeKnfu10FQG0SA _STb0MHFlEeKnfu10FQG0SA _ZV-C0HFlEeKnfu10FQG0SA"/>
       <lifeline xmi:id="_B3Y4gHFlEeKnfu10FQG0SA" name="Website" coveredBy="_P8cHoHFlEeKnfu10FQG0SA _P8dVwXFlEeKnfu10FQG0SA _P8dVwHFlEeKnfu10FQG0SA _STcbQHFlEeKnfu10FQG0SA _S-SIAHFlEeKnfu10FQG0SA _YvwXYHFlEeKnfu10FQG0SA _ZV9bwHFlEeKnfu10FQG0SA"/>
@@ -643,15 +643,15 @@
         </operand>
       </fragment>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_-8toQGkuEeKH1oqrNPkAhw" name="MessageRecv2" covered="_UOLFoGktEeKH1oqrNPkAhw"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_d7RLIGkvEeKH1oqrNPkAhw" name="MessageSend3" covered="_dEWcIGktEeKH1oqrNPkAhw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_d7RyMGkvEeKH1oqrNPkAhw" name="MessageRecv3" covered="_b8e1IGktEeKH1oqrNPkAhw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_d7RLIGkvEeKH1oqrNPkAhw" name="MessageSend3" covered="_dEWcIGktEeKH1oqrNPkAhw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JQXIcHEpEeKQKqN68dgp7A" name="MessageSend7" covered="_qIobcHEoEeKQKqN68dgp7A"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_bqIO8GkvEeKH1oqrNPkAhw" name="MessageRecv1" covered="_b8e1IGktEeKH1oqrNPkAhw"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JQXvgHEpEeKQKqN68dgp7A" name="MessageRecv6" covered="_UOLFoGktEeKH1oqrNPkAhw"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_voM8YGkuEeKH1oqrNPkAhw" name="ActionExecSpec1Start" covered="_dEWcIGktEeKH1oqrNPkAhw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_JQXvgHEpEeKQKqN68dgp7A" name="MessageRecv6" covered="_UOLFoGktEeKH1oqrNPkAhw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_bqIO8GkvEeKH1oqrNPkAhw" name="MessageRecv1" covered="_b8e1IGktEeKH1oqrNPkAhw"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_agmbEGkvEeKH1oqrNPkAhw" name="MessageSend0" covered="_b8e1IGktEeKH1oqrNPkAhw"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_4VUdgGkuEeKH1oqrNPkAhw" name="MessageSend" covered="_UOLFoGktEeKH1oqrNPkAhw"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_voOKgWkuEeKH1oqrNPkAhw" name="ActionExecSpec1Finish" covered="_dEWcIGktEeKH1oqrNPkAhw"/>
-      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_agmbEGkvEeKH1oqrNPkAhw" name="MessageSend0" covered="_b8e1IGktEeKH1oqrNPkAhw"/>
       <lifeline xmi:id="_UOLFoGktEeKH1oqrNPkAhw" name="Website" coveredBy="_tp-8MGkuEeKH1oqrNPkAhw _tqAKUWkuEeKH1oqrNPkAhw _tqAKUGkuEeKH1oqrNPkAhw _4VUdgGkuEeKH1oqrNPkAhw _-8toQGkuEeKH1oqrNPkAhw _A04DwGkvEeKH1oqrNPkAhw _HfVwoGkvEeKH1oqrNPkAhw _HNOiYGkuEeKH1oqrNPkAhw _HNQXkGkuEeKH1oqrNPkAhw _gRU5AGkuEeKH1oqrNPkAhw _JQXvgHEpEeKQKqN68dgp7A _zjSM0HF8EeKnfu10FQG0SA _fAz4MHGFEeKnfu10FQG0SA"/>
       <lifeline xmi:id="_X6OgoGktEeKH1oqrNPkAhw" name="Application" coveredBy="_NZh3IGkvEeKH1oqrNPkAhw _NZjFQWkvEeKH1oqrNPkAhw _NZjFQGkvEeKH1oqrNPkAhw _ZPKoYGkvEeKH1oqrNPkAhw _e67RUGkvEeKH1oqrNPkAhw _HNOiYGkuEeKH1oqrNPkAhw _HNQXkGkuEeKH1oqrNPkAhw _gRU5AGkuEeKH1oqrNPkAhw"/>
       <lifeline xmi:id="_b8e1IGktEeKH1oqrNPkAhw" name="Publish" coveredBy="_HNOiYGkuEeKH1oqrNPkAhw _HNQXkGkuEeKH1oqrNPkAhw _gRU5AGkuEeKH1oqrNPkAhw _wFptYGkuEeKH1oqrNPkAhw _wFq7gGkuEeKH1oqrNPkAhw _wFqUcGkuEeKH1oqrNPkAhw _A04q0GkvEeKH1oqrNPkAhw _Cq5xQGkvEeKH1oqrNPkAhw _HfVJkGkvEeKH1oqrNPkAhw _N-0VgGkvEeKH1oqrNPkAhw _N-1joWkvEeKH1oqrNPkAhw _N-1joGkvEeKH1oqrNPkAhw _ZPLPcGkvEeKH1oqrNPkAhw _agmbEGkvEeKH1oqrNPkAhw _bqIO8GkvEeKH1oqrNPkAhw _cTNoMGkvEeKH1oqrNPkAhw _e66qQGkvEeKH1oqrNPkAhw _dbgtIXFrEeKnfu10FQG0SA _d7RyMGkvEeKH1oqrNPkAhw _qyANIXFrEeKnfu10FQG0SA _PZxccHGGEeKnfu10FQG0SA"/>
@@ -906,10 +906,10 @@
       <message xmi:id="_98wUUHF3EeKnfu10FQG0SA" name="19:Message" messageSort="reply" receiveEvent="_98ywkHF3EeKnfu10FQG0SA" sendEvent="_98yJgHF3EeKnfu10FQG0SA" signature="_5vbh0FQ3EeK1RYrhpF2zLg"/>
       <message xmi:id="_-pI5MHF3EeKnfu10FQG0SA" name="20:Message" messageSort="reply" receiveEvent="_-pLVcHF3EeKnfu10FQG0SA" sendEvent="_-pKuYHF3EeKnfu10FQG0SA" signature="_kS9H4HEwEeKnfu10FQG0SA"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_KT1OcHFnEeKnfu10FQG0SA" name="Usage9" client="_U87ZEHEwEeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_TgOtoHV6EeKBcuE7uf71lg" name="Usage10" client="_j4s7MHE4EeKnfu10FQG0SA" supplier="_S1ve8FQ4EeK1RYrhpF2zLg"/>
     <profileApplication xmi:id="_GMhB0FBMEeK2F7oZgBNjVA">
-      <eAnnotations xmi:id="_6N__UGStEeKJ_72f7Rs0Rw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="../EnergyProfile/model.profile.uml#_j1eYIHEkEeKQKqN68dgp7A"/>
+      <eAnnotations xmi:id="_jTYzcHVxEeKo7NFkzwJswQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../EnergyProfile/model.profile.uml#_FnrM8HV7EeKBcuE7uf71lg"/>
       </eAnnotations>
       <appliedProfile href="../EnergyProfile/model.profile.uml#_W27J0EkeEeK0BKebTNXESQ"/>
     </profileApplication>
@@ -947,20 +947,20 @@
   <Profile:HDD_alternative xmi:id="_t8LCEFG5EeKJ8Nvo-F5dJA" base_Package="_RAWzAFG5EeKJ8Nvo-F5dJA"/>
   <Profile:CPU xmi:id="_3F5xQFG6EeKJ8Nvo-F5dJA" cores="4" productive_process="32" thermal_design_power="95.0" frequencies_voltages="_w32loGYpEeKCJ4yP5L0EFg _2ctVUGYpEeKCJ4yP5L0EFg" base_Class="_h8YZ0FG6EeKJ8Nvo-F5dJA"/>
   <Profile:CPU xmi:id="_Cwr9YFG7EeKJ8Nvo-F5dJA" cores="2" productive_process="32" thermal_design_power="65.0" frequencies_voltages="_ed0pAG-aEeK72N11LS0TbQ" base_Class="_kPfr8FG6EeKJ8Nvo-F5dJA"/>
-  <Profile:Memory xmi:id="_LU-SoFG7EeKJ8Nvo-F5dJA" bandwidth="8500.0" base_Class="_osKrkFG6EeKJ8Nvo-F5dJA"/>
-  <Profile:HDD xmi:id="_PZdbwFG7EeKJ8Nvo-F5dJA" bandwidth="75.0" base_Class="_wAdYkFG6EeKJ8Nvo-F5dJA"/>
-  <Profile:HDD xmi:id="_QfvuYFG7EeKJ8Nvo-F5dJA" bandwidth="58.0" base_Class="_w6RVcFG6EeKJ8Nvo-F5dJA"/>
-  <Profile:Memory xmi:id="_ghZNEFG7EeKJ8Nvo-F5dJA" bandwidth="8500.0" base_Class="_ghYmAFG7EeKJ8Nvo-F5dJA"/>
-  <Profile:Platform xmi:id="_vFoMEFM7EeKHZKGWw06VCQ" framework="123.0" JVM="33.0" base_Class="_qd7oMFM7EeKHZKGWw06VCQ"/>
-  <Profile:Network xmi:id="_ijNX4FM8EeKHZKGWw06VCQ" bandwidth="100.0" base_Class="_DnoQgFM8EeKHZKGWw06VCQ"/>
+  <Profile:Memory xmi:id="_LU-SoFG7EeKJ8Nvo-F5dJA" bandwidth="8500.0" work_consumption="0.02" idle_consumption="0.006" base_Class="_osKrkFG6EeKJ8Nvo-F5dJA"/>
+  <Profile:HDD xmi:id="_PZdbwFG7EeKJ8Nvo-F5dJA" bandwidth="75.0" work_consumption="0.02" idle_consumption="0.001" base_Class="_wAdYkFG6EeKJ8Nvo-F5dJA"/>
+  <Profile:HDD xmi:id="_QfvuYFG7EeKJ8Nvo-F5dJA" bandwidth="58.0" work_consumption="0.015" idle_consumption="0.005" base_Class="_w6RVcFG6EeKJ8Nvo-F5dJA"/>
+  <Profile:Memory xmi:id="_ghZNEFG7EeKJ8Nvo-F5dJA" bandwidth="8500.0" work_consumption="0.02" idle_consumption="0.006" base_Class="_ghYmAFG7EeKJ8Nvo-F5dJA"/>
+  <Profile:Platform xmi:id="_vFoMEFM7EeKHZKGWw06VCQ" operative_system="1.0" base_Class="_qd7oMFM7EeKHZKGWw06VCQ" energy_points="10"/>
+  <Profile:Network xmi:id="_ijNX4FM8EeKHZKGWw06VCQ" bandwidth="100.0" MB_consumption="0.15" base_Class="_DnoQgFM8EeKHZKGWw06VCQ"/>
   <Profile:CPU xmi:id="_r61QwFNLEeKHZKGWw06VCQ" cores="4" productive_process="22" thermal_design_power="77.0" frequencies_voltages="_dPJPYG-aEeK72N11LS0TbQ _QDJSsG-bEeK72N11LS0TbQ" base_Class="_crBtkFG9EeKJ8Nvo-F5dJA"/>
-  <Profile:HDD xmi:id="_swNZkFNLEeKHZKGWw06VCQ" bandwidth="108.0" base_Class="_e1HmkFG9EeKJ8Nvo-F5dJA"/>
-  <Profile:HDD xmi:id="_3SdI8FNOEeKHZKGWw06VCQ" bandwidth="120.0" base_Class="_0YyNIFNOEeKHZKGWw06VCQ"/>
+  <Profile:HDD xmi:id="_swNZkFNLEeKHZKGWw06VCQ" bandwidth="108.0" work_consumption="0.03" idle_consumption="0.001" base_Class="_e1HmkFG9EeKJ8Nvo-F5dJA"/>
+  <Profile:HDD xmi:id="_3SdI8FNOEeKHZKGWw06VCQ" bandwidth="120.0" work_consumption="0.03" idle_consumption="0.001" base_Class="_0YyNIFNOEeKHZKGWw06VCQ"/>
   <Profile:HDD_alternative xmi:id="_Iz3KMFNPEeKHZKGWw06VCQ" base_Package="_7f4LoFNOEeKHZKGWw06VCQ"/>
-  <Profile:Platform xmi:id="_ceeowVNREeKHZKGWw06VCQ" base_Class="_ceeowFNREeKHZKGWw06VCQ"/>
-  <Profile:Memory xmi:id="_KNCm0FNTEeKHZKGWw06VCQ" bandwidth="1600.0" base_Class="_GaSG4FNTEeKHZKGWw06VCQ"/>
-  <Profile:Memory xmi:id="_UOjIAFNTEeKHZKGWw06VCQ" bandwidth="1600.0" base_Class="_PCFDIFNTEeKHZKGWw06VCQ"/>
-  <Profile:Network xmi:id="_eqRgAFNTEeKHZKGWw06VCQ" bandwidth="500.0" base_Class="_dN8r8FNTEeKHZKGWw06VCQ"/>
+  <Profile:Platform xmi:id="_ceeowVNREeKHZKGWw06VCQ" operative_system="3.0" base_Class="_ceeowFNREeKHZKGWw06VCQ" energy_points="30"/>
+  <Profile:Memory xmi:id="_KNCm0FNTEeKHZKGWw06VCQ" bandwidth="1600.0" work_consumption="0.02" idle_consumption="0.006" base_Class="_GaSG4FNTEeKHZKGWw06VCQ"/>
+  <Profile:Memory xmi:id="_UOjIAFNTEeKHZKGWw06VCQ" bandwidth="1600.0" work_consumption="0.02" idle_consumption="0.006" base_Class="_PCFDIFNTEeKHZKGWw06VCQ"/>
+  <Profile:Network xmi:id="_eqRgAFNTEeKHZKGWw06VCQ" bandwidth="500.0" MB_consumption="0.1" base_Class="_dN8r8FNTEeKHZKGWw06VCQ"/>
   <Profile:Connector_enhanced xmi:id="_girKYFR3EeK3W9FjE8UozQ" energy_points="3" base_Usage="_WEn1wFQ4EeK1RYrhpF2zLg" size="_Yf5AUG79EeKSofGnGAP8Vw"/>
   <Profile:Connector_enhanced xmi:id="_hMqikFR3EeK3W9FjE8UozQ" energy_points="2" base_Usage="_8Z3HwFQ3EeK1RYrhpF2zLg" size="_nbjHUG79EeKSofGnGAP8Vw"/>
   <Profile:Connector_enhanced xmi:id="_hzpDAFR3EeK3W9FjE8UozQ" energy_points="1" base_InterfaceRealization="_E7sl8FQ4EeK1RYrhpF2zLg" size="_wFIMQG79EeKSofGnGAP8Vw"/>
@@ -970,40 +970,38 @@
   <Profile:Connector_enhanced xmi:id="_kZ5TkFR3EeK3W9FjE8UozQ" energy_points="5" base_Usage="_co3l4FQ4EeK1RYrhpF2zLg" size="_iHJOcG79EeKSofGnGAP8Vw"/>
   <Profile:Connector_enhanced xmi:id="_lHPhwFR3EeK3W9FjE8UozQ" energy_points="7" base_Usage="_drqfoFQ4EeK1RYrhpF2zLg" size="_bSMv4G79EeKSofGnGAP8Vw"/>
   <Profile:Connector_enhanced xmi:id="_lytgoFR3EeK3W9FjE8UozQ" energy_points="1" base_InterfaceRealization="_kCYKEFQ4EeK1RYrhpF2zLg" size="_RKGT8G78EeKSofGnGAP8Vw"/>
-  <Profile:Hardware_set xmi:id="_r8hQIFR6EeK3W9FjE8UozQ" stakeholder="_8M_LoFEREeKk3_6OgfcoOw _rFAMcFEQEeKk3_6OgfcoOw" memory_alternative="_kxDWUFG5EeKJ8Nvo-F5dJA" base_Node="_gWAgAFR6EeK3W9FjE8UozQ"/>
-  <Profile:Hardware_set xmi:id="_WgSCUFTNEeKKKcJffokMsA" stakeholder="_rRa30FEQEeKk3_6OgfcoOw" memory_alternative="_l-RXYFG5EeKJ8Nvo-F5dJA" base_Node="_U-rssFTNEeKKKcJffokMsA"/>
   <Profile:Range xmi:id="_mmHroGVvEeKXIcxpLhBr9A" base_DataType="_j_jSAGVvEeKXIcxpLhBr9A" min="800" max="1000"/>
   <Profile:Range xmi:id="_wTIjgGVvEeKXIcxpLhBr9A" base_DataType="_ssxg0GVvEeKXIcxpLhBr9A" min="5" max="10"/>
   <Profile:Range xmi:id="_8ZX8kGVvEeKXIcxpLhBr9A" base_DataType="_62hpwGVvEeKXIcxpLhBr9A" min="1" max="1"/>
-  <Profile:Frequency_voltage xmi:id="_w32loGYpEeKCJ4yP5L0EFg" frequency="3300" voltage="50.0" base_DataType="_n7-PwGYpEeKCJ4yP5L0EFg" max_energy_points="800" performance_score="6412.0"/>
-  <Profile:Frequency_voltage xmi:id="_2ctVUGYpEeKCJ4yP5L0EFg" frequency="3700" voltage="60.0" base_DataType="_z8cYAGYpEeKCJ4yP5L0EFg" max_energy_points="920" performance_score="6800.0"/>
-  <Profile:Atomic_operation xmi:id="_g1HQwGeoEeKR3dOgglitKw" cost="0.01" number="184" base_DataType="_QbaecGeoEeKR3dOgglitKw"/>
-  <Profile:Atomic_operation xmi:id="_uPaSsGeoEeKR3dOgglitKw" cost="0.002" number="384" base_DataType="_tbI9IGeoEeKR3dOgglitKw"/>
-  <Profile:Consumption xmi:id="_ZtyhYGerEeKR3dOgglitKw" source="extra" consumption="0.123" base_DataType="_XsW1IGerEeKR3dOgglitKw"/>
-  <Profile:Consumption xmi:id="_hUzWEGerEeKR3dOgglitKw" source="lights" consumption="0.3" base_DataType="_fy-W8GerEeKR3dOgglitKw"/>
+  <Profile:Frequency_voltage xmi:id="_w32loGYpEeKCJ4yP5L0EFg" frequency="3300" voltage="1.2" base_DataType="_n7-PwGYpEeKCJ4yP5L0EFg" performance_score="6412.0"/>
+  <Profile:Frequency_voltage xmi:id="_2ctVUGYpEeKCJ4yP5L0EFg" frequency="3700" voltage="1.2" base_DataType="_z8cYAGYpEeKCJ4yP5L0EFg" performance_score="6800.0"/>
+  <Profile:Atomic_operation xmi:id="_g1HQwGeoEeKR3dOgglitKw" number="184" base_DataType="_QbaecGeoEeKR3dOgglitKw" id="4"/>
+  <Profile:Atomic_operation xmi:id="_uPaSsGeoEeKR3dOgglitKw" number="384" base_DataType="_tbI9IGeoEeKR3dOgglitKw" id="5"/>
+  <Profile:Consumption xmi:id="_ZtyhYGerEeKR3dOgglitKw" source="extra" consumption="0.123" base_DataType="_XsW1IGerEeKR3dOgglitKw" energy_points="1"/>
+  <Profile:Consumption xmi:id="_hUzWEGerEeKR3dOgglitKw" source="lights" consumption="0.3" base_DataType="_fy-W8GerEeKR3dOgglitKw" energy_points="1"/>
   <Profile:Other_alternative xmi:id="_0pi9MGerEeKR3dOgglitKw" base_Package="_tPLdYGerEeKR3dOgglitKw"/>
-  <Profile:Other xmi:id="_5lG4QGerEeKR3dOgglitKw" cooling="123.0" display="33.0" other="_ZtyhYGerEeKR3dOgglitKw _hUzWEGerEeKR3dOgglitKw" base_Class="_2LJ54GerEeKR3dOgglitKw"/>
+  <Profile:Other xmi:id="_5lG4QGerEeKR3dOgglitKw" display="0.3" other="_ZtyhYGerEeKR3dOgglitKw _hUzWEGerEeKR3dOgglitKw" base_Class="_2LJ54GerEeKR3dOgglitKw" energy_points="3"/>
   <Profile:Other_alternative xmi:id="_iarjkGesEeKR3dOgglitKw" base_Package="_frjD0GesEeKR3dOgglitKw"/>
-  <Profile:Other xmi:id="_l23WkGesEeKR3dOgglitKw" other="_hUzWEGerEeKR3dOgglitKw" base_Class="_kNmSsGesEeKR3dOgglitKw"/>
+  <Profile:Other xmi:id="_l23WkGesEeKR3dOgglitKw" cooling="0.2" display="0.1" other="_hUzWEGerEeKR3dOgglitKw" base_Class="_kNmSsGesEeKR3dOgglitKw" energy_points="3"/>
   <Profile:Lifeline_enhanced xmi:id="_r_4ggGmfEeKRz_FKTRlpeg" element="_q21K8HE4EeKnfu10FQG0SA" base_Lifeline="_UOLFoGktEeKH1oqrNPkAhw"/>
   <Profile:Lifeline_enhanced xmi:id="_vCNCAGmfEeKRz_FKTRlpeg" element="_p40qkHE4EeKnfu10FQG0SA" base_Lifeline="_X6OgoGktEeKH1oqrNPkAhw"/>
   <Profile:Lifeline_enhanced xmi:id="_zvepcGmfEeKRz_FKTRlpeg" element="_pVZNYHE4EeKnfu10FQG0SA" base_Lifeline="_b8e1IGktEeKH1oqrNPkAhw"/>
   <Profile:Lifeline_enhanced xmi:id="_16uZAGmfEeKRz_FKTRlpeg" element="_Sqx2oHE4EeKnfu10FQG0SA" base_Lifeline="_dEWcIGktEeKH1oqrNPkAhw"/>
   <Profile:CPU_usage xmi:id="_k3plAG7uEeKSofGnGAP8Vw" utilization="1.0" time="_kx5nsG8BEeKSofGnGAP8Vw" base_DataType="_gzNUoG7tEeKSofGnGAP8Vw" energy_points="10"/>
   <Profile:CPU_usage xmi:id="_qfuAwG7uEeKSofGnGAP8Vw" utilization="1.0" time="_G1pdEG8GEeKX2YoV3TfYvQ" base_DataType="_qRzWAG7tEeKSofGnGAP8Vw" energy_points="3" exact_time="_K6qHcG8CEeKSofGnGAP8Vw _HLrhsHBqEeKWKs1tFu5E7w"/>
-  <Profile:CPU_usage xmi:id="_rhwFgG7uEeKSofGnGAP8Vw" utilization="1.0" base_DataType="_trUPgG7tEeKSofGnGAP8Vw" energy_points="15"/>
-  <Profile:CPU_usage xmi:id="_Wy66cG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_x4Fx8G7tEeKSofGnGAP8Vw" energy_points="2"/>
-  <Profile:CPU_usage xmi:id="_XixDAG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_GsiRQG7uEeKSofGnGAP8Vw" energy_points="4"/>
-  <Profile:HDD_usage xmi:id="_ZGVHgG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_oHokgG7tEeKSofGnGAP8Vw"/>
-  <Profile:HDD_usage xmi:id="_aHwvUG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_rWiwgG7tEeKSofGnGAP8Vw"/>
-  <Profile:HDD_usage xmi:id="_bAyCAG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_un_6MG7tEeKSofGnGAP8Vw" energy_points="5"/>
-  <Profile:HDD_usage xmi:id="_byCf0G74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_y-UaMG7tEeKSofGnGAP8Vw" energy_points="4"/>
-  <Profile:HDD_usage xmi:id="_cmSnQG74EeKSofGnGAP8Vw" utilization="1.0" size="_uCB2oG7-EeKSofGnGAP8Vw" base_DataType="_Hyw5gG7uEeKSofGnGAP8Vw" energy_points="6"/>
-  <Profile:Memory_usage xmi:id="_eBRXgG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_pQMIAG7tEeKSofGnGAP8Vw"/>
-  <Profile:Memory_usage xmi:id="_e4MYcG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_sr7PEG7tEeKSofGnGAP8Vw" energy_points="1"/>
-  <Profile:Memory_usage xmi:id="_fuz3YG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_wQ9cEG7tEeKSofGnGAP8Vw" energy_points="3"/>
-  <Profile:Memory_usage xmi:id="_gmqscG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_FYAuUG7uEeKSofGnGAP8Vw" energy_points="2"/>
-  <Profile:Memory_usage xmi:id="_iAPHcG74EeKSofGnGAP8Vw" utilization="1.0" base_DataType="_IsogwG7uEeKSofGnGAP8Vw" energy_points="3"/>
+  <Profile:CPU_usage xmi:id="_rhwFgG7uEeKSofGnGAP8Vw" utilization="0.15" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_trUPgG7tEeKSofGnGAP8Vw" energy_points="15"/>
+  <Profile:CPU_usage xmi:id="_Wy66cG74EeKSofGnGAP8Vw" utilization="0.04" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_x4Fx8G7tEeKSofGnGAP8Vw" energy_points="2"/>
+  <Profile:CPU_usage xmi:id="_XixDAG74EeKSofGnGAP8Vw" utilization="1.0" time="_JuGNAHT9EeK9e8Ets8RhBQ" base_DataType="_GsiRQG7uEeKSofGnGAP8Vw" energy_points="4"/>
+  <Profile:HDD_usage xmi:id="_ZGVHgG74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_oHokgG7tEeKSofGnGAP8Vw"/>
+  <Profile:HDD_usage xmi:id="_aHwvUG74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_rWiwgG7tEeKSofGnGAP8Vw"/>
+  <Profile:HDD_usage xmi:id="_bAyCAG74EeKSofGnGAP8Vw" utilization="0.01" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_un_6MG7tEeKSofGnGAP8Vw" energy_points="5"/>
+  <Profile:HDD_usage xmi:id="_byCf0G74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_y-UaMG7tEeKSofGnGAP8Vw" energy_points="4"/>
+  <Profile:HDD_usage xmi:id="_cmSnQG74EeKSofGnGAP8Vw" size="_uCB2oG7-EeKSofGnGAP8Vw" base_DataType="_Hyw5gG7uEeKSofGnGAP8Vw" energy_points="6"/>
+  <Profile:Memory_usage xmi:id="_eBRXgG74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_pQMIAG7tEeKSofGnGAP8Vw"/>
+  <Profile:Memory_usage xmi:id="_e4MYcG74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_sr7PEG7tEeKSofGnGAP8Vw" energy_points="1"/>
+  <Profile:Memory_usage xmi:id="_fuz3YG74EeKSofGnGAP8Vw" utilization="0.06" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_wQ9cEG7tEeKSofGnGAP8Vw" energy_points="3"/>
+  <Profile:Memory_usage xmi:id="_gmqscG74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_FYAuUG7uEeKSofGnGAP8Vw" energy_points="2"/>
+  <Profile:Memory_usage xmi:id="_iAPHcG74EeKSofGnGAP8Vw" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_IsogwG7uEeKSofGnGAP8Vw" energy_points="3"/>
   <Profile:Size xmi:id="_RKGT8G78EeKSofGnGAP8Vw" KB="2" base_DataType="_JBTdUG77EeKSofGnGAP8Vw"/>
   <Profile:Size xmi:id="_UJzw4G79EeKSofGnGAP8Vw" KB="30" base_DataType="_Kh9XwG77EeKSofGnGAP8Vw"/>
   <Profile:Size xmi:id="_Yf5AUG79EeKSofGnGAP8Vw" KB="70" base_DataType="_OQgGEG77EeKSofGnGAP8Vw"/>
@@ -1018,51 +1016,48 @@
   <Profile:CPU_time xmi:id="_K6qHcG8CEeKSofGnGAP8Vw" time="_WO6p8G8CEeKSofGnGAP8Vw" CPU="_3F5xQFG6EeKJ8Nvo-F5dJA" base_DataType="_Bp674G8CEeKSofGnGAP8Vw"/>
   <Profile:Time xmi:id="_WO6p8G8CEeKSofGnGAP8Vw" milliseconds="85" base_DataType="_SHDcsG8CEeKSofGnGAP8Vw"/>
   <Profile:Time xmi:id="_G1pdEG8GEeKX2YoV3TfYvQ" milliseconds="120" base_DataType="_D0ZSkG8GEeKX2YoV3TfYvQ"/>
-  <Profile:Frequency_voltage xmi:id="_dPJPYG-aEeK72N11LS0TbQ" frequency="3700" voltage="10.0" base_DataType="_cETM4G-aEeK72N11LS0TbQ" max_energy_points="1250" performance_score="9609.0"/>
-  <Profile:Frequency_voltage xmi:id="_ed0pAG-aEeK72N11LS0TbQ" frequency="3300" voltage="10.0" base_DataType="_a1TqMG-aEeK72N11LS0TbQ" max_energy_points="640" performance_score="3947.0"/>
-  <Profile:Frequency_voltage xmi:id="_QDJSsG-bEeK72N11LS0TbQ" frequency="3900" voltage="10.0" base_DataType="_OAPm0G-bEeK72N11LS0TbQ" max_energy_points="1420" performance_score="10500.0"/>
+  <Profile:Frequency_voltage xmi:id="_dPJPYG-aEeK72N11LS0TbQ" frequency="3700" voltage="1.2" base_DataType="_cETM4G-aEeK72N11LS0TbQ" performance_score="9609.0"/>
+  <Profile:Frequency_voltage xmi:id="_ed0pAG-aEeK72N11LS0TbQ" frequency="3300" voltage="1.2" base_DataType="_a1TqMG-aEeK72N11LS0TbQ" performance_score="3947.0"/>
+  <Profile:Frequency_voltage xmi:id="_QDJSsG-bEeK72N11LS0TbQ" frequency="3900" voltage="1.2" base_DataType="_OAPm0G-bEeK72N11LS0TbQ" performance_score="10500.0"/>
   <Profile:Default_CPU xmi:id="_KHmr4G-cEeK72N11LS0TbQ" performance_score="1000.0" base_Class="_Iox9cG-cEeK72N11LS0TbQ"/>
   <Profile:CPU_time xmi:id="_HLrhsHBqEeKWKs1tFu5E7w" time="_Rs6EwHBqEeKWKs1tFu5E7w" CPU="_r61QwFNLEeKHZKGWw06VCQ" base_DataType="_B01Y0HBqEeKWKs1tFu5E7w"/>
   <Profile:Time xmi:id="_Rs6EwHBqEeKWKs1tFu5E7w" milliseconds="70" base_DataType="_KqubcHBqEeKWKs1tFu5E7w"/>
-  <Profile:Component_enhanced xmi:id="_6CIVoHEmEeKQKqN68dgp7A" base_Component="_1Nor4HEmEeKQKqN68dgp7A" hardware_set="_nvjHwFG5EeKJ8Nvo-F5dJA" base_Class="_1Nor4HEmEeKQKqN68dgp7A" cpu_usage="_b6cdcHEzEeKnfu10FQG0SA" hdd_usage="_fCoWYHEzEeKnfu10FQG0SA" memory_usage="_h26b4HEzEeKnfu10FQG0SA"/>
-  <Profile:CPU_usage xmi:id="_UCmN4HEnEeKQKqN68dgp7A" base_DataType="_HmpDgHEnEeKQKqN68dgp7A" energy_points="3"/>
-  <Profile:HDD_usage xmi:id="_hza5cHEnEeKQKqN68dgp7A" base_DataType="_IiKQkHEnEeKQKqN68dgp7A" energy_points="1"/>
-  <Profile:Memory_usage xmi:id="_l66TQHEnEeKQKqN68dgp7A" base_DataType="_JjrX8HEnEeKQKqN68dgp7A" energy_points="2"/>
-  <Profile:Connector_enhanced xmi:id="_M1120HEoEeKQKqN68dgp7A" energy_points="3" base_InterfaceRealization="_Amx48HEoEeKQKqN68dgp7A"/>
+  <Profile:Component_enhanced xmi:id="_6CIVoHEmEeKQKqN68dgp7A" base_Component="_1Nor4HEmEeKQKqN68dgp7A" hardware_set="_nvjHwFG5EeKJ8Nvo-F5dJA" cpu_usage="_b6cdcHEzEeKnfu10FQG0SA" hdd_usage="_fCoWYHEzEeKnfu10FQG0SA" memory_usage="_h26b4HEzEeKnfu10FQG0SA"/>
+  <Profile:Connector_enhanced xmi:id="_M1120HEoEeKQKqN68dgp7A" energy_points="3" base_InterfaceRealization="_Amx48HEoEeKQKqN68dgp7A" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
   <Profile:Lifeline_enhanced xmi:id="_sc_DsHEoEeKQKqN68dgp7A" element="_6CIVoHEmEeKQKqN68dgp7A" base_Lifeline="_qIobcHEoEeKQKqN68dgp7A"/>
-  <Profile:Connector_enhanced xmi:id="_DKPlIHExEeKnfu10FQG0SA" energy_points="3" base_Usage="_-eORAHEnEeKQKqN68dgp7A"/>
-  <Profile:Connector_enhanced xmi:id="_HDxbcHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_pOU1sHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_J6wPoHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_zwoW0HEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_L4UvkHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_0k990HEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_PY56YHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_3AOfUHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_SOmVIHExEeKnfu10FQG0SA" energy_points="1" base_InterfaceRealization="_6wmZoHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_U_lPAHExEeKnfu10FQG0SA" energy_points="1" base_InterfaceRealization="_8cfTsHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_Ych3AHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_4OykMHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_aFs0QHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_4306IHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_buxq4HExEeKnfu10FQG0SA" energy_points="3" base_InterfaceRealization="_9N0C8HEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_hIBngHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_5qQcoHEwEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_4sFuwHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_35f0MHExEeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_9G34AHExEeKnfu10FQG0SA" energy_points="3" base_InterfaceRealization="_8UyTwHExEeKnfu10FQG0SA"/>
-  <Profile:Component_enhanced xmi:id="_hQ2W4HEyEeKnfu10FQG0SA" base_Component="_akfegHEwEeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" base_Class="_akfegHEwEeKnfu10FQG0SA" cpu_usage="_cewrcHEzEeKnfu10FQG0SA" hdd_usage="_fp_RUHEzEeKnfu10FQG0SA" memory_usage="_ifmMgHEzEeKnfu10FQG0SA"/>
-  <Profile:Component_enhanced xmi:id="_iGdwQHEyEeKnfu10FQG0SA" base_Component="_U87ZEHEwEeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA _nvjHwFG5EeKJ8Nvo-F5dJA" base_Class="_U87ZEHEwEeKnfu10FQG0SA" cpu_usage="_dLXSwHEzEeKnfu10FQG0SA" hdd_usage="_gWys8HEzEeKnfu10FQG0SA" memory_usage="_jHsHQHEzEeKnfu10FQG0SA"/>
-  <Profile:Component_enhanced xmi:id="_jMOecHEyEeKnfu10FQG0SA" base_Component="_TEnzoHEwEeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" base_Class="_TEnzoHEwEeKnfu10FQG0SA" cpu_usage="_dzN88HEzEeKnfu10FQG0SA" hdd_usage="_hBt5QHEzEeKnfu10FQG0SA" memory_usage="_j3d-YHEzEeKnfu10FQG0SA"/>
-  <Profile:CPU_usage xmi:id="_b6cdcHEzEeKnfu10FQG0SA" base_DataType="_3te8AHEyEeKnfu10FQG0SA" energy_points="4"/>
-  <Profile:CPU_usage xmi:id="_cewrcHEzEeKnfu10FQG0SA" base_DataType="_8cRmYHEyEeKnfu10FQG0SA" energy_points="1"/>
-  <Profile:CPU_usage xmi:id="_dLXSwHEzEeKnfu10FQG0SA" base_DataType="_ALFacHEzEeKnfu10FQG0SA" energy_points="1"/>
-  <Profile:CPU_usage xmi:id="_dzN88HEzEeKnfu10FQG0SA" base_DataType="_D5atYHEzEeKnfu10FQG0SA" energy_points="3"/>
-  <Profile:HDD_usage xmi:id="_fCoWYHEzEeKnfu10FQG0SA" base_DataType="_5YSQ8HEyEeKnfu10FQG0SA"/>
-  <Profile:HDD_usage xmi:id="_fp_RUHEzEeKnfu10FQG0SA" base_DataType="_9nWSYHEyEeKnfu10FQG0SA"/>
-  <Profile:HDD_usage xmi:id="_gWys8HEzEeKnfu10FQG0SA" base_DataType="_BW67cHEzEeKnfu10FQG0SA"/>
-  <Profile:HDD_usage xmi:id="_hBt5QHEzEeKnfu10FQG0SA" base_DataType="_E03B8HEzEeKnfu10FQG0SA"/>
-  <Profile:Memory_usage xmi:id="_h26b4HEzEeKnfu10FQG0SA" base_DataType="_6zdOcHEyEeKnfu10FQG0SA" energy_points="2"/>
-  <Profile:Memory_usage xmi:id="_ifmMgHEzEeKnfu10FQG0SA" base_DataType="_-pWh8HEyEeKnfu10FQG0SA" energy_points="1"/>
-  <Profile:Memory_usage xmi:id="_jHsHQHEzEeKnfu10FQG0SA" base_DataType="_CnGJ4HEzEeKnfu10FQG0SA" energy_points="1"/>
-  <Profile:Memory_usage xmi:id="_j3d-YHEzEeKnfu10FQG0SA" base_DataType="_F3xQcHEzEeKnfu10FQG0SA" energy_points="1"/>
-  <Profile:Component_enhanced xmi:id="_VkWhQHE3EeKnfu10FQG0SA" base_Component="_3BTOoHE2EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA _nvjHwFG5EeKJ8Nvo-F5dJA" base_Class="_3BTOoHE2EeKnfu10FQG0SA" cpu_usage="_qfuAwG7uEeKSofGnGAP8Vw" hdd_usage="_aHwvUG74EeKSofGnGAP8Vw" memory_usage="_e4MYcG74EeKSofGnGAP8Vw"/>
-  <Profile:Component_enhanced xmi:id="_Sqx2oHE4EeKnfu10FQG0SA" base_Component="_CSmuUHE4EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" base_Class="_CSmuUHE4EeKnfu10FQG0SA" cpu_usage="_XixDAG74EeKSofGnGAP8Vw" hdd_usage="_cmSnQG74EeKSofGnGAP8Vw" memory_usage="_iAPHcG74EeKSofGnGAP8Vw"/>
-  <Profile:Component_enhanced xmi:id="_pVZNYHE4EeKnfu10FQG0SA" base_Component="_mwdygHE4EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA _nvjHwFG5EeKJ8Nvo-F5dJA" base_Class="_mwdygHE4EeKnfu10FQG0SA" cpu_usage="_k3plAG7uEeKSofGnGAP8Vw" hdd_usage="_ZGVHgG74EeKSofGnGAP8Vw" memory_usage="_eBRXgG74EeKSofGnGAP8Vw"/>
-  <Profile:Component_enhanced xmi:id="_p40qkHE4EeKnfu10FQG0SA" base_Component="_j4s7MHE4EeKnfu10FQG0SA" hardware_set="_nvjHwFG5EeKJ8Nvo-F5dJA" base_Class="_j4s7MHE4EeKnfu10FQG0SA" cpu_usage="_rhwFgG7uEeKSofGnGAP8Vw" hdd_usage="_bAyCAG74EeKSofGnGAP8Vw" memory_usage="_fuz3YG74EeKSofGnGAP8Vw"/>
-  <Profile:Component_enhanced xmi:id="_q21K8HE4EeKnfu10FQG0SA" base_Component="_lKiWgHE4EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" base_Class="_lKiWgHE4EeKnfu10FQG0SA" cpu_usage="_Wy66cG74EeKSofGnGAP8Vw" hdd_usage="_byCf0G74EeKSofGnGAP8Vw" memory_usage="_gmqscG74EeKSofGnGAP8Vw"/>
+  <Profile:Connector_enhanced xmi:id="_DKPlIHExEeKnfu10FQG0SA" energy_points="3" base_Usage="_-eORAHEnEeKQKqN68dgp7A" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_HDxbcHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_pOU1sHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_J6wPoHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_zwoW0HEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_L4UvkHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_0k990HEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_PY56YHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_3AOfUHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_SOmVIHExEeKnfu10FQG0SA" energy_points="1" base_InterfaceRealization="_6wmZoHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_U_lPAHExEeKnfu10FQG0SA" energy_points="1" base_InterfaceRealization="_8cfTsHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_Ych3AHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_4OykMHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_aFs0QHExEeKnfu10FQG0SA" energy_points="2" base_Usage="_4306IHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_buxq4HExEeKnfu10FQG0SA" energy_points="3" base_InterfaceRealization="_9N0C8HEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_hIBngHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_5qQcoHEwEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_4sFuwHExEeKnfu10FQG0SA" energy_points="1" base_Usage="_35f0MHExEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_9G34AHExEeKnfu10FQG0SA" energy_points="3" base_InterfaceRealization="_8UyTwHExEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Component_enhanced xmi:id="_hQ2W4HEyEeKnfu10FQG0SA" base_Component="_akfegHEwEeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" cpu_usage="_cewrcHEzEeKnfu10FQG0SA" hdd_usage="_fp_RUHEzEeKnfu10FQG0SA" memory_usage="_ifmMgHEzEeKnfu10FQG0SA"/>
+  <Profile:Component_enhanced xmi:id="_iGdwQHEyEeKnfu10FQG0SA" base_Component="_U87ZEHEwEeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA _nvjHwFG5EeKJ8Nvo-F5dJA" cpu_usage="_dLXSwHEzEeKnfu10FQG0SA" hdd_usage="_gWys8HEzEeKnfu10FQG0SA" memory_usage="_jHsHQHEzEeKnfu10FQG0SA"/>
+  <Profile:Component_enhanced xmi:id="_jMOecHEyEeKnfu10FQG0SA" bytecode="_MTthMHT5EeK9e8Ets8RhBQ _RtuS0HT5EeK9e8Ets8RhBQ _Xc2_4HT5EeK9e8Ets8RhBQ _g1HQwGeoEeKR3dOgglitKw _uPaSsGeoEeKR3dOgglitKw" base_Component="_TEnzoHEwEeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" cpu_usage="_dzN88HEzEeKnfu10FQG0SA" hdd_usage="_hBt5QHEzEeKnfu10FQG0SA" memory_usage="_j3d-YHEzEeKnfu10FQG0SA" bytecode_consumption="_ashZ0HT5EeK9e8Ets8RhBQ _spsKAHT5EeK9e8Ets8RhBQ _rJ0SsHT5EeK9e8Ets8RhBQ _j9kAAHT8EeK9e8Ets8RhBQ _lm58YHT8EeK9e8Ets8RhBQ"/>
+  <Profile:CPU_usage xmi:id="_b6cdcHEzEeKnfu10FQG0SA" utilization="0.1" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_3te8AHEyEeKnfu10FQG0SA" energy_points="4"/>
+  <Profile:CPU_usage xmi:id="_cewrcHEzEeKnfu10FQG0SA" utilization="1.0" time="_JuGNAHT9EeK9e8Ets8RhBQ" base_DataType="_8cRmYHEyEeKnfu10FQG0SA" energy_points="1"/>
+  <Profile:CPU_usage xmi:id="_dLXSwHEzEeKnfu10FQG0SA" utilization="1.0" time="_JuGNAHT9EeK9e8Ets8RhBQ" base_DataType="_ALFacHEzEeKnfu10FQG0SA" energy_points="1"/>
+  <Profile:CPU_usage xmi:id="_dzN88HEzEeKnfu10FQG0SA" utilization="1.0" time="_JuGNAHT9EeK9e8Ets8RhBQ" base_DataType="_D5atYHEzEeKnfu10FQG0SA" energy_points="3"/>
+  <Profile:HDD_usage xmi:id="_fCoWYHEzEeKnfu10FQG0SA" utilization="0.01" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_5YSQ8HEyEeKnfu10FQG0SA"/>
+  <Profile:HDD_usage xmi:id="_fp_RUHEzEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_9nWSYHEyEeKnfu10FQG0SA"/>
+  <Profile:HDD_usage xmi:id="_gWys8HEzEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_BW67cHEzEeKnfu10FQG0SA"/>
+  <Profile:HDD_usage xmi:id="_hBt5QHEzEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_E03B8HEzEeKnfu10FQG0SA"/>
+  <Profile:Memory_usage xmi:id="_h26b4HEzEeKnfu10FQG0SA" utilization="0.04" time="_xetbYHT9EeK9e8Ets8RhBQ" base_DataType="_6zdOcHEyEeKnfu10FQG0SA" energy_points="2"/>
+  <Profile:Memory_usage xmi:id="_ifmMgHEzEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_-pWh8HEyEeKnfu10FQG0SA" energy_points="1"/>
+  <Profile:Memory_usage xmi:id="_jHsHQHEzEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_CnGJ4HEzEeKnfu10FQG0SA" energy_points="1"/>
+  <Profile:Memory_usage xmi:id="_j3d-YHEzEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ" base_DataType="_F3xQcHEzEeKnfu10FQG0SA" energy_points="1"/>
+  <Profile:Component_enhanced xmi:id="_VkWhQHE3EeKnfu10FQG0SA" base_Component="_3BTOoHE2EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA _nvjHwFG5EeKJ8Nvo-F5dJA" cpu_usage="_qfuAwG7uEeKSofGnGAP8Vw" hdd_usage="_aHwvUG74EeKSofGnGAP8Vw" memory_usage="_e4MYcG74EeKSofGnGAP8Vw"/>
+  <Profile:Component_enhanced xmi:id="_Sqx2oHE4EeKnfu10FQG0SA" base_Component="_CSmuUHE4EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" cpu_usage="_XixDAG74EeKSofGnGAP8Vw" hdd_usage="_cmSnQG74EeKSofGnGAP8Vw" memory_usage="_iAPHcG74EeKSofGnGAP8Vw"/>
+  <Profile:Component_enhanced xmi:id="_pVZNYHE4EeKnfu10FQG0SA" base_Component="_mwdygHE4EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA _nvjHwFG5EeKJ8Nvo-F5dJA" cpu_usage="_k3plAG7uEeKSofGnGAP8Vw" hdd_usage="_ZGVHgG74EeKSofGnGAP8Vw" memory_usage="_eBRXgG74EeKSofGnGAP8Vw"/>
+  <Profile:Component_enhanced xmi:id="_p40qkHE4EeKnfu10FQG0SA" base_Component="_j4s7MHE4EeKnfu10FQG0SA" hardware_set="_nvjHwFG5EeKJ8Nvo-F5dJA" cpu_usage="_rhwFgG7uEeKSofGnGAP8Vw" hdd_usage="_bAyCAG74EeKSofGnGAP8Vw" memory_usage="_fuz3YG74EeKSofGnGAP8Vw"/>
+  <Profile:Component_enhanced xmi:id="_q21K8HE4EeKnfu10FQG0SA" base_Component="_lKiWgHE4EeKnfu10FQG0SA" hardware_set="_odXQAFG5EeKJ8Nvo-F5dJA" cpu_usage="_Wy66cG74EeKSofGnGAP8Vw" hdd_usage="_byCf0G74EeKSofGnGAP8Vw" memory_usage="_gmqscG74EeKSofGnGAP8Vw"/>
   <Profile:Lifeline_enhanced xmi:id="_uOu24HFkEeKnfu10FQG0SA" element="_6CIVoHEmEeKQKqN68dgp7A" base_Lifeline="_IP8ygHFkEeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_u6H9QHFkEeKnfu10FQG0SA" element="_q21K8HE4EeKnfu10FQG0SA" base_Lifeline="_JKr8cHFkEeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_vhxMEHFkEeKnfu10FQG0SA" element="_jMOecHEyEeKnfu10FQG0SA" base_Lifeline="_KcF58HFkEeKnfu10FQG0SA"/>
@@ -1075,7 +1070,7 @@
   <Profile:Lifeline_enhanced xmi:id="_Qhp4EHFmEeKnfu10FQG0SA" element="_q21K8HE4EeKnfu10FQG0SA" base_Lifeline="_Ea3XIHE_EeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_RE69MHFmEeKnfu10FQG0SA" element="_VkWhQHE3EeKnfu10FQG0SA" base_Lifeline="_GNiOoHE_EeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_RqnEMHFmEeKnfu10FQG0SA" element="_Sqx2oHE4EeKnfu10FQG0SA" base_Lifeline="_HW64kHE_EeKnfu10FQG0SA"/>
-  <Profile:Connector_enhanced xmi:id="_MNL8wHFnEeKnfu10FQG0SA" energy_points="2" base_Usage="_KT1OcHFnEeKnfu10FQG0SA"/>
+  <Profile:Connector_enhanced xmi:id="_MNL8wHFnEeKnfu10FQG0SA" energy_points="2" base_Usage="_KT1OcHFnEeKnfu10FQG0SA" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
   <Profile:Lifeline_enhanced xmi:id="_DYQ4kHFpEeKnfu10FQG0SA" element="_6CIVoHEmEeKQKqN68dgp7A" base_Lifeline="_yWCYkHFmEeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_ELnBEHFpEeKnfu10FQG0SA" element="_q21K8HE4EeKnfu10FQG0SA" base_Lifeline="_ziY28HFmEeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_FBYLcHFpEeKnfu10FQG0SA" element="_p40qkHE4EeKnfu10FQG0SA" base_Lifeline="_0UuS0HFmEeKnfu10FQG0SA"/>
@@ -1092,4 +1087,16 @@
   <Profile:Lifeline_enhanced xmi:id="_cyRGYHFsEeKnfu10FQG0SA" element="_iGdwQHEyEeKnfu10FQG0SA" base_Lifeline="_Ri_KgHFsEeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_dZ0OkHFsEeKnfu10FQG0SA" element="_Sqx2oHE4EeKnfu10FQG0SA" base_Lifeline="_UVMzcHFsEeKnfu10FQG0SA"/>
   <Profile:Lifeline_enhanced xmi:id="_FHIa4HF5EeKnfu10FQG0SA" element="_p40qkHE4EeKnfu10FQG0SA" base_Lifeline="_DRB04HF5EeKnfu10FQG0SA"/>
+  <Profile:Atomic_operation xmi:id="_MTthMHT5EeK9e8Ets8RhBQ" number="280" base_DataType="_EJc1gHT5EeK9e8Ets8RhBQ" id="1"/>
+  <Profile:Atomic_operation xmi:id="_RtuS0HT5EeK9e8Ets8RhBQ" number="3300" base_DataType="_GXvSAHT5EeK9e8Ets8RhBQ" id="2"/>
+  <Profile:Atomic_operation xmi:id="_Xc2_4HT5EeK9e8Ets8RhBQ" number="800" base_DataType="_HikGYHT5EeK9e8Ets8RhBQ" id="3"/>
+  <Profile:Atomic_operation_consumption xmi:id="_ashZ0HT5EeK9e8Ets8RhBQ" cost="0.0021" id="1" base_DataType="_InixcHT5EeK9e8Ets8RhBQ" cpu="_r61QwFNLEeKHZKGWw06VCQ"/>
+  <Profile:Atomic_operation_consumption xmi:id="_rJ0SsHT5EeK9e8Ets8RhBQ" cost="6.0E-4" id="3" base_DataType="_hKlpcHT5EeK9e8Ets8RhBQ" cpu="_r61QwFNLEeKHZKGWw06VCQ"/>
+  <Profile:Atomic_operation_consumption xmi:id="_spsKAHT5EeK9e8Ets8RhBQ" cost="1.0E-4" id="2" base_DataType="_JmE2QHT5EeK9e8Ets8RhBQ" cpu="_r61QwFNLEeKHZKGWw06VCQ"/>
+  <Profile:Atomic_operation_consumption xmi:id="_j9kAAHT8EeK9e8Ets8RhBQ" cost="0.003" id="4" base_DataType="_gWAqgHT8EeK9e8Ets8RhBQ" cpu="_r61QwFNLEeKHZKGWw06VCQ"/>
+  <Profile:Atomic_operation_consumption xmi:id="_lm58YHT8EeK9e8Ets8RhBQ" cost="8.0E-4" id="5" base_DataType="_hg9asHT8EeK9e8Ets8RhBQ" cpu="_r61QwFNLEeKHZKGWw06VCQ"/>
+  <Profile:Time xmi:id="_JuGNAHT9EeK9e8Ets8RhBQ" milliseconds="100" base_DataType="_D05lAHT9EeK9e8Ets8RhBQ"/>
+  <Profile:Time xmi:id="_xetbYHT9EeK9e8Ets8RhBQ" seconds="2" base_DataType="_vb-HkHT9EeK9e8Ets8RhBQ"/>
+  <Profile:Size xmi:id="_E8VpAHUPEeK9e8Ets8RhBQ" KB="3" base_DataType="_EFbPIHUPEeK9e8Ets8RhBQ"/>
+  <Profile:Connector_enhanced xmi:id="_VAm7QHV6EeKBcuE7uf71lg" base_Usage="_TgOtoHV6EeKBcuE7uf71lg" size="_E8VpAHUPEeK9e8Ets8RhBQ"/>
 </xmi:XMI>

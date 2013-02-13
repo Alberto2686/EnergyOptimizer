@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Other extends HardwareComponent {
 	private double busses,sensors,cooling,peripheralDevices,display,ups;
+	private int energyPoints;
 	private List<OtherConsumption> otherConsumption=new LinkedList<>();
-	public Other(String name, String id, double busses, double sensors, double cooling, double peripheralDevices, double display, double ups) {
+	public Other(String name, String id, double busses, double sensors, double cooling, double peripheralDevices, double display, double ups, int ep) {
 		setName(name);
 		setId(id);
 		this.busses = busses;
@@ -15,6 +16,7 @@ public class Other extends HardwareComponent {
 		this.peripheralDevices = peripheralDevices;
 		this.display = display;
 		this.ups = ups;
+		this.setEnergyPoints(ep);
 	}
 	public double getBusses() {
 		return busses;
@@ -58,8 +60,13 @@ public class Other extends HardwareComponent {
 	public void setOtherConsumption(List<OtherConsumption> otherConsumption) {
 		this.otherConsumption = otherConsumption;
 	}
-	@Override
+	public int getEnergyPoints() {
+		return energyPoints;
+	}
+	public void setEnergyPoints(int energyPoints) {
+		this.energyPoints = energyPoints;
+	}
 	public String toString(){
-		return getName()+" busses:"+busses+" sensors:"+sensors+" cooling:"+cooling+" peripheral devices:"+peripheralDevices+" display:"+display+" ups:"+ups+" others:"+otherConsumption;
+		return getName()+" energy points:"+energyPoints+"EP, busses:"+busses+", sensors:"+sensors+", cooling:"+cooling+", peripheral devices:"+peripheralDevices+", display:"+display+", ups:"+ups+", others:"+otherConsumption;
 	}
 }
