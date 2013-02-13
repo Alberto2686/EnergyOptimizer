@@ -1,7 +1,12 @@
 package energyoptimizer;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.Calendar;
 import java.util.List;
 
 public class Utils {
@@ -20,6 +25,14 @@ public class Utils {
 		return hashtext;
 		}catch(Exception e){}
 		return null;
+	}
+	
+	public static String getVersionFromDate(){
+		Calendar cal = Calendar.getInstance();
+		String day = "0"+cal.get(Calendar.DATE);
+		String month = "0"+(cal.get(Calendar.MONTH) + 1);
+		String year = cal.get(Calendar.YEAR)+"";
+		return year+month.substring(month.length()-2, month.length())+day.substring(day.length()-2, day.length());
 	}
 	
 	public static double consumptionCPU(Cpu cpu, UsageCPU usageCPU,double defaultCpuScore, List<AtomicOperation> atomicOperations, List<AtomicOperationConsumption> atomicOperationConsumptions){
@@ -111,5 +124,19 @@ public class Utils {
 		consumption[0]=platform.getEnergyPoints();
 		consumption[1]=platform.getFramework()+platform.getGc()+platform.getJvm()+platform.getOs()+platform.getScheduling()+platform.getVirtualization();
 		return consumption;
+	}
+	
+	public static void writeFile(String savePath, String name, String content) {
+		String path = savePath+"/"+name;
+
+		try{
+			FileOutputStream fileOutputStream = new FileOutputStream(path);
+			PrintStream printStream = new PrintStream(fileOutputStream);
+			printStream.print(content);
+			printStream.close();
+
+		} catch (IOException e){
+			System.out.println("Error writing file: " + e);
+		}
 	}
 }

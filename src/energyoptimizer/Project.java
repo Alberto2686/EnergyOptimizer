@@ -19,6 +19,8 @@ public class Project {
 	private List<SoftwareSystem> systems = new ArrayList<>();
 	private List<SoftwareSystem> validSystems = new ArrayList<>();
 	private boolean isWReliable=true;
+	SoftwareSystem bestSoftwareSystemEP;
+	SoftwareSystem bestSoftwareSystemW;
 	
 	public double getDefaultCpuScore() {
 		return defaultCpuScore;
@@ -438,15 +440,14 @@ public class Project {
 			softwareSystem.refine();
 			softwareSystem.calculateTotals();
 		}
-		SoftwareSystem bestSoftwareSystemEP=systems.get(0);
-		SoftwareSystem bestSoftwareSystemW=systems.get(0);
+		bestSoftwareSystemEP=systems.get(0);
+		bestSoftwareSystemW=systems.get(0);
 		for(SoftwareSystem softwareSystem:systems){
 			if(softwareSystem.getSystemConsumptionEP()<bestSoftwareSystemEP.getSystemConsumptionEP())
 				bestSoftwareSystemEP=softwareSystem;
 			if(softwareSystem.getSystemConsumptionW()<bestSoftwareSystemW.getSystemConsumptionW())
 				bestSoftwareSystemW=softwareSystem;
 		}
-		visualizeBestSystem(bestSoftwareSystemEP,bestSoftwareSystemW);
 	}
 	
 	private void visualizeBestSystem(SoftwareSystem bestSoftwareSystemEP,SoftwareSystem bestSoftwareSystemW) {
@@ -506,5 +507,13 @@ public class Project {
 		for(SoftwareSystem sys:systems)
 			status+="\t\t"+(i++)+" "+sys+"\n";
 		return status;
+	}
+	
+	public void createDeploymentDiagram() {
+		visualizeBestSystem(bestSoftwareSystemEP,bestSoftwareSystemW);
+		Utils.writeFile("Example", "bestEP.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP"+Utils.getVersionFromDate(), name, true));
+		Utils.writeFile("Example", "bestW.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW"+Utils.getVersionFromDate(), name, false));
+		System.out.println(UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP"+Utils.getVersionFromDate(), name, true));
+		System.out.println(UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW"+Utils.getVersionFromDate(), name, false));
 	}
 }
