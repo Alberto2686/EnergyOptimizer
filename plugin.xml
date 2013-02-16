@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="EnergyOptimizer.contribution1"
+            nameFilter="*.uml"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="EnergyOptimizer.menu1"
+               label="ENERGY OPTIMIZER"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="energyoptimizer.popup.actions.NewAction"
+               enablesFor="1"
+               id="EnergyOptimizer.newAction"
+               label="ANALYZE"
+               menubarPath="EnergyOptimizer.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

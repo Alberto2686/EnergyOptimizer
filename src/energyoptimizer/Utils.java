@@ -9,7 +9,15 @@ import java.security.MessageDigest;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
 public class Utils {
+	
 	public static String getHash(String text){
 		try{
 			MessageDigest m = MessageDigest.getInstance("MD5");

@@ -21,6 +21,8 @@ public class Project {
 	private boolean isWReliable=true;
 	SoftwareSystem bestSoftwareSystemEP;
 	SoftwareSystem bestSoftwareSystemW;
+	SoftwareSystem worstSoftwareSystemEP;
+	SoftwareSystem worstSoftwareSystemW;
 	
 	public double getDefaultCpuScore() {
 		return defaultCpuScore;
@@ -275,7 +277,8 @@ public class Project {
 				}
 				j++;
 			}
-			//system.printAnalysisResults();
+			system.calculateTotals();
+			system.printAnalysisResultsSummary();
 		}
 	}
 
@@ -436,17 +439,23 @@ public class Project {
 	}
 	
 	public void findBestSystem() {
-		for(SoftwareSystem softwareSystem:systems){
+		for(SoftwareSystem softwareSystem:systems)
 			softwareSystem.refine();
-			softwareSystem.calculateTotals();
-		}
 		bestSoftwareSystemEP=systems.get(0);
 		bestSoftwareSystemW=systems.get(0);
+		worstSoftwareSystemEP=systems.get(0);
+		worstSoftwareSystemW=systems.get(0);
 		for(SoftwareSystem softwareSystem:systems){
 			if(softwareSystem.getSystemConsumptionEP()<bestSoftwareSystemEP.getSystemConsumptionEP())
 				bestSoftwareSystemEP=softwareSystem;
+			else
+				if(softwareSystem.getSystemConsumptionEP()>worstSoftwareSystemEP.getSystemConsumptionEP())
+					worstSoftwareSystemEP=softwareSystem;
 			if(softwareSystem.getSystemConsumptionW()<bestSoftwareSystemW.getSystemConsumptionW())
 				bestSoftwareSystemW=softwareSystem;
+			else
+				if(softwareSystem.getSystemConsumptionW()>worstSoftwareSystemW.getSystemConsumptionW())
+					worstSoftwareSystemW=softwareSystem;
 		}
 	}
 	
@@ -509,11 +518,16 @@ public class Project {
 		return status;
 	}
 	
-	public void createDeploymentDiagram() {
+	public void createDeploymentDiagram(String path) {
+		String newPath=path.substring(0, path.lastIndexOf("/"));
 		visualizeBestSystem(bestSoftwareSystemEP,bestSoftwareSystemW);
-		Utils.writeFile("Example", "bestEP.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP"+Utils.getVersionFromDate(), name, true));
-		Utils.writeFile("Example", "bestW.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW"+Utils.getVersionFromDate(), name, false));
+		System.out.println("WORST OF BESTS: "+worstSoftwareSystemEP.getSystemConsumptionEP()+"EP "+worstSoftwareSystemW.getSystemConsumptionW()+"W");
+		Utils.writeFile(newPath, "bestEP.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP"+Utils.getVersionFromDate(), name, true));
+		Utils.writeFile(newPath, "bestW.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW"+Utils.getVersionFromDate(), name, false));
 		System.out.println(UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP"+Utils.getVersionFromDate(), name, true));
 		System.out.println(UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW"+Utils.getVersionFromDate(), name, false));
+		double ratioEP=100-(Math.rint((10000*bestSoftwareSystemEP.getSystemConsumptionEP())/worstSoftwareSystemEP.getSystemConsumptionEP()))/100.0;
+		double ratioW=100-(Math.rint((10000*bestSoftwareSystemW.getSystemConsumptionW())/worstSoftwareSystemW.getSystemConsumptionW()))/100.0;
+		System.out.println("Efficiency improvement: "+ratioEP+"% EP and "+ratioW+"% W");
 	}
 }

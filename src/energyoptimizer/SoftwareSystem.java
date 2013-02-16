@@ -183,13 +183,13 @@ public class SoftwareSystem {
 			for(DeployedComponent deployedComponent : deploymentEP.getDeployedComponents())
 				if(deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
 					string+=deployedComponent.getComponent().getName()+", ";
-			string=string.substring(0,string.length()-2)+"\n\t\t";
+			string=string.substring(0,string.length()-2)+"\n";
 		}
 		for(int i=0; i<consumptionEnergyPoints.length;i++){
 			String res="uncalculable\n";
 			if(consumptionEnergyPoints[i]>0)
 				res=consumptionEnergyPoints[i]+"EP\n";
-			string+="FR"+i+" = "+res;
+			string+="FR"+(i+1)+" = "+res;
 		}
 		return string;
 	}
@@ -201,14 +201,24 @@ public class SoftwareSystem {
 			for(DeployedComponent deployedComponent : deploymentW.getDeployedComponents())
 				if(deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
 					string+=deployedComponent.getComponent().getName()+", ";
-			string=string.substring(0,string.length()-2)+"\n\t\t";
+			string=string.substring(0,string.length()-2)+"\n";
 		}
 		for(int i=0; i<consumptionWatt.length;i++){
 			String res="uncalculable\n";
 			if(consumptionWatt[i]>0)
 				res=consumptionWatt[i]+"KW\n";
-			string+="FR"+i+" = "+res;
+			string+="FR"+(i+1)+" = "+res;
 		}
 		return string;
+	}
+
+	public void printAnalysisResultsSummary() {
+		String string="";
+		for(int i=0;i<consumptionEnergyPoints.length;i++)
+			string+=i+": "+consumptionEnergyPoints[i]+"EP\n";
+		for(int i=0;i<consumptionWatt.length;i++)
+			string+=i+": "+consumptionWatt[i]+"W\n";
+		string+="TOTAL : "+systemConsumptionEP+"EP and "+systemConsumptionW+"W";
+		System.out.println(string);
 	}
 }
