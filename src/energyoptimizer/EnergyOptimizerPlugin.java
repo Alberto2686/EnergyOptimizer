@@ -6,9 +6,9 @@ public class EnergyOptimizerPlugin {
 		UMLparser parser = new UMLparser(project);
 		parser.parseXmlFile(path);
 		project.generateAlternatives();
-		System.out.print(project);
+		project.log(path);
 		project.calculateEnergyConsumption();
 		project.findBestSystem();
-		project.createDeploymentDiagram(path);
+		project.visualize(path);
 	}
 }

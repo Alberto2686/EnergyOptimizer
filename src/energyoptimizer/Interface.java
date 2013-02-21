@@ -1,6 +1,6 @@
 package energyoptimizer;
 
-public class Interface extends ModelElement{
+public class Interface extends ModelElement {
 
 	public Interface(String id, String name) {
 		setName(name);
@@ -8,7 +8,7 @@ public class Interface extends ModelElement{
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return getName();
 	}
 }

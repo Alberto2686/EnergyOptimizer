@@ -10,7 +10,8 @@ public class UsageMemory extends Usage {
 	public void setSize(Size size) {
 		this.size = size;
 	}
-	public String toString(){
-		return "EP:"+getEnergyPoints()+", estimated time: "+getEstimatedMilliseconds()+"ms, utilization: "+getUtilization()+", size:"+size;
+
+	public String toString() {
+		return "EP:" + getEnergyPoints() + ", estimated time: " + getEstimatedMilliseconds() + "ms, utilization: " + getUtilization() + ", size:" + size;
 	}
 }

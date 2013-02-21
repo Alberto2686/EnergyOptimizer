@@ -16,7 +16,7 @@
             </separator>
          </menu>
          <action
-               class="energyoptimizer.popup.actions.NewAction"
+               class="energyoptimizer.PluginAction"
                enablesFor="1"
                id="EnergyOptimizer.newAction"
                label="ANALYZE"

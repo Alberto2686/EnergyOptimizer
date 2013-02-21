@@ -9,6 +9,6 @@ public class EnergyOptimizer {
 		System.out.print(project);
 		project.calculateEnergyConsumption();
 		project.findBestSystem();
-		project.createDeploymentDiagram("/");
+		project.visualize("/");
 	}
 }

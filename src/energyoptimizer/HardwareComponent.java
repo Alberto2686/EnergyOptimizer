@@ -1,3 +1,4 @@
 package energyoptimizer;
 
-abstract class HardwareComponent extends ModelElement{}
+abstract class HardwareComponent extends ModelElement {
+}

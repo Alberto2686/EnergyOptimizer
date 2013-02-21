@@ -2,10 +2,12 @@ package energyoptimizer;
 
 public class HardwareSetAlternative {
 	private HardwareSet hardwareSet;
-	private HardwareAlternative cpuAlternative, hddAlternative, memoryAlternative, networkAlternative, platformAlternative, otherAlternative;
+	private HardwareAlternative cpuAlternative, hddAlternative,
+			memoryAlternative, networkAlternative, platformAlternative,
+			otherAlternative;
 
 	public HardwareSetAlternative(HardwareSet hardwareSet) {
-		this.hardwareSet=hardwareSet;
+		this.hardwareSet = hardwareSet;
 	}
 
 	public HardwareAlternative getCpuAlternative() {
@@ -55,12 +57,13 @@ public class HardwareSetAlternative {
 	public void setOtherAlternative(HardwareAlternative otherAlternative) {
 		this.otherAlternative = otherAlternative;
 	}
+
 	public HardwareSet getHardwareSet() {
 		return hardwareSet;
 	}
 
 	@Override
-	public String toString(){
-		return hardwareSet.getName()+"= "+cpuAlternative.getName()+" "+hddAlternative.getName()+" "+memoryAlternative.getName()+" "+platformAlternative.getName()+" "+otherAlternative.getName();
+	public String toString() {
+		return hardwareSet.getName() + "= " + cpuAlternative.getName() + " " + hddAlternative.getName() + " " + memoryAlternative.getName() + " " + platformAlternative.getName() + " " + otherAlternative.getName();
 	}
 }

@@ -1,3 +1,4 @@
 package energyoptimizer;
 
-interface LifelineElement extends NamedElement{}
+interface LifelineElement extends NamedElement {
+}

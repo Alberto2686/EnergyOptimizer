@@ -1,4 +1,4 @@
-package energyoptimizer.popup.actions;
+package energyoptimizer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
@@ -9,9 +9,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-import energyoptimizer.EnergyOptimizerPlugin;
 
-public class NewAction implements IObjectActionDelegate {
+public class PluginAction implements IObjectActionDelegate {
 
 	private Shell shell;
 	private ISelection currentSelection;
@@ -20,7 +19,7 @@ public class NewAction implements IObjectActionDelegate {
 	/**
 	 * Constructor for Action1.
 	 */
-	public NewAction() {
+	public PluginAction() {
 		super();
 	}
 
@@ -41,7 +40,7 @@ public class NewAction implements IObjectActionDelegate {
 		MessageDialog.openInformation(
 			shell,
 			"EnergyOptimizer",
-			"ANALYZE was executed.");
+			"Analysis completed - new files created:\n-bestEP.uml: UML Deployment diagram illustrating the best system based on Energy Point analysis\n-bestW.uml: UML Deployment diagram illustrating the best system based on actual Watt consuption analysis\n-log.txt: log of analysis process\n-results.txt: a summary of best systems and characteristics.");
 	}
 
 	/**

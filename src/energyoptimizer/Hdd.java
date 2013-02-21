@@ -1,9 +1,9 @@
 package energyoptimizer;
 
 public class Hdd extends HardwareComponent {
-	private double bandwidth,workConsumption,idleConsumption;
+	private double bandwidth, workConsumption, idleConsumption;
 
-	public Hdd(String name, String id, double bandwidth,double workConsumption, double idleConsumption) {
+	public Hdd(String name, String id, double bandwidth, double workConsumption, double idleConsumption) {
 		setName(name);
 		setId(id);
 		this.bandwidth = bandwidth;
@@ -34,8 +34,9 @@ public class Hdd extends HardwareComponent {
 	public void setIdleConsumption(double idleConsumption) {
 		this.idleConsumption = idleConsumption;
 	}
+
 	@Override
-	public String toString(){
-		return getName()+" bandwidth:"+bandwidth+" workConsumption:"+workConsumption+" idleConsumption:"+idleConsumption;
+	public String toString() {
+		return getName() + " bandwidth:" + bandwidth + " workConsumption:" + workConsumption + " idleConsumption:" + idleConsumption;
 	}
 }

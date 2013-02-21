@@ -6,30 +6,32 @@ import java.util.List;
 
 public class SoftwareSystem {
 	private HardwareSystem hardwareSystem;
-	private List<HardwareSet> actuallyUsedHardwareSets=new LinkedList<>();
-	private DeploymentAlternative deploymentAlternative,deploymentEP=new DeploymentAlternative(),deploymentW=new DeploymentAlternative();
+	private List<HardwareSet> actuallyUsedHardwareSets = new LinkedList<>();
+	private DeploymentAlternative deploymentAlternative,
+			deploymentEP = new DeploymentAlternative(),
+			deploymentW = new DeploymentAlternative();
 	private double consumptionWatt[];
 	private double consumptionEnergyPoints[];
 	private List<SequenceAlternative> bestSequenceAlternativesWatt;
 	private List<SequenceAlternative> bestSequenceAlternativesEnergyPoint;
-	private double systemConsumptionEP=0;
-	private double systemConsumptionW=0;
-	
+	private double systemConsumptionEP = 0;
+	private double systemConsumptionW = 0;
+
 	public SoftwareSystem(HardwareSystem hardwareSystem, DeploymentAlternative deploymentAlternative, int numberOfFunctionalRequirements) {
 		this.hardwareSystem = hardwareSystem;
 		this.deploymentAlternative = deploymentAlternative;
-		consumptionWatt=new double[numberOfFunctionalRequirements];
-		consumptionEnergyPoints=new double[numberOfFunctionalRequirements];
-		bestSequenceAlternativesWatt=new ArrayList<>(numberOfFunctionalRequirements);
-		bestSequenceAlternativesEnergyPoint=new ArrayList<>(numberOfFunctionalRequirements);
-		for(int i=0; i<numberOfFunctionalRequirements;i++){
+		consumptionWatt = new double[numberOfFunctionalRequirements];
+		consumptionEnergyPoints = new double[numberOfFunctionalRequirements];
+		bestSequenceAlternativesWatt = new ArrayList<>(numberOfFunctionalRequirements);
+		bestSequenceAlternativesEnergyPoint = new ArrayList<>(numberOfFunctionalRequirements);
+		for (int i = 0; i < numberOfFunctionalRequirements; i++) {
 			bestSequenceAlternativesEnergyPoint.add(i, new SequenceAlternative());
 			bestSequenceAlternativesWatt.add(i, new SequenceAlternative());
-			consumptionWatt[i]=-1;
-			consumptionEnergyPoints[i]=-1;
+			consumptionWatt[i] = -1;
+			consumptionEnergyPoints[i] = -1;
 		}
 	}
-	
+
 	public HardwareSystem getHardwareSystem() {
 		return hardwareSystem;
 	}
@@ -45,7 +47,6 @@ public class SoftwareSystem {
 	public void setDeploymentAlternative(DeploymentAlternative deploymentAlternative) {
 		this.deploymentAlternative = deploymentAlternative;
 	}
-	
 
 	public double[] getConsumptionWatt() {
 		return consumptionWatt;
@@ -67,8 +68,7 @@ public class SoftwareSystem {
 		return bestSequenceAlternativesWatt;
 	}
 
-	public void setBestSequenceAlternativesWatt(
-			List<SequenceAlternative> bestSequenceAlternativesWatt) {
+	public void setBestSequenceAlternativesWatt(List<SequenceAlternative> bestSequenceAlternativesWatt) {
 		this.bestSequenceAlternativesWatt = bestSequenceAlternativesWatt;
 	}
 
@@ -76,8 +76,7 @@ public class SoftwareSystem {
 		return bestSequenceAlternativesEnergyPoint;
 	}
 
-	public void setBestSequenceAlternativesEnergyPoint(
-			List<SequenceAlternative> bestSequenceAlternativesEnergyPoint) {
+	public void setBestSequenceAlternativesEnergyPoint(List<SequenceAlternative> bestSequenceAlternativesEnergyPoint) {
 		this.bestSequenceAlternativesEnergyPoint = bestSequenceAlternativesEnergyPoint;
 	}
 
@@ -122,103 +121,101 @@ public class SoftwareSystem {
 	}
 
 	public void calculateTotals() {
-		for(double ep:consumptionEnergyPoints)
-			systemConsumptionEP+=ep;
-		for(double w:consumptionWatt)
-			systemConsumptionW+=w;
+		for (double ep : consumptionEnergyPoints)
+			systemConsumptionEP += ep;
+		for (double w : consumptionWatt)
+			systemConsumptionW += w;
 	}
-	
-	public void refine(){
-		List<Component> usedComponentsEP=getNecessaryComponents(bestSequenceAlternativesEnergyPoint);
-		List<Component> usedComponentsW=getNecessaryComponents(bestSequenceAlternativesWatt);
-		for(Component component:usedComponentsEP){
-			for(DeployedComponent deployedComponent:deploymentAlternative.getDeployedComponents())
-				if(deployedComponent.getComponent().equals(component))
+
+	public void refine() {
+		List<Component> usedComponentsEP = getNecessaryComponents(bestSequenceAlternativesEnergyPoint);
+		List<Component> usedComponentsW = getNecessaryComponents(bestSequenceAlternativesWatt);
+		for (Component component : usedComponentsEP) {
+			for (DeployedComponent deployedComponent : deploymentAlternative.getDeployedComponents())
+				if (deployedComponent.getComponent().equals(component))
 					deploymentEP.getDeployedComponents().add(deployedComponent);
 		}
-		for(Component component:usedComponentsW){
-			for(DeployedComponent deployedComponent:deploymentAlternative.getDeployedComponents())
-				if(deployedComponent.getComponent().equals(component))
+		for (Component component : usedComponentsW) {
+			for (DeployedComponent deployedComponent : deploymentAlternative.getDeployedComponents())
+				if (deployedComponent.getComponent().equals(component))
 					deploymentW.getDeployedComponents().add(deployedComponent);
-		}	
+		}
 	}
 
 	private List<Component> getNecessaryComponents(List<SequenceAlternative> sequenceAlternatives) {
-		List<Component> necessaryComponents=new LinkedList<>();
-		for(SequenceAlternative sa:sequenceAlternatives)
-			for(Component component:sa.getComponents())
-				if(!necessaryComponents.contains(component))
+		List<Component> necessaryComponents = new LinkedList<>();
+		for (SequenceAlternative sa : sequenceAlternatives)
+			for (Component component : sa.getComponents())
+				if (!necessaryComponents.contains(component))
 					necessaryComponents.add(component);
 		return necessaryComponents;
 	}
 
-	public String toString(){
-		String string="System covering: ";
-		for(FunctionalRequirement functionalRequirement : deploymentAlternative.getFunctionalRequirementsCovered())
-			string+=functionalRequirement.getName()+", ";
-		string=string.substring(0,string.length()-2)+"\n\t\t";
-		for(HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()){
-			string+=hardwareSetAlternative+" hosts ";
-			for(DeployedComponent deployedComponent : deploymentAlternative.getDeployedComponents())
-				if(deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
-					string+=deployedComponent.getComponent().getName()+", ";
-			string=string.substring(0,string.length()-2)+"\n\t\t";
-		}
-		return string;
-	}
-
-	public void printAnalysisResults(){
-		String string="";
-		for(int i=0;i<bestSequenceAlternativesEnergyPoint.size();i++)
-			string+=i+": "+bestSequenceAlternativesEnergyPoint.get(i)+"CONSUMPTION:"+consumptionEnergyPoints[i]+"EP\n";
-		for(int i=0;i<bestSequenceAlternativesWatt.size();i++)
-			string+=i+": "+bestSequenceAlternativesWatt.get(i)+"CONSUMPTION:"+consumptionWatt[i]+"W\n";
+	public void printAnalysisResults() {
+		String string = "";
+		for (int i = 0; i < bestSequenceAlternativesEnergyPoint.size(); i++)
+			string += i + ": " + bestSequenceAlternativesEnergyPoint.get(i) + "CONSUMPTION:" + consumptionEnergyPoints[i] + "EP\n";
+		for (int i = 0; i < bestSequenceAlternativesWatt.size(); i++)
+			string += i + ": " + bestSequenceAlternativesWatt.get(i) + "CONSUMPTION:" + consumptionWatt[i] + "W\n";
 		System.out.println(string);
 	}
 
 	public String bestEpToString() {
-		String string="";
-		for(HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()){
-			string+=hardwareSetAlternative+" hosts ";
-			for(DeployedComponent deployedComponent : deploymentEP.getDeployedComponents())
-				if(deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
-					string+=deployedComponent.getComponent().getName()+", ";
-			string=string.substring(0,string.length()-2)+"\n";
+		String string = "";
+		for (HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()) {
+			string += hardwareSetAlternative + " hosts ";
+			for (DeployedComponent deployedComponent : deploymentEP.getDeployedComponents())
+				if (deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
+					string += deployedComponent.getComponent().getName() + ", ";
+			string = string.substring(0, string.length() - 2) + "\n";
 		}
-		for(int i=0; i<consumptionEnergyPoints.length;i++){
-			String res="uncalculable\n";
-			if(consumptionEnergyPoints[i]>0)
-				res=consumptionEnergyPoints[i]+"EP\n";
-			string+="FR"+(i+1)+" = "+res;
+		for (int i = 0; i < consumptionEnergyPoints.length; i++) {
+			String res = "uncalculable\n";
+			if (consumptionEnergyPoints[i] > 0)
+				res = consumptionEnergyPoints[i] + "EP\n";
+			string += "FR" + (i + 1) + " = " + res;
 		}
 		return string;
 	}
 
 	public String bestWToString() {
-		String string="";
-		for(HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()){
-			string+=hardwareSetAlternative+" hosts ";
-			for(DeployedComponent deployedComponent : deploymentW.getDeployedComponents())
-				if(deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
-					string+=deployedComponent.getComponent().getName()+", ";
-			string=string.substring(0,string.length()-2)+"\n";
+		String string = "";
+		for (HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()) {
+			string += hardwareSetAlternative + " hosts ";
+			for (DeployedComponent deployedComponent : deploymentW.getDeployedComponents())
+				if (deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
+					string += deployedComponent.getComponent().getName() + ", ";
+			string = string.substring(0, string.length() - 2) + "\n";
 		}
-		for(int i=0; i<consumptionWatt.length;i++){
-			String res="uncalculable\n";
-			if(consumptionWatt[i]>0)
-				res=consumptionWatt[i]+"KW\n";
-			string+="FR"+(i+1)+" = "+res;
+		for (int i = 0; i < consumptionWatt.length; i++) {
+			String res = "uncalculable\n";
+			if (consumptionWatt[i] > 0)
+				res = consumptionWatt[i] + "KW\n";
+			string += "FR" + (i + 1) + " = " + res;
 		}
 		return string;
 	}
 
 	public void printAnalysisResultsSummary() {
-		String string="";
-		for(int i=0;i<consumptionEnergyPoints.length;i++)
-			string+=i+": "+consumptionEnergyPoints[i]+"EP\n";
-		for(int i=0;i<consumptionWatt.length;i++)
-			string+=i+": "+consumptionWatt[i]+"W\n";
-		string+="TOTAL : "+systemConsumptionEP+"EP and "+systemConsumptionW+"W";
+		String string = "";
+		for (int i = 0; i < consumptionEnergyPoints.length; i++)
+			string += "\t\tFR" + (i + 1) + ": " + consumptionEnergyPoints[i] + "EP\n";
+		string += "\n";
+		for (int i = 0; i < consumptionWatt.length; i++)
+			string += "\t\tFR" + (i + 1) + ": " + consumptionWatt[i] + "W\n";
+		string += "\n\t\tTOTAL : " + systemConsumptionEP + "EP and " + systemConsumptionW + "W";
 		System.out.println(string);
+	}
+
+	public String toString() {
+		String string = "";
+		for (HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()) {
+			string += hardwareSetAlternative + " hosts ";
+			for (DeployedComponent deployedComponent : deploymentAlternative.getDeployedComponents())
+				if (deployedComponent.getHardwareSet().equals(hardwareSetAlternative.getHardwareSet()))
+					string += deployedComponent.getComponent().getName() + ", ";
+			string = string.substring(0, string.length() - 2) + "\n\t\t";
+		}
+		return string;
 	}
 }

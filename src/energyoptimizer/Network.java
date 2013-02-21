@@ -1,9 +1,9 @@
 package energyoptimizer;
 
 public class Network extends HardwareComponent {
-	private double bandwidth,mbConsumption;
+	private double bandwidth, mbConsumption;
 
-	public Network(String id, String name, double bandwidth,double mbConsumption) {
+	public Network(String id, String name, double bandwidth, double mbConsumption) {
 		setName(name);
 		setId(id);
 		this.bandwidth = bandwidth;
@@ -25,8 +25,9 @@ public class Network extends HardwareComponent {
 	public void setMbConsumption(double mbConsumption) {
 		this.mbConsumption = mbConsumption;
 	}
+
 	@Override
-	public String toString(){
-		return getName()+" bandwidth:"+bandwidth+" consumption per MB:"+mbConsumption;
+	public String toString() {
+		return getName() + " bandwidth:" + bandwidth + " consumption per MB:" + mbConsumption;
 	}
 }

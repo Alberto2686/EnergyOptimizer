@@ -1,7 +1,7 @@
 package energyoptimizer;
 
 public abstract class ModelElement {
-	private String id="",name="",idProfile="";
+	private String id = "", name = "", idProfile = "";
 
 	public String getName() {
 		return name;
@@ -26,8 +26,8 @@ public abstract class ModelElement {
 	public void setIdProfile(String idProfile) {
 		this.idProfile = idProfile;
 	}
-	
-	public String getHash(){
-		return Utils.getHash(id+name+idProfile);
+
+	public String getHash() {
+		return Utils.getHash(id + name + idProfile);
 	}
 }
