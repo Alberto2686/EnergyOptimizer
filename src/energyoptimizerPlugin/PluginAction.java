@@ -1,4 +1,4 @@
-package energyoptimizer;
+package energyoptimizerPlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
@@ -8,6 +8,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+
+import energyoptimizer.EnergyOptimizerPlugin;
 
 
 public class PluginAction implements IObjectActionDelegate {

@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <package id="1" language="java" name="energyoptimizer" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="2070" width="2636" x="11" y="-35"/>    
+    <position height="2050" width="2636" x="11" y="-35"/>    
     <display autosize="false" stereotype="true" accessors="true"/>  
   </package>  
   <class id="2" language="java" name="energyoptimizer.AssociationEnhanced" project="EnergyOptimizer" 
@@ -114,8 +114,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="energyoptimizer.Activator" project="EnergyOptimizer" 
-    file="/EnergyOptimizer/src/energyoptimizer/Activator.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="energyoptimizerPlugin.Activator" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyoptimizerPlugin/Activator.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2161" y="554"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -242,7 +242,7 @@
   </class>  
   <class id="28" language="java" name="energyoptimizer.Network" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Network.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="131" y="1872"/>    
+    <position height="-1" width="-1" x="247" y="1852"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -276,16 +276,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="32" language="java" name="energyoptimizer.PluginAction" project="EnergyOptimizer" 
-    file="/EnergyOptimizer/src/energyoptimizer/PluginAction.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="367" y="1865"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <class id="33" language="java" name="energyoptimizer.ModelElement" project="EnergyOptimizer" 
+  <class id="32" language="java" name="energyoptimizer.ModelElement" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/ModelElement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2145" y="161"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -294,7 +285,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="energyoptimizer.DeploymentAlternative" project="EnergyOptimizer" 
+  <class id="33" language="java" name="energyoptimizer.DeploymentAlternative" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/DeploymentAlternative.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1321" y="1838"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -303,7 +294,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="35" language="java" name="energyoptimizer.Interface" project="EnergyOptimizer" 
+  <class id="34" language="java" name="energyoptimizer.Interface" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Interface.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1799" y="228"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -312,7 +303,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="36" language="java" name="energyoptimizer.HardwareAlternative" project="EnergyOptimizer" 
+  <class id="35" language="java" name="energyoptimizer.HardwareAlternative" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/HardwareAlternative.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1267" y="1193"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -321,7 +312,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="37" language="java" name="energyoptimizer.EnergyOptimizer" project="EnergyOptimizer" 
+  <class id="36" language="java" name="energyoptimizer.EnergyOptimizer" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/EnergyOptimizer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1173" y="1008"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -330,7 +321,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="38" language="java" name="energyoptimizer.Platform" project="EnergyOptimizer" 
+  <class id="37" language="java" name="energyoptimizer.Platform" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Platform.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1734" y="853"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -339,7 +330,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="39" language="java" name="energyoptimizer.AlternativesGenerator" project="EnergyOptimizer" 
+  <class id="38" language="java" name="energyoptimizer.AlternativesGenerator" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/AlternativesGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1720" y="445"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -348,7 +339,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="40" language="java" name="energyoptimizer.Stakeholder" project="EnergyOptimizer" 
+  <class id="39" language="java" name="energyoptimizer.Stakeholder" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Stakeholder.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="121" y="961"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -357,7 +348,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="41" language="java" name="energyoptimizer.Connector" project="EnergyOptimizer" 
+  <class id="40" language="java" name="energyoptimizer.Connector" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Connector.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="970" y="1690"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -366,7 +357,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="42" language="java" name="energyoptimizer.FunctionalRequirement" project="EnergyOptimizer" 
+  <class id="41" language="java" name="energyoptimizer.FunctionalRequirement" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/FunctionalRequirement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1590" y="1470"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -375,7 +366,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="43" language="java" name="energyoptimizer.HardwareSystem" project="EnergyOptimizer" 
+  <class id="42" language="java" name="energyoptimizer.HardwareSystem" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/HardwareSystem.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="852" y="463"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -384,7 +375,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="44" language="java" name="energyoptimizer.OtherConsumption" project="EnergyOptimizer" 
+  <class id="43" language="java" name="energyoptimizer.OtherConsumption" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/OtherConsumption.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="141" y="430"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -393,7 +384,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="45" language="java" name="energyoptimizer.AtomicOperationConsumption" project="EnergyOptimizer" 
+  <class id="44" language="java" name="energyoptimizer.AtomicOperationConsumption" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/AtomicOperationConsumption.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1209" y="445"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -402,7 +393,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="46" language="java" name="energyoptimizer.Usage" project="EnergyOptimizer" 
+  <class id="45" language="java" name="energyoptimizer.Usage" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Usage.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="117" y="1274"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -411,7 +402,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="47" language="java" name="energyoptimizer.Message" project="EnergyOptimizer" 
+  <class id="46" language="java" name="energyoptimizer.Message" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/Message.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="934" y="1109"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -420,7 +411,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="48" language="java" name="energyoptimizer.UMLparser" project="EnergyOptimizer" 
+  <class id="47" language="java" name="energyoptimizer.UMLparser" project="EnergyOptimizer" 
     file="/EnergyOptimizer/src/energyoptimizer/UMLparser.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1260" y="1487"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

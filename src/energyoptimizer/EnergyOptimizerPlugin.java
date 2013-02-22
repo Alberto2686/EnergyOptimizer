@@ -1,6 +1,13 @@
 package energyoptimizer;
 
+/**
+ * @author Alberto
+ *
+ */
 public class EnergyOptimizerPlugin {
+	/**
+	 * @param path
+	 */
 	public static void start(String path) {
 		Project project = new Project();
 		UMLparser parser = new UMLparser(project);

@@ -1,4 +1,4 @@
-package energyoptimizer;
+package energyoptimizerPlugin;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

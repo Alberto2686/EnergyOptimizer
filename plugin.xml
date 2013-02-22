@@ -9,17 +9,17 @@
             objectClass="org.eclipse.core.resources.IFile">
          <menu
                id="EnergyOptimizer.menu1"
-               label="ENERGY OPTIMIZER"
+               label="Energy Optimizer"
                path="additions">
             <separator
                   name="group1">
             </separator>
          </menu>
          <action
-               class="energyoptimizer.PluginAction"
+               class="energyoptimizerPlugin.PluginAction"
                enablesFor="1"
                id="EnergyOptimizer.newAction"
-               label="ANALYZE"
+               label="Analyse"
                menubarPath="EnergyOptimizer.menu1/group1">
          </action>
       </objectContribution>
