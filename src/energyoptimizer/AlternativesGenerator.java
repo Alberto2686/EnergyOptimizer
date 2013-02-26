@@ -1,8 +1,11 @@
-package energyoptimizer;
+package energyOptimizer;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import energyOptimizer.elements.*;
+
 
 public class AlternativesGenerator {
 	private Project project;
@@ -26,7 +29,6 @@ public class AlternativesGenerator {
 		generateHardwareSetAlternatives();
 		generateDeploymentAlternatives();
 		generateHardwareSystemAlternatives();
-		generateSystems();
 		return generateSystems();
 	}
 
@@ -92,7 +94,7 @@ public class AlternativesGenerator {
 				deploymentAlternative.getDeployedComponents().add(deployedComponent);
 			}
 			deploymentAlternative.initializeId();
-			addDeploymentAlternativeIfNotPresent(deploymentAlternative, sequenceAlternative, functionalRequirement);
+			addDeploymentAlternativeIfNotPresent(deploymentAlternative, sequenceAlternative);
 		}
 	}
 
@@ -136,12 +138,9 @@ public class AlternativesGenerator {
 		sequenceHardwareSets.add(hardwareSet);
 	}
 
-	public void addDeploymentAlternativeIfNotPresent(DeploymentAlternative deploymentAlternative, SequenceAlternative sequenceAlternative, FunctionalRequirement functionalRequirement) {
+	public void addDeploymentAlternativeIfNotPresent(DeploymentAlternative deploymentAlternative, SequenceAlternative sequenceAlternative) {
 		for (DeploymentAlternative da : project.getDeploymentAlternatives())
-			if (da.getId().equals(deploymentAlternative.getId())) {// deploymentAlternative
-																	// already
-																	// present
-				da.addFunctionalRequirementsCoveredIfNotPresent(functionalRequirement);
+			if (da.getId().equals(deploymentAlternative.getId())) {// deploymentAlternative already present
 				for (DeploymentAlternative sda : sequenceAlternative.getDeploymentAlternatives())
 					if (sda.getId().equals(da.getId()))
 						return;
@@ -150,6 +149,5 @@ public class AlternativesGenerator {
 			}
 		project.getDeploymentAlternatives().add(deploymentAlternative);
 		sequenceAlternative.getDeploymentAlternatives().add(deploymentAlternative);
-		deploymentAlternative.getFunctionalRequirementsCovered().add(functionalRequirement);
 	}
 }

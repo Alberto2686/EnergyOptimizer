@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.0" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="false" realizations="false" associations="false" dependencies="false" nesting-relationships="false">  
+  <package id="1" language="java" name="energyOptimizer.elements" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="2040" width="1640" x="18" y="-37"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <interface id="2" language="java" name="energyOptimizer.elements.NamedElement" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/NamedElement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="98" y="876"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" language="java" name="energyOptimizer.elements.ExactTime" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/ExactTime.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="415" y="133"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="energyOptimizer.elements.Interface" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Interface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="101" y="228"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="energyOptimizer.elements.Hdd" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Hdd.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="604" y="160"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="energyOptimizer.elements.Cpu" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Cpu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="910" y="972"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="energyOptimizer.elements.Memory" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Memory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="318" y="407"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="energyOptimizer.elements.OtherConsumption" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/OtherConsumption.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="552" y="409"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="energyOptimizer.elements.DeploymentAlternative" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/DeploymentAlternative.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="866" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="energyOptimizer.elements.AtomicOperationConsumption" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/AtomicOperationConsumption.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="334" y="1207"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="energyOptimizer.elements.SequenceAlternative" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/SequenceAlternative.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1091" y="1835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="energyOptimizer.elements.Usage" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Usage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="478" y="1799"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="energyOptimizer.elements.Network" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Network.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="991" y="703"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="energyOptimizer.elements.AssociationEnhanced" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/AssociationEnhanced.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="751" y="1826"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="energyOptimizer.elements.LifelineElement" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/LifelineElement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="594" y="556"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="energyOptimizer.elements.Stakeholder" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Stakeholder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="811" y="147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="energyOptimizer.elements.UsageMemory" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/UsageMemory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="96" y="1039"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="energyOptimizer.elements.HardwareSetAlternative" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/HardwareSetAlternative.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1512" y="857"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="energyOptimizer.elements.FunctionalRequirement" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/FunctionalRequirement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1214" y="953"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="energyOptimizer.elements.SoftwareSystem" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/SoftwareSystem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1453" y="1513"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="energyOptimizer.elements.FrequencyVoltage" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/FrequencyVoltage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1005" y="159"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="energyOptimizer.elements.Component" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Component.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="706" y="1403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="energyOptimizer.elements.HardwareSet" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/HardwareSet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="354" y="805"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="energyOptimizer.elements.HardwareAlternative" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/HardwareAlternative.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="189" y="1429"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="energyOptimizer.elements.HardwareSystem" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/HardwareSystem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="714" y="681"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="energyOptimizer.elements.ModelElement" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/ModelElement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="98" y="669"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="energyOptimizer.elements.UsageHDD" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/UsageHDD.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="95" y="1228"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="energyOptimizer.elements.DeployedComponent" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/DeployedComponent.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1253" y="149"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="energyOptimizer.elements.Platform" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Platform.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="202" y="1752"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="energyOptimizer.elements.HardwareComponent" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/HardwareComponent.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="257" y="221"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="energyOptimizer.elements.UsageCPU" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/UsageCPU.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="654" y="872"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="energyOptimizer.elements.Size" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Size.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="97" y="408"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="energyOptimizer.elements.Connector" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Connector.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1230" y="557"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="energyOptimizer.elements.AtomicOperation" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/AtomicOperation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="651" y="1059"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="energyOptimizer.elements.Message" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Message.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1513" y="323"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="energyOptimizer.elements.SoftwareComponent" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/SoftwareComponent.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="166" y="97"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="energyOptimizer.elements.Other" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizer/elements/Other.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1081" y="1403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

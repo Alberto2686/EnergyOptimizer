@@ -1,7 +1,9 @@
-package energyoptimizer;
+package energyOptimizer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import energyOptimizer.elements.*;
 
 public class Project {
 	private String name;
@@ -137,8 +139,7 @@ public class Project {
 	}
 
 	public void generateAlternatives() {
-		AlternativesGenerator alternativesGenerator = new AlternativesGenerator(this);
-		systems.addAll(alternativesGenerator.generateAlternatives());
+		systems.addAll((new AlternativesGenerator(this)).generateAlternatives());
 	}
 
 	public void generateAlternativesOld() {

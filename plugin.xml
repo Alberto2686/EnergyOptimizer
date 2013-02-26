@@ -16,7 +16,7 @@
             </separator>
          </menu>
          <action
-               class="energyoptimizerPlugin.PluginAction"
+               class="energyOptimizerPlugin.PluginAction"
                enablesFor="1"
                id="EnergyOptimizer.newAction"
                label="Analyse"

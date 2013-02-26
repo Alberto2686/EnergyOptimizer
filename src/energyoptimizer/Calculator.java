@@ -1,7 +1,9 @@
-package energyoptimizer;
+package energyOptimizer;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import energyOptimizer.elements.*;
 
 public class Calculator {
 	Project project;

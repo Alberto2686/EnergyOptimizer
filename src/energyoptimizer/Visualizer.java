@@ -1,4 +1,6 @@
-package energyoptimizer;
+package energyOptimizer;
+
+import energyOptimizer.elements.SoftwareSystem;
 
 public class Visualizer {
 	private SoftwareSystem bestSoftwareSystemEP, worstSoftwareSystemEP,

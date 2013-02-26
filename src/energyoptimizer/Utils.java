@@ -1,4 +1,4 @@
-package energyoptimizer;
+package energyOptimizer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Calendar;
 import java.util.List;
+
+import energyOptimizer.elements.*;
 
 public class Utils {
 

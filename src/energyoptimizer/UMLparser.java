@@ -1,4 +1,4 @@
-package energyoptimizer;
+package energyOptimizer;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -13,6 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import energyOptimizer.elements.*;
 
 public class UMLparser {
 	Document dom;

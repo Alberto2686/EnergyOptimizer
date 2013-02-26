@@ -1,14 +1,21 @@
-package energyoptimizer;
+package energyOptimizer;
 
+/**
+ * @author Alberto
+ *
+ */
 public class EnergyOptimizer {
-	public static void main(String[] args) {
+	/**
+	 * @param path
+	 */
+	public static void start(String path) {
 		Project project = new Project();
 		UMLparser parser = new UMLparser(project);
-		parser.parseXmlFile("Example/scenario.uml");
+		parser.parseXmlFile(path);
 		project.generateAlternatives();
-		System.out.print(project);
+		project.log(path);
 		project.calculateEnergyConsumption();
 		project.findBestSystem();
-		project.visualize("/");
+		project.visualize(path);
 	}
 }

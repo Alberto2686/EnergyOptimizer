@@ -1,4 +1,6 @@
-package energyoptimizer;
+package energyOptimizer;
+
+import energyOptimizer.elements.*;
 
 public class UMLcreator {
 

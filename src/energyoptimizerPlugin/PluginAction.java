@@ -1,4 +1,4 @@
-package energyoptimizerPlugin;
+package energyOptimizerPlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-import energyoptimizer.EnergyOptimizerPlugin;
+import energyOptimizer.EnergyOptimizer;
 
 
 public class PluginAction implements IObjectActionDelegate {
@@ -38,7 +38,7 @@ public class PluginAction implements IObjectActionDelegate {
 	public void run(IAction action) {
 		IStructuredSelection iss = (IStructuredSelection)currentSelection;
 		file = (IFile)iss.getFirstElement();
-		EnergyOptimizerPlugin.start(file.getLocation().toString());
+		EnergyOptimizer.start(file.getLocation().toString());
 		MessageDialog.openInformation(
 			shell,
 			"EnergyOptimizer",

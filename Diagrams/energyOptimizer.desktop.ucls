@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.0" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="false" realizations="false" associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" language="java" name="energyOptimizerDesktop" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizerDesktop" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="174" width="169" x="28" y="24"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="energyOptimizerDesktop.EnergyOptimizer" project="EnergyOptimizer" 
+    file="/EnergyOptimizer/src/energyOptimizerDesktop/EnergyOptimizer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="112" y="137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
