@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20130215" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="depEP20130215" name="model">
+<uml:Model xmi:version="20130303" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="depEP20130303" name="model">
 	<packagedElement xmi:type="uml:Device" xmi:id="_F_YY4FG5EeKJ8Nvo-F5dJA" name="Server">
 		<nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_YNM0MFG5EeKJ8Nvo-F5dJA" name="Platform alt 1">
 			<nestedClassifier xmi:type="uml:Artifact" xmi:id="_lKiWgHE4EeKnfu10FQG0SA" name="Website" />
@@ -13,7 +13,7 @@
 		<nestedNode xmi:id="_e1HmkFG9EeKJ8Nvo-F5dJA" name="Western Digital Caviar Black 2TB"/>
 		<nestedNode xmi:id="_GaSG4FNTEeKHZKGWw06VCQ" name="Kingston 4GB DDR3-1600"/>
 		<nestedNode xmi:id="_PCFDIFNTEeKHZKGWw06VCQ" name="Kingston 4GB DDR3-1600"/>
-		<nestedNode xmi:id="_dN8r8FNTEeKHZKGWw06VCQ" name="Cisco 3825/3825-NOVPN"/>
+		<nestedNode xmi:id="_ae0vcHq0EeKyKOxEI4dRTg" name="Cisco 3825/3825-NOVPN"/>
 		<nestedNode xmi:id="_frjD0GesEeKR3dOgglitKw" name="Other alt 1"/>
 	</packagedElement>
 	<packagedElement xmi:type="uml:Device" xmi:id="_Efy1cFG5EeKJ8Nvo-F5dJA" name="PC">
@@ -22,11 +22,11 @@
 			<nestedClassifier xmi:type="uml:Artifact" xmi:id="_j4s7MHE4EeKnfu10FQG0SA" name="Application" />
 			<nestedClassifier xmi:type="uml:Artifact" xmi:id="_mwdygHE4EeKnfu10FQG0SA" name="Publish" />
 		</nestedNode>
-		<nestedNode xmi:id="_h8YZ0FG6EeKJ8Nvo-F5dJA" name="Intel i5 2500K"/>
+		<nestedNode xmi:id="_NjsAoHqyEeKyKOxEI4dRTg" name="Intel i5 2500K"/>
 		<nestedNode xmi:id="_wAdYkFG6EeKJ8Nvo-F5dJA" name="Seagate 500GB 7200RPM"/>
 		<nestedNode xmi:id="_osKrkFG6EeKJ8Nvo-F5dJA" name="Samsung DDR3 2GB"/>
 		<nestedNode xmi:id="_ghYmAFG7EeKJ8Nvo-F5dJA" name="Samsung DDR3 2GB"/>
-		<nestedNode xmi:id="_DnoQgFM8EeKHZKGWw06VCQ" name="Netger DGN2200 Modem Router ADSL2+"/>
+		<nestedNode xmi:id="_8H5NQHqzEeKyKOxEI4dRTg" name="Netger DGN2200 Modem Router ADSL2+"/>
 		<nestedNode xmi:id="_tPLdYGerEeKR3dOgglitKw" name="Other alt 1"/>
 	</packagedElement>
 </uml:Model>

@@ -34,6 +34,10 @@ public class Size {
 	public long getBites() {
 		return B;
 	}
+	
+	public double getMegaBites() {
+		return B/1048576.0;
+	}
 
 	public String toString() {
 		return B + "B";

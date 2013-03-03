@@ -1,0 +1,402 @@
+Project model status:
+
+	Functional requirements:
+		FR1-read coeff.=541.6 connected to Admin p=0.2 - Journalist p=0.2 - User p=0.6
+		FR2-comment coeff.=181.4 connected to Journalist p=0.2 - User p=0.2
+		FR3-login coeff.=90.4 connected to Admin p=0.05 - Journalist p=0.05 - User p=0.1
+		FR4-delete_comment coeff.=90.4 connected to Admin p=0.4 - User p=0.1
+		FR5-write_article coeff.=3.15 connected to Journalist p=0.45
+		FR6-delete_article coeff.=0.9500000000000001 connected to Admin p=0.25 - Journalist p=0.1
+		FR7-ban coeff.=0.1 connected to Admin p=0.1
+
+	Stakeholders:
+		User: Min=800 Max=1000
+		Journalist: Min=5 Max=10
+		Admin: Min=1 Max=1
+
+	Associations enhanced:
+		From: Admin to: FR7-ban with probability: 0.1
+		From: Admin to: FR4-delete_comment with probability: 0.4
+		From: Admin to: FR1-read with probability: 0.2
+		From: Admin to: FR3-login with probability: 0.05
+		From: Admin to: FR6-delete_article with probability: 0.25
+		From: Journalist to: FR3-login with probability: 0.05
+		From: Journalist to: FR6-delete_article with probability: 0.1
+		From: Journalist to: FR1-read with probability: 0.2
+		From: Journalist to: FR2-comment with probability: 0.2
+		From: Journalist to: FR5-write_article with probability: 0.45
+		From: User to: FR4-delete_comment with probability: 0.1
+		From: User to: FR1-read with probability: 0.6
+		From: User to: FR3-login with probability: 0.1
+		From: User to: FR2-comment with probability: 0.2
+
+	Hardware sets:
+		Server
+			CPU:
+				CPU alt 1: [Intel i7 3770K cores:4 TDP:77.0 TDP f/v: (3700MHz,1.21V,9609.0PerformanceScore) f/v: [(3700MHz,1.21V,9609.0PerformanceScore), (3900MHz,1.24V,10500.0PerformanceScore)] consumption indicator:417122.08999999997]
+			HDD:
+				HDD alt 1: [Western Digital Caviar Black 2TB bandwidth:108.0 workConsumption:15.0 idleConsumption:8.0 consumption indicator:0.1388888888888889]
+				HDD alt 2: [Seagate Barracuda XT 3TB bandwidth:120.0 workConsumption:16.0 idleConsumption:8.0 consumption indicator:0.13333333333333333]
+			Memory:
+				Memory alt 1: [Kingston 4GB DDR3-1600 bandwidth:1600.0 workConsumption:7.0 idleConsumption:7.0 consumption indicator:0.004375, Kingston 4GB DDR3-1600 bandwidth:1600.0 workConsumption:7.0 idleConsumption:7.0 consumption indicator:0.004375]
+			Network device:
+				Network alt 1: [Cisco 3825/3825-NOVPN bandwidth:500.0 consumption per MB:2.0 consumption indicator:2.0]
+			Platform:
+				Platform alt 1: [Server platform energy points:300EP, virtualization:0.0, scheduling:0.0 framework:0.0, jvm:0.0, gc:0.0, os:3.0 consumption indicator:303.0]
+			Other:
+				Other alt 1: [Other energy points:31EP, busses:0.0, sensors:0.0, cooling:0.2, peripheral devices:0.0, display:0.1, ups:0.0, others:[lights 0.3W, 1EP] consumption indicator:31.6]
+		PC
+			CPU:
+				CPU alt 1: [Intel i5 2500K cores:4 TDP:95.0 TDP f/v: (3300MHz,1.12V,6412.0PerformanceScore) f/v: [(3300MHz,1.12V,6412.0PerformanceScore), (3700MHz,1.18V,6800.0PerformanceScore)] consumption indicator:393254.4000000001]
+				CPU alt 2: [Intel i3 2120 cores:2 TDP:65.0 TDP f/v: (3300MHz,1.1V,3947.0PerformanceScore) f/v: [(3300MHz,1.1V,3947.0PerformanceScore)] consumption indicator:259545.00000000006]
+			HDD:
+				HDD alt 1: [Seagate 500GB 7200RPM bandwidth:75.0 workConsumption:10.0 idleConsumption:6.0 consumption indicator:0.13333333333333333]
+				HDD alt 2: [Seagate 750GB 5400RPM bandwidth:58.0 workConsumption:12.0 idleConsumption:7.0 consumption indicator:0.20689655172413793]
+			Memory:
+				Memory alt 1: [Samsung DDR3 2GB bandwidth:8500.0 workConsumption:6.0 idleConsumption:6.0 consumption indicator:7.058823529411765E-4, Samsung DDR3 2GB bandwidth:8500.0 workConsumption:6.0 idleConsumption:6.0 consumption indicator:7.058823529411765E-4]
+			Network device:
+				Network alt 1: [Netger DGN2200 Modem Router ADSL2+ bandwidth:100.0 consumption per MB:3.0 consumption indicator:3.0]
+			Platform:
+				Platform alt 1: [PC platform energy points:100EP, virtualization:0.0, scheduling:0.0 framework:0.0, jvm:0.0, gc:0.0, os:1.0 consumption indicator:101.0]
+			Other:
+				Other alt 1: [Other energy points:32EP, busses:0.0, sensors:0.0, cooling:0.0, peripheral devices:0.0, display:0.3, ups:0.0, others:[extra 0.123W, 1EP, lights 0.3W, 1EP] consumption indicator:32.723]
+
+	Components:
+		Administration atomic operations: [] atomic operation consumptions: [] connectors: [Realization2(P), Usage6(R), Usage8(R), Usage9(R)] deployable on: Server or PC - Usage: CPU: EP:10, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Application atomic operations: [] atomic operation consumptions: [] connectors: [send_data(R), Usage4(R), Usage10(R)] deployable on: PC - Usage: CPU: EP:150, estimated milliseconds on def: 2000, exactTimes: [], utilization: 0.15, cycles:0 HDD: EP:50, estimated time: 2000ms, utilization: 0.01, size:0B Memory: EP:30, estimated time: 2000ms, utilization: 0.06, size:0B
+		Browser atomic operations: [] atomic operation consumptions: [] connectors: [Usage0(R)] deployable on: PC - Usage: CPU: EP:40, estimated milliseconds on def: 2000, exactTimes: [], utilization: 0.1, cycles:0 HDD: EP:0, estimated time: 2000ms, utilization: 0.01, size:0B Memory: EP:20, estimated time: 2000ms, utilization: 0.04, size:0B
+		Comment atomic operations: [] atomic operation consumptions: [] connectors: [Realization1(P), Usage5(R)] deployable on: Server - Usage: CPU: EP:10, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Content visualizer atomic operations: [ id:4 number:184,  id:5 number:384,  id:1 number:280,  id:2 number:3300,  id:3 number:800] atomic operation consumptions: [ id:1 cost:0.0021 on Intel i7 3770K,  id:3 cost:6.0E-4 on Intel i7 3770K,  id:2 cost:1.0E-4 on Intel i7 3770K,  id:4 cost:0.003 on Intel i7 3770K,  id:5 cost:8.0E-4 on Intel i7 3770K] connectors: [Realization3(P), Usage7(R)] deployable on: Server - Usage: CPU: EP:30, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Data layer atomic operations: [] atomic operation consumptions: [] connectors: [DB_response(P), Realization4(P)] deployable on: Server - Usage: CPU: EP:40, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:60, estimated time: 0ms, utilization: 0.0, size:10240B Memory: EP:30, estimated time: 0ms, utilization: 0.0, size:3072B
+		Login atomic operations: [] atomic operation consumptions: [] connectors: [login_response(P), read_DB(R)] deployable on: Server or PC - Usage: CPU: EP:30, estimated milliseconds on def: 120, exactTimes: [85ms on Intel i5 2500K, 70ms on Intel i7 3770K], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Publish atomic operations: [] atomic operation consumptions: [] connectors: [publish_response(P), write_DB(R), authorization(R)] deployable on: Server or PC - Usage: CPU: EP:100, estimated milliseconds on def: 400, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Website atomic operations: [] atomic operation consumptions: [] connectors: [Realization0(P), send_data(R), request_login(R), Usage1(R), Usage2(R), Usage3(R)] deployable on: Server - Usage: CPU: EP:20, estimated milliseconds on def: 2000, exactTimes: [], utilization: 0.04, cycles:0 HDD: EP:40, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:20, estimated time: 0ms, utilization: 0.0, size:3072B
+
+	Connectors:
+		Provided interface Realization0 = component:Website interface:browse EP:30 size:3072B
+		Provided interface login_response = component:Login interface:login EP:10 size:2048B
+		Provided interface publish_response = component:Publish interface:publish EP:10 size:2048B
+		Provided interface DB_response = component:Data layer interface:writeToDB EP:10 size:20480B
+		Provided interface Realization1 = component:Comment interface:postComment EP:10 size:3072B
+		Provided interface Realization2 = component:Administration interface:adminOperations EP:10 size:3072B
+		Provided interface Realization3 = component:Content visualizer interface:visualize EP:30 size:3072B
+		Required interface Usage0 = component:Browser interface:browse EP:30 size:3072B
+		Required interface write_DB = component:Publish interface:writeToDB EP:30 size:71680B
+		Required interface send_data = component:Website interface:publish EP:50 size:61440B
+		Required interface authorization = component:Publish interface:login EP:30 size:30720B
+		Required interface send_data = component:Application interface:publish EP:70 size:133120B
+		Required interface request_login = component:Website interface:login EP:30 size:20480B
+		Required interface read_DB = component:Login interface:readFromDB EP:20 size:20480B
+		Required interface Usage1 = component:Website interface:visualize EP:10 size:3072B
+		Required interface Usage2 = component:Website interface:adminOperations EP:20 size:3072B
+		Required interface Usage3 = component:Website interface:postComment EP:10 size:3072B
+		Required interface Usage4 = component:Application interface:adminOperations EP:20 size:3072B
+		Required interface Usage5 = component:Comment interface:writeToDB EP:20 size:3072B
+		Required interface Usage6 = component:Administration interface:writeToDB EP:20 size:3072B
+		Required interface Usage7 = component:Content visualizer interface:readFromDB EP:10 size:3072B
+		Required interface Usage8 = component:Administration interface:readFromDB EP:10 size:3072B
+		Required interface Usage9 = component:Administration interface:login EP:20 size:3072B
+		Provided interface Realization4 = component:Data layer interface:readFromDB EP:30 size:3072B
+		Required interface Usage10 = component:Application interface:login EP:0 size:3072B
+
+	Sequence alternatives:
+		FR1-read: Components: [Website, Browser, Content visualizer, Data layer] messages: [1:Message from: Browser to: Website interface: browse, 2:Message from: Website to: Content visualizer interface: visualize, 3:Message from: Content visualizer to: Data layer interface: readFromDB, 4:Message from: Data layer to: Content visualizer interface: readFromDB, 5:Message from: Content visualizer to: Website interface: visualize, 6:Message from: Website to: Browser interface: browse]
+		FR2-comment: Components: [Website, Browser, Comment, Data layer] messages: [1:Message from: Browser to: Website interface: browse, 2:Message from: Website to: Comment interface: postComment, 3:Message from: Comment to: Data layer interface: writeToDB, 4:Message from: Data layer to: Comment interface: writeToDB, 5:Message from: Comment to: Website interface: postComment, 6:Message from: Website to: Browser interface: browse]
+		FR3-login: Components: [Website, Browser, Login, Data layer] messages: [1:Message from: Browser to: Website interface: browse, 2:Message from: Website to: Login interface: login, 3:Message from: Login to: Data layer interface: readFromDB, 4:Message from: Data layer to: Login interface: readFromDB, 5:Message from: Login to: Website interface: login, 6:Message from: Website to: Browser interface: browse]
+		FR3-login: Components: [Login, Application, Data layer] messages: [7:Message from: Application to: Login interface: login, 8:Message from: Login to: Data layer interface: readFromDB, 9:Message from: Data layer to: Login interface: readFromDB, 10:Message from: Login to: Application interface: login]
+		FR4-delete_comment: Components: [Website, Browser, Administration, Data layer] messages: [1:Message from: Browser to: Website interface: browse, 3:Message from: Website to: Administration interface: adminOperations, 4:Message from: Administration to: Data layer interface: readFromDB, 5:Message from: Data layer to: Administration interface: readFromDB, 6:Message from: Administration to: Website interface: adminOperations, 7:Message from: Website to: Browser interface: browse, 10:Message from: Administration to: Data layer interface: writeToDB, 9:Message from: Website to: Administration interface: adminOperations, 8:Message from: Browser to: Website interface: browse, 11:Message from: Data layer to: Administration interface: writeToDB, 12:Message from: Administration to: Website interface: adminOperations, 13:Message from: Website to: Browser interface: browse]
+		FR4-delete_comment: Components: [Administration, Application, Data layer] messages: [14:Message from: Application to: Administration interface: adminOperations, 15:Message from: Administration to: Data layer interface: readFromDB, 16:Message from: Data layer to: Administration interface: readFromDB, 17:Message from: Administration to: Application interface: adminOperations, 18:Message from: Application to: Administration interface: adminOperations, 19:Message from: Administration to: Data layer interface: writeToDB, 20:Message from: Data layer to: Administration interface: writeToDB, 21:Message from: Administration to: Application interface: adminOperations]
+		FR5-write_article: Components: [Website, Browser, Publish, Data layer] messages: [30:Message1 from: Browser to: Website interface: browse, 5:Message from: Website to: Publish interface: publish, 10:Message from: Publish to: Data layer interface: writeToDB, 8:Message from: Publish to: Website interface: publish, 10:Message from: Data layer to: Publish interface: writeToDB, 11:Message from: Website to: Browser interface: browse]
+		FR5-write_article: Components: [Publish, Application, Data layer] messages: [9:Message from: Application to: Publish interface: publish, 12:Message from: Publish to: Data layer interface: writeToDB, 11:Message from: Data layer to: Publish interface: writeToDB, 14:Message from: Publish to: Application interface: publish]
+		FR6-delete_article: Components: [Data layer, Administration, Website, Browser] messages: [12:Message from: Administration to: Data layer interface: readFromDB, 9:Message from: Browser to: Website interface: browse, 11:Message from: Website to: Administration interface: adminOperations, 13:Message from: Data layer to: Administration interface: readFromDB, 14:Message from: Administration to: Website interface: adminOperations, 15:Message from: Website to: Browser interface: browse, 17:Message from: Administration to: Data layer interface: writeToDB, 10:Message from: Browser to: Website interface: browse, 16:Message from: Website to: Administration interface: adminOperations, 18:Message from: Data layer to: Administration interface: writeToDB, 19:Message from: Administration to: Website interface: adminOperations, 20:Message from: Website to: Browser interface: browse]
+		FR6-delete_article: Components: [Administration, Application, Data layer] messages: [1:Message from: Application to: Administration interface: adminOperations, 2:Message from: Administration to: Data layer interface: readFromDB, 5:Message from: Data layer to: Administration interface: readFromDB, 6:Message from: Administration to: Application interface: adminOperations, 3:Message from: Application to: Administration interface: adminOperations, 4:Message from: Administration to: Data layer interface: writeToDB, 7:Message from: Data layer to: Administration interface: writeToDB, 8:Message from: Administration to: Application interface: adminOperations]
+		FR7-ban: Components: [Website, Browser, Administration, Data layer] messages: [1:Message from: Browser to: Website interface: browse, 2:Message from: Website to: Administration interface: adminOperations, 3:Message from: Administration to: Data layer interface: readFromDB, 4:Message from: Data layer to: Administration interface: readFromDB, 5:Message from: Administration to: Website interface: adminOperations, 6:Message from: Website to: Browser interface: browse, 7:Message from: Browser to: Website interface: browse, 8:Message from: Website to: Administration interface: adminOperations, 9:Message from: Administration to: Data layer interface: writeToDB, 10:Message from: Data layer to: Administration interface: writeToDB, 11:Message from: Administration to: Website interface: adminOperations, 12:Message from: Website to: Browser interface: browse]
+		FR7-ban: Components: [Administration, Application, Data layer] messages: [13:Message from: Application to: Administration interface: adminOperations, 14:Message from: Administration to: Data layer interface: readFromDB, 17:Message from: Data layer to: Administration interface: readFromDB, 18:Message from: Administration to: Application interface: adminOperations, 15:Message from: Application to: Administration interface: adminOperations, 16:Message from: Administration to: Data layer interface: writeToDB, 19:Message from: Data layer to: Administration interface: writeToDB, 20:Message from: Administration to: Application interface: adminOperations]
+
+	Deployment alternatives:
+		1: [(Administration,Server), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,Server), (Publish,Server), (Website,Server)]
+		2: [(Administration,PC), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,Server), (Publish,Server), (Website,Server)]
+		3: [(Administration,Server), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,PC), (Publish,Server), (Website,Server)]
+		4: [(Administration,PC), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,PC), (Publish,Server), (Website,Server)]
+		5: [(Administration,Server), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,Server), (Publish,PC), (Website,Server)]
+		6: [(Administration,PC), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,Server), (Publish,PC), (Website,Server)]
+		7: [(Administration,Server), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,PC), (Publish,PC), (Website,Server)]
+		8: [(Administration,PC), (Application,PC), (Browser,PC), (Comment,Server), (Content visualizer,Server), (Data layer,Server), (Login,PC), (Publish,PC), (Website,Server)]
+
+	Hardware set alternatives:
+		Server:
+		1: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		2: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		PC:
+		1: PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		2: PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		3: PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		4: PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+
+	Hardware systems:
+		1: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		2: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		3: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		4: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		5: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		6: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
+		7: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		8: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+
+	Systems:
+		System 1:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 2:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 3:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 4:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 5:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 6:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 7:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 8:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 9:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 10:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 11:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 12:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 13:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 14:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 15:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 16:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 17:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 18:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 19:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 20:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 21:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 22:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 23:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 24:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 25:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 26:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 27:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 28:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 29:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 30:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 31:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 32:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 33:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 34:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 35:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 36:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 37:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 38:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 39:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 40:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 41:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 42:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 43:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 44:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 45:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 46:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 47:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 48:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 49:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 50:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 51:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 52:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 53:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 54:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 55:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 56:
+		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		
+		System 57:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		
+		System 58:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		
+		System 59:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		
+		System 60:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		
+		System 61:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		
+		System 62:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		
+		System 63:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		
+		System 64:
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
+		

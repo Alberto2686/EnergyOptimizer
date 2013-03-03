@@ -88,6 +88,6 @@ public class Component extends SoftwareComponent implements LifelineElement {
 			string += c.getName() + "(" + (c.isProvided() ? "P" : "R") + "), ";
 		for (HardwareSet hws : hardwareSets)
 			string2 += hws.getName() + " or ";
-		return getName() + " atomic operations: " + atomicOperations + " atomic operation consumptions: " + atomicOperationConsumptions + " connectors: [" + string.substring(0, string.length() - 2) + "]+ deployable on: " + string2.substring(0, string2.length() - 4) + " - Usage: CPU: " + usageCPU + " HDD: " + usageHDD + " Memory: " + usageMemory;
+		return getName() + " atomic operations: " + atomicOperations + " atomic operation consumptions: " + atomicOperationConsumptions + " connectors: [" + string.substring(0, string.length() - 2) + "] deployable on: " + string2.substring(0, string2.length() - 4) + " - Usage: CPU: " + usageCPU + " HDD: " + usageHDD + " Memory: " + usageMemory;
 	}
 }

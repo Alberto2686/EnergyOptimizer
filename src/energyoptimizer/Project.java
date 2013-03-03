@@ -17,6 +17,10 @@ public class Project {
 	private List<Interface> interfaces = new ArrayList<>();
 	private List<DeploymentAlternative> deploymentAlternatives = new ArrayList<>();
 	private List<HardwareSystem> hardwareSystems = new ArrayList<>();
+	private List<HardwareSystem> hardwareSystemsEP = new ArrayList<>();
+	private List<HardwareSystem> hardwareSystemsW = new ArrayList<>();
+	private List<SoftwareSystem> systemsEP = new ArrayList<>();
+	private List<SoftwareSystem> systemsW = new ArrayList<>();
 	private List<SoftwareSystem> systems = new ArrayList<>();
 	private boolean isWReliable = true;
 	SoftwareSystem bestSoftwareSystemEP;
@@ -112,6 +116,14 @@ public class Project {
 		this.hardwareSystems = hardwareSystems;
 	}
 
+	public List<HardwareSystem> getHardwareSystemsEP() {
+		return hardwareSystemsEP;
+	}
+
+	public void setHardwareSystemsEP(List<HardwareSystem> hardwareSystemsEP) {
+		this.hardwareSystemsEP = hardwareSystemsEP;
+	}
+
 	public List<SoftwareSystem> getSystems() {
 		return systems;
 	}
@@ -142,6 +154,10 @@ public class Project {
 		systems.addAll((new AlternativesGenerator(this)).generateAlternatives());
 	}
 
+	public void generateAlternativesEP() {
+		systemsEP.addAll((new AlternativesGenerator(this)).generateAlternativesEP());
+	}
+
 	public void generateAlternativesOld() {
 		AlternativesGenerator alternativesGenerator = new AlternativesGenerator(this);
 		systems.addAll(alternativesGenerator.generateAlternativesOld());
@@ -153,11 +169,9 @@ public class Project {
 		for (SoftwareSystem system : systems) {// was:validsystem
 			System.out.println("\tSystem " + (i++) + "\n\t\t" + system);
 			int j = 0;
-
+			Calculator calculator = new Calculator(this);
 			for (FunctionalRequirement functionalRequirement : functionalRequirements) {
 				for (SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()) {
-					system.getActuallyUsedHardwareSets().clear();
-					Calculator calculator = new Calculator(this);
 					double[] consumption = calculator.calculateEnergyConsumption(system, functionalRequirement, sequenceAlternative);
 					double[] staticConsumption = calculator.calculatePlatformAndOtherConsuptions(system, functionalRequirement);
 
@@ -166,7 +180,7 @@ public class Project {
 						system.getBestSequenceAlternativesEnergyPoint().add(sequenceAlternative);
 					}
 					if (system.getConsumptionWatt()[j] == -1 || consumption[1] > 0 && consumption[1] < system.getConsumptionWatt()[j]) {
-						system.getConsumptionWatt()[j] = Math.round((consumption[1] + staticConsumption[1]) / 1000.0);
+						system.getConsumptionWatt()[j] = Math.round(consumption[1] + staticConsumption[1]);
 						system.getBestSequenceAlternativesWatt().add(sequenceAlternative);
 					}
 				}
@@ -174,6 +188,33 @@ public class Project {
 			}
 			system.calculateTotals();
 			system.printAnalysisResultsSummary();
+			System.out.println("\n\n");
+		}
+	}
+
+	public void calculateEnergyConsumptionEP() {
+		int i = 1;
+		System.out.println("EVALUATING SYSTEMS\n");
+		for (SoftwareSystem system : systemsEP) {
+			System.out.println("\tSystem " + (i++) + "\n\t\t" + system);
+			int j = 0;
+			Calculator calculator = new Calculator(this);
+
+			for (FunctionalRequirement functionalRequirement : functionalRequirements) {
+				if(i==6 && functionalRequirement.getName().contains("FR7"))
+					System.out.print(true);
+				for (SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()) {
+					double consumption = calculator.calculateEnergyConsumptionEP(system, functionalRequirement, sequenceAlternative);
+
+					if (system.getConsumptionEnergyPoints()[j] == -1 || consumption < system.getConsumptionEnergyPoints()[j]) {
+						system.getConsumptionEnergyPoints()[j] = Math.round(consumption);
+						system.getBestSequenceAlternativesEnergyPoint().add(sequenceAlternative);
+					}
+				}
+				j++;
+			}
+			system.calculateTotalsEP();
+			system.printAnalysisResultsSummaryEP();
 			System.out.println("\n\n");
 		}
 	}
@@ -197,6 +238,19 @@ public class Project {
 		}
 	}
 
+	public void findBestSystemEP() {
+		for (SoftwareSystem softwareSystem : systemsEP)
+			softwareSystem.refine();
+		bestSoftwareSystemEP = systemsEP.get(0);
+		worstSoftwareSystemEP = systemsEP.get(0);
+		for (SoftwareSystem softwareSystem : systemsEP) {
+			if (softwareSystem.getSystemConsumptionEP() < bestSoftwareSystemEP.getSystemConsumptionEP())
+				bestSoftwareSystemEP = softwareSystem;
+			else if (softwareSystem.getSystemConsumptionEP() > worstSoftwareSystemEP.getSystemConsumptionEP())
+				worstSoftwareSystemEP = softwareSystem;
+		}
+	}
+
 	public void finalizeFunctionalRequirements() {
 		for (FunctionalRequirement functionalRequirement : functionalRequirements)
 			functionalRequirement.calculateCoefficient();
@@ -207,9 +261,14 @@ public class Project {
 		visualizer.visualize();
 	}
 
+	public void visualizeEP(String path) {
+		new Visualizer(name, path, bestSoftwareSystemEP, worstSoftwareSystemEP).visualizeEP();
+	}
+
 	public void log(String path) {
 		String newPath = path.substring(0, path.lastIndexOf("/"));
 		Utils.writeFile(newPath, "log.txt", toString());
+		System.out.println(this);
 	}
 
 	public boolean isWReliable() {

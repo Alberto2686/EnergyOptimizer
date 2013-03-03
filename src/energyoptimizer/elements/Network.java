@@ -8,6 +8,7 @@ public class Network extends HardwareComponent {
 		setId(id);
 		this.bandwidth = bandwidth;
 		this.mbConsumption = mbConsumption;
+		setConsumptionIndicator(mbConsumption);
 	}
 
 	public double getBandwidth() {
@@ -18,16 +19,16 @@ public class Network extends HardwareComponent {
 		this.bandwidth = bandwidth;
 	}
 
-	public double getWorkConsumption() {
+	public double getMBConsumption() {
 		return mbConsumption;
 	}
 
-	public void setMbConsumption(double mbConsumption) {
+	public void setMBConsumption(double mbConsumption) {
 		this.mbConsumption = mbConsumption;
 	}
 
 	@Override
 	public String toString() {
-		return getName() + " bandwidth:" + bandwidth + " consumption per MB:" + mbConsumption;
+		return getName() + " bandwidth:" + bandwidth + " consumption per MB:" + mbConsumption + " consumption indicator:" + getConsumptionIndicator();
 	}
 }

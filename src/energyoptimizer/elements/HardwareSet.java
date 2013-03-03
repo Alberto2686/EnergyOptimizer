@@ -3,6 +3,8 @@ package energyOptimizer.elements;
 import java.util.LinkedList;
 import java.util.List;
 
+import energyOptimizer.Utils;
+
 public class HardwareSet extends ModelElement {
 	private List<HardwareAlternative> cpuAlternatives = new LinkedList<>(),
 			hddAlternatives = new LinkedList<>(),
@@ -10,7 +12,7 @@ public class HardwareSet extends ModelElement {
 			networkAlternatives = new LinkedList<>(),
 			platformAlternatives = new LinkedList<>(),
 			otherAlternatives = new LinkedList<>();
-	private List<HardwareSetAlternative> hardwareSetAlternatives = new LinkedList<>();
+	private List<HardwareSetAlternative> hardwareSetAlternatives = new LinkedList<>(), hardwareSetCheapestAlternatives = new LinkedList<>();
 
 	public HardwareSet(String id, String name) {
 		setName(name);
@@ -73,6 +75,14 @@ public class HardwareSet extends ModelElement {
 		this.hardwareSetAlternatives = hardwareSetAlternatives;
 	}
 
+	public List<HardwareSetAlternative> getHardwareSetCheapestAlternatives() {
+		return hardwareSetCheapestAlternatives;
+	}
+
+	public void setHardwareSetCheapestAlternatives(List<HardwareSetAlternative> hardwareSetCheapestAlternatives) {
+		this.hardwareSetCheapestAlternatives = hardwareSetCheapestAlternatives;
+	}
+
 	public void generateHardwareSetAlternatives() {
 		generateDummyHardwareAlternatives();
 		for (HardwareAlternative cpuAlternative : cpuAlternatives)
@@ -90,6 +100,18 @@ public class HardwareSet extends ModelElement {
 								hardwareSetAlternative.setOtherAlternative(otherAlternative);
 								hardwareSetAlternatives.add(hardwareSetAlternative);
 							}
+	}
+
+	public void generateCheapestHardwareSetAlternatives() {
+		generateDummyHardwareAlternatives();
+		HardwareSetAlternative hardwareSetAlternative = new HardwareSetAlternative(this);
+		hardwareSetAlternative.setCpuAlternative(Utils.selectCheapest(cpuAlternatives));
+		hardwareSetAlternative.setHddAlternative(Utils.selectCheapest(hddAlternatives));
+		hardwareSetAlternative.setMemoryAlternative(Utils.selectCheapest(memoryAlternatives));
+		hardwareSetAlternative.setNetworkAlternative(Utils.selectCheapest(networkAlternatives));
+		hardwareSetAlternative.setPlatformAlternatives(Utils.selectCheapest(platformAlternatives));
+		hardwareSetAlternative.setOtherAlternative(Utils.selectCheapest(otherAlternatives));
+		hardwareSetCheapestAlternatives.add(hardwareSetAlternative);
 	}
 
 	private void generateDummyHardwareAlternatives() {

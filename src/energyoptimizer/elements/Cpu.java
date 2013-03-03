@@ -4,15 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Cpu extends HardwareComponent {
-	private int cores, productive_process;
+	private int cores;
 	private double tdp;
 	private List<FrequencyVoltage> frequenciesVoltages = new LinkedList<>();
+	private FrequencyVoltage frequencyVoltageTDP;
 
-	public Cpu(String name, String id, int cores, int productive_process, double tdp) {
+	public Cpu(String name, String id, int cores, double tdp) {
 		setName(name);
 		setId(id);
 		this.cores = cores;
-		this.productive_process = productive_process;
 		this.tdp = tdp;
 	}
 
@@ -22,14 +22,6 @@ public class Cpu extends HardwareComponent {
 
 	public void setCores(int cores) {
 		this.cores = cores;
-	}
-
-	public int getProductive_process() {
-		return productive_process;
-	}
-
-	public void setProductive_process(int productive_process) {
-		this.productive_process = productive_process;
 	}
 
 	public double getTdp() {
@@ -48,8 +40,17 @@ public class Cpu extends HardwareComponent {
 		this.frequenciesVoltages = frequenciesVoltages;
 	}
 
+	public FrequencyVoltage getFrequencyVoltageTDP() {
+		return frequencyVoltageTDP;
+	}
+
+	public void setFrequencyVoltageTDP(FrequencyVoltage frequencyVoltageTDP) {
+		this.frequencyVoltageTDP = frequencyVoltageTDP;
+		setConsumptionIndicator(tdp * frequencyVoltageTDP.getFrequency() * frequencyVoltageTDP.getVoltage() * frequencyVoltageTDP.getVoltage());
+	}
+
 	@Override
 	public String toString() {
-		return getName() + " cores:" + cores + " nm:" + productive_process + " TDP:" + tdp + " f/v: " + frequenciesVoltages;
+		return getName() + " cores:" + cores + " TDP:" + tdp + " TDP f/v: " + frequencyVoltageTDP + " f/v: " + frequenciesVoltages + " consumption indicator:" + getConsumptionIndicator();
 	}
 }

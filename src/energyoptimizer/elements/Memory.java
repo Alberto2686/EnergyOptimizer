@@ -9,6 +9,7 @@ public class Memory extends HardwareComponent {
 		this.bandwidth = bandwidth;
 		this.workConsumption = workConsumption;
 		this.idleConsumption = idleConsumption;
+		setConsumptionIndicator(workConsumption/bandwidth);
 	}
 
 	public double getBandwidth() {
@@ -37,6 +38,6 @@ public class Memory extends HardwareComponent {
 
 	@Override
 	public String toString() {
-		return getName() + " bandwidth:" + bandwidth + " workConsumption:" + workConsumption + " idleConsumption:" + idleConsumption;
+		return getName() + " bandwidth:" + bandwidth + " workConsumption:" + workConsumption + " idleConsumption:" + idleConsumption + " consumption indicator:" + getConsumptionIndicator();
 	}
 }

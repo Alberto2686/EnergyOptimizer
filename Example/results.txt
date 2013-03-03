@@ -1,0 +1,27 @@
+BEST SYSTEMS:
+EVALUATING ENERGY POINTS:
+Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Website, Content visualizer, Data layer, Comment, Login, Administration
+PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Browser, Application, Publish
+FR1 = 516145.0EP
+FR2 = 165618.0EP
+FR3 = 82535.0EP
+FR4 = 119599.0EP
+FR5 = 3411.0EP
+FR6 = 1257.0EP
+FR7 = 132.0EP
+
+888697.0EP
+
+
+EVALUATING WATT CONSUMPTION:
+Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Website, Content visualizer, Data layer, Comment, Administration, Publish
+PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Browser, Login, Application
+FR1 = 17.176KW
+FR2 = 5.137KW
+FR3 = 2.92KW
+FR4 = 5.047KW
+FR5 = 0.109KW
+FR6 = 0.053KW
+FR7 = 0.005KW
+
+30447.0W 

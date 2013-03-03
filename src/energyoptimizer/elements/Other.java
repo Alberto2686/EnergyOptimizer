@@ -8,7 +8,7 @@ public class Other extends HardwareComponent {
 	private int energyPoints;
 	private List<OtherConsumption> otherConsumption = new LinkedList<>();
 
-	public Other(String name, String id, double busses, double sensors, double cooling, double peripheralDevices, double display, double ups, int ep) {
+	public Other(String name, String id, double busses, double sensors, double cooling, double peripheralDevices, double display, double ups) {
 		setName(name);
 		setId(id);
 		this.busses = busses;
@@ -17,7 +17,6 @@ public class Other extends HardwareComponent {
 		this.peripheralDevices = peripheralDevices;
 		this.display = display;
 		this.ups = ups;
-		this.setEnergyPoints(ep);
 	}
 
 	public double getBusses() {
@@ -84,7 +83,11 @@ public class Other extends HardwareComponent {
 		this.energyPoints = energyPoints;
 	}
 
+	public void setConsumptionIndicator(double otherW) {
+		super.setConsumptionIndicator(energyPoints + busses + sensors + cooling + peripheralDevices + display + ups + otherW);
+	}
+
 	public String toString() {
-		return getName() + " energy points:" + energyPoints + "EP, busses:" + busses + ", sensors:" + sensors + ", cooling:" + cooling + ", peripheral devices:" + peripheralDevices + ", display:" + display + ", ups:" + ups + ", others:" + otherConsumption;
+		return getName() + " energy points:" + energyPoints + "EP, busses:" + busses + ", sensors:" + sensors + ", cooling:" + cooling + ", peripheral devices:" + peripheralDevices + ", display:" + display + ", ups:" + ups + ", others:" + otherConsumption + " consumption indicator:" + getConsumptionIndicator();
 	}
 }

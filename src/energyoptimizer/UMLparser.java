@@ -131,11 +131,13 @@ public class UMLparser {
 											for (int l = 0; l < cpus.getLength(); l++) {
 												if (((Element) cpus.item(l)).getAttribute("base_Class").equals(hwComponent.getAttribute("xmi:id"))) {
 													Element hwComponentProfile = (Element) cpus.item(l);
-													Cpu cpu = new Cpu(hwComponent.getAttribute("name"), hwComponent.getAttribute("xmi:id"), parseInt(hwComponentProfile.getAttribute("cores")), parseInt(hwComponentProfile.getAttribute("productive_process")), parseDouble(hwComponentProfile.getAttribute("thermal_design_power")));
+													Cpu cpu = new Cpu(hwComponent.getAttribute("name"), hwComponent.getAttribute("xmi:id"), parseInt(hwComponentProfile.getAttribute("cores")), parseDouble(hwComponentProfile.getAttribute("thermal_design_power")));
 													cpu.setIdProfile(getString(cpus, l, "xmi:id"));
 													for (int m = 0; m < frequencies.getLength(); m++) {
 														if (hwComponentProfile.getAttribute("frequencies_voltages").contains(((Element) frequencies.item(m)).getAttribute("xmi:id")))
 															cpu.getFrequenciesVoltages().add(new FrequencyVoltage(getInt(frequencies, m, "frequency"), getDouble(frequencies, m, "voltage"), getDouble(frequencies, m, "performance_score")));
+														if (hwComponentProfile.getAttribute("tdp_fv").contains(((Element) frequencies.item(m)).getAttribute("xmi:id")))
+															cpu.setFrequencyVoltageTDP(new FrequencyVoltage(getInt(frequencies, m, "frequency"), getDouble(frequencies, m, "voltage"), getDouble(frequencies, m, "performance_score")));
 													}
 													hwAlternative.getHardwareComponents().add(cpu);
 												}
@@ -263,10 +265,16 @@ public class UMLparser {
 													double display = parseDouble(hwComponentProfile.getAttribute("display"));
 													double ups = parseDouble(hwComponentProfile.getAttribute("uninterruptible_power_supply"));
 													int ep = parseInt(hwComponentProfile.getAttribute("energy_points"));
-													Other other = new Other(hwComponent.getAttribute("name"), hwComponent.getAttribute("xmi:id"), busses, sensors, cooling, peripheralDevices, display, ups, ep);
+													Other other = new Other(hwComponent.getAttribute("name"), hwComponent.getAttribute("xmi:id"), busses, sensors, cooling, peripheralDevices, display, ups);
+													double otherW = 0;
 													for (int m = 0; m < consumptions.getLength(); m++)
-														if (hwComponentProfile.getAttribute("other").contains(((Element) consumptions.item(m)).getAttribute("xmi:id")))
+														if (hwComponentProfile.getAttribute("other").contains(((Element) consumptions.item(m)).getAttribute("xmi:id"))) {
 															other.getOtherConsumption().add(new OtherConsumption(getString(consumptions, m, "source"), getDouble(consumptions, m, "consumption"), getInt(consumptions, m, "energy_points")));
+															ep += getInt(consumptions, m, "energy_points");
+															otherW += getDouble(consumptions, m, "consumption");
+														}
+													other.setEnergyPoints(ep);
+													other.setConsumptionIndicator(otherW);
 													hwAlternative.getHardwareComponents().add(other);
 												}
 											}
@@ -357,9 +365,9 @@ public class UMLparser {
 							while (!ownedEnd2.getNodeName().equals("ownedEnd"))
 								ownedEnd2 = ownedEnd2.getNextSibling();
 
-							AssociationEnhanced temp = new AssociationEnhanced(((Element) ownedEnd2).getAttribute("type"), ((Element) ownedEnd1).getAttribute("type"), getDouble(association, j, "probability"));
+							AssociationEnhanced temp = new AssociationEnhanced(((Element) ownedEnd2).getAttribute("type"), ((Element) ownedEnd1).getAttribute("type"), getDouble(association, j, "frequency"));
 							if (project.isActor(((Element) ownedEnd1).getAttribute("type")))
-								temp = new AssociationEnhanced(((Element) ownedEnd1).getAttribute("type"), ((Element) ownedEnd2).getAttribute("type"), getDouble(association, j, "probability"));
+								temp = new AssociationEnhanced(((Element) ownedEnd1).getAttribute("type"), ((Element) ownedEnd2).getAttribute("type"), getDouble(association, j, "frequency"));
 							temp.bind(project.getStakeholders(), project.getFunctionalRequirements());
 							project.getAssociations().add(temp);
 						}

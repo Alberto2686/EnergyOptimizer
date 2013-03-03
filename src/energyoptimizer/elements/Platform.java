@@ -14,6 +14,7 @@ public class Platform extends HardwareComponent {
 		this.gc = gc;
 		this.os = os;
 		this.energyPoints = ep;
+		setConsumptionIndicator(virtualization + scheduling + framework + jvm + gc + os + energyPoints);
 	}
 
 	public double getVirtualization() {
@@ -73,6 +74,6 @@ public class Platform extends HardwareComponent {
 	}
 
 	public String toString() {
-		return getName() + " energy points:" + energyPoints + "EP, virtualization:" + virtualization + ", scheduling:" + scheduling + " framework:" + framework + ", jvm:" + jvm + ", gc:" + gc + ", os:" + os;
+		return getName() + " energy points:" + energyPoints + "EP, virtualization:" + virtualization + ", scheduling:" + scheduling + " framework:" + framework + ", jvm:" + jvm + ", gc:" + gc + ", os:" + os + " consumption indicator:" + getConsumptionIndicator();
 	}
 }

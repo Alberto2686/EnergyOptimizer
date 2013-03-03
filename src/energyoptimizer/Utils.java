@@ -41,7 +41,7 @@ public class Utils {
 	public static double consumptionCPU(Cpu cpu, UsageCPU usageCPU, double defaultCpuScore, List<AtomicOperation> atomicOperations, List<AtomicOperationConsumption> atomicOperationConsumptions) {
 		double f1Min = Double.MAX_VALUE, f2Min = Double.MAX_VALUE, f3Min = Double.MAX_VALUE;
 		for (FrequencyVoltage frequencyVoltage : cpu.getFrequenciesVoltages()) {
-			double fv2 = frequencyVoltage.getFrequency() * Math.pow(frequencyVoltage.getVoltage(), 2);
+			double fv2 = frequencyVoltage.getFrequency() * Math.pow(frequencyVoltage.getVoltage(), 2)/(cpu.getFrequencyVoltageTDP().getFrequency() * Math.pow(cpu.getFrequencyVoltageTDP().getVoltage(), 2));
 			double time1 = (usageCPU.getEstimatedMilliseconds() / 1000.0) * defaultCpuScore / frequencyVoltage.getPerformanceScore();
 			double time2 = 0;
 			for (ExactTime et : usageCPU.getExactTimes())
@@ -72,7 +72,7 @@ public class Utils {
 
 	public static double consumptionHDD(Hdd hdd, UsageHDD usageHDD) {
 		double f1 = (usageHDD.getEstimatedMilliseconds() / 1000) * (usageHDD.getUtilization() * hdd.getWorkConsumption() + (1 - usageHDD.getUtilization()) * hdd.getIdleConsumption());
-		double f2 = usageHDD.getSize().getBites() * hdd.getBandwidth() * hdd.getWorkConsumption();
+		double f2 = (usageHDD.getSize().getMegaBites() / hdd.getBandwidth()) * hdd.getWorkConsumption();
 		if (f2 != 0)
 			return f2;
 		if (f1 != 0)
@@ -82,7 +82,7 @@ public class Utils {
 
 	public static double consumptionMemory(Memory memory, UsageMemory usageMemory) {
 		double f1 = (usageMemory.getEstimatedMilliseconds() / 1000) * (usageMemory.getUtilization() * memory.getWorkConsumption() + (1 - usageMemory.getUtilization()) * memory.getIdleConsumption());
-		double f2 = usageMemory.getSize().getBites() * memory.getBandwidth() * memory.getWorkConsumption();
+		double f2 = (usageMemory.getSize().getMegaBites() / memory.getBandwidth()) * memory.getWorkConsumption();
 		if (f2 != 0)
 			return f2;
 		if (f1 != 0)
@@ -90,7 +90,7 @@ public class Utils {
 		return -1;
 	}
 
-	public static double consumptionNetwork(long size, List<Network> networkDevicesSender, List<Network> networkDevicesReceiver) {
+	public static double consumptionNetwork(Size size, List<Network> networkDevicesSender, List<Network> networkDevicesReceiver) {
 		double consumptionSender = consumptionNetwork(size, networkDevicesSender);
 		double consumptionReceiver = consumptionNetwork(size, networkDevicesReceiver);
 		if (consumptionSender != -1 && consumptionReceiver != -1)
@@ -98,10 +98,10 @@ public class Utils {
 		return -1;
 	}
 
-	private static double consumptionNetwork(long size, List<Network> networkDevices) {
+	private static double consumptionNetwork(Size size, List<Network> networkDevices) {
 		double consumptionMin = Double.MAX_VALUE, consumption = 0;
 		for (Network networkDevice : networkDevices) {
-			consumption = size * networkDevice.getBandwidth() * networkDevice.getWorkConsumption();
+			consumption = size.getMegaBites() * networkDevice.getMBConsumption();
 			if (consumption != 0 && consumption < consumptionMin)
 				consumptionMin = consumption;
 		}
@@ -114,10 +114,8 @@ public class Utils {
 		double consumption[] = { 0, 0 };
 		consumption[0] = otherAlternative.getEnergyPoints();
 		consumption[1] = otherAlternative.getBusses() + otherAlternative.getCooling() + otherAlternative.getDisplay() + otherAlternative.getPeripheralDevices() + otherAlternative.getSensors() + otherAlternative.getUps();
-		for (OtherConsumption otherConsumption : otherAlternative.getOtherConsumption()) {
-			consumption[0] += otherConsumption.getEnergyPoints();
+		for (OtherConsumption otherConsumption : otherAlternative.getOtherConsumption())
 			consumption[1] += otherConsumption.getConsumption();
-		}
 
 		return consumption;
 	}
@@ -141,5 +139,17 @@ public class Utils {
 		} catch (IOException e) {
 			System.out.println("Error writing file: " + e);
 		}
+	}
+
+	public static HardwareAlternative selectCheapest(List<HardwareAlternative> hardwareAlternatives) {
+		HardwareAlternative cheapest = hardwareAlternatives.get(0);
+		HardwareComponent cheapestComponent = hardwareAlternatives.get(0).getHardwareComponents().get(0);
+		for (HardwareAlternative hardwareAlternative : hardwareAlternatives)
+			for (HardwareComponent hardwareComponent : hardwareAlternative.getHardwareComponents())
+				if (hardwareComponent.getConsumptionIndicator() < cheapestComponent.getConsumptionIndicator()) {
+					cheapestComponent = hardwareComponent;
+					cheapest = hardwareAlternative;
+				}
+		return cheapest;
 	}
 }

@@ -37,6 +37,7 @@ public class SequenceAlternative {
 			addIfNotPresent(m.getReceiver());
 			addIfNotPresent(m.getSender());
 		}
+		//TODO: impostare già le coppie (componente, numero invocazioni) così poi si calcola una volta sola e si moltiplica!
 	}
 
 	private void addIfNotPresent(LifelineElement element) {

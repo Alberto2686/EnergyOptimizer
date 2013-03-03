@@ -121,8 +121,16 @@ public class SoftwareSystem {
 	}
 
 	public void calculateTotals() {
+		calculateTotalsEP();
+		calculateTotalsW();
+	}
+
+	public void calculateTotalsEP() {
 		for (double ep : consumptionEnergyPoints)
 			systemConsumptionEP += ep;
+	}
+
+	public void calculateTotalsW() {
 		for (double w : consumptionWatt)
 			systemConsumptionW += w;
 	}
@@ -160,6 +168,13 @@ public class SoftwareSystem {
 		System.out.println(string);
 	}
 
+	public void printAnalysisResultsEP() {
+		String string = "";
+		for (int i = 0; i < bestSequenceAlternativesEnergyPoint.size(); i++)
+			string += i + ": " + bestSequenceAlternativesEnergyPoint.get(i) + "CONSUMPTION:" + consumptionEnergyPoints[i] + "EP\n";
+		System.out.println(string);
+	}
+
 	public String bestEpToString() {
 		String string = "";
 		for (HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives()) {
@@ -190,7 +205,7 @@ public class SoftwareSystem {
 		for (int i = 0; i < consumptionWatt.length; i++) {
 			String res = "uncalculable\n";
 			if (consumptionWatt[i] > 0)
-				res = consumptionWatt[i] + "KW\n";
+				res = (consumptionWatt[i] /1000.0) + "KW\n";
 			string += "FR" + (i + 1) + " = " + res;
 		}
 		return string;
@@ -204,6 +219,14 @@ public class SoftwareSystem {
 		for (int i = 0; i < consumptionWatt.length; i++)
 			string += "\t\tFR" + (i + 1) + ": " + consumptionWatt[i] + "W\n";
 		string += "\n\t\tTOTAL : " + systemConsumptionEP + "EP and " + systemConsumptionW + "W";
+		System.out.println(string);
+	}
+
+	public void printAnalysisResultsSummaryEP() {
+		String string = "";
+		for (int i = 0; i < consumptionEnergyPoints.length; i++)
+			string += "\t\tFR" + (i + 1) + ": " + consumptionEnergyPoints[i] + "EP\n";
+		string += "\n\t\tTOTAL : " + systemConsumptionEP + "EP";
 		System.out.println(string);
 	}
 
