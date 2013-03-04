@@ -35,27 +35,27 @@ Project model status:
 			CPU:
 				CPU alt 1: [Intel i7 3770K cores:4 TDP:77.0 TDP f/v: (3700MHz,1.21V,9609.0PerformanceScore) f/v: [(3700MHz,1.21V,9609.0PerformanceScore), (3900MHz,1.24V,10500.0PerformanceScore)] consumption indicator:417122.08999999997]
 			HDD:
-				HDD alt 1: [Western Digital Caviar Black 2TB bandwidth:108.0 workConsumption:15.0 idleConsumption:8.0 consumption indicator:0.1388888888888889]
 				HDD alt 2: [Seagate Barracuda XT 3TB bandwidth:120.0 workConsumption:16.0 idleConsumption:8.0 consumption indicator:0.13333333333333333]
+				HDD alt 1: [Western Digital Caviar Black 2TB bandwidth:108.0 workConsumption:15.0 idleConsumption:8.0 consumption indicator:0.1388888888888889]
 			Memory:
 				Memory alt 1: [Kingston 4GB DDR3-1600 bandwidth:1600.0 workConsumption:7.0 idleConsumption:7.0 consumption indicator:0.004375, Kingston 4GB DDR3-1600 bandwidth:1600.0 workConsumption:7.0 idleConsumption:7.0 consumption indicator:0.004375]
 			Network device:
-				Network alt 1: [Cisco 3825/3825-NOVPN bandwidth:500.0 consumption per MB:2.0 consumption indicator:2.0]
+				Network alt 1: [Cisco 3825/3825-NOVPN bandwidth:120.0 consumption per MB:2.0 consumption indicator:2.0]
 			Platform:
 				Platform alt 1: [Server platform energy points:300EP, virtualization:0.0, scheduling:0.0 framework:0.0, jvm:0.0, gc:0.0, os:3.0 consumption indicator:303.0]
 			Other:
 				Other alt 1: [Other energy points:31EP, busses:0.0, sensors:0.0, cooling:0.2, peripheral devices:0.0, display:0.1, ups:0.0, others:[lights 0.3W, 1EP] consumption indicator:31.6]
 		PC
 			CPU:
-				CPU alt 1: [Intel i5 2500K cores:4 TDP:95.0 TDP f/v: (3300MHz,1.12V,6412.0PerformanceScore) f/v: [(3300MHz,1.12V,6412.0PerformanceScore), (3700MHz,1.18V,6800.0PerformanceScore)] consumption indicator:393254.4000000001]
 				CPU alt 2: [Intel i3 2120 cores:2 TDP:65.0 TDP f/v: (3300MHz,1.1V,3947.0PerformanceScore) f/v: [(3300MHz,1.1V,3947.0PerformanceScore)] consumption indicator:259545.00000000006]
+				CPU alt 1: [Intel i5 2500K cores:4 TDP:95.0 TDP f/v: (3300MHz,1.12V,6412.0PerformanceScore) f/v: [(3300MHz,1.12V,6412.0PerformanceScore), (3700MHz,1.18V,6800.0PerformanceScore)] consumption indicator:393254.4000000001]
 			HDD:
 				HDD alt 1: [Seagate 500GB 7200RPM bandwidth:75.0 workConsumption:10.0 idleConsumption:6.0 consumption indicator:0.13333333333333333]
 				HDD alt 2: [Seagate 750GB 5400RPM bandwidth:58.0 workConsumption:12.0 idleConsumption:7.0 consumption indicator:0.20689655172413793]
 			Memory:
 				Memory alt 1: [Samsung DDR3 2GB bandwidth:8500.0 workConsumption:6.0 idleConsumption:6.0 consumption indicator:7.058823529411765E-4, Samsung DDR3 2GB bandwidth:8500.0 workConsumption:6.0 idleConsumption:6.0 consumption indicator:7.058823529411765E-4]
 			Network device:
-				Network alt 1: [Netger DGN2200 Modem Router ADSL2+ bandwidth:100.0 consumption per MB:3.0 consumption indicator:3.0]
+				Network alt 1: [Netger DGN2200 Modem Router ADSL2+ bandwidth:10.0 consumption per MB:3.0 consumption indicator:3.0]
 			Platform:
 				Platform alt 1: [PC platform energy points:100EP, virtualization:0.0, scheduling:0.0 framework:0.0, jvm:0.0, gc:0.0, os:1.0 consumption indicator:101.0]
 			Other:
@@ -63,14 +63,14 @@ Project model status:
 
 	Components:
 		Administration atomic operations: [] atomic operation consumptions: [] connectors: [Realization2(P), Usage6(R), Usage8(R), Usage9(R)] deployable on: Server or PC - Usage: CPU: EP:10, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
-		Application atomic operations: [] atomic operation consumptions: [] connectors: [send_data(R), Usage4(R), Usage10(R)] deployable on: PC - Usage: CPU: EP:150, estimated milliseconds on def: 2000, exactTimes: [], utilization: 0.15, cycles:0 HDD: EP:50, estimated time: 2000ms, utilization: 0.01, size:0B Memory: EP:30, estimated time: 2000ms, utilization: 0.06, size:0B
-		Browser atomic operations: [] atomic operation consumptions: [] connectors: [Usage0(R)] deployable on: PC - Usage: CPU: EP:40, estimated milliseconds on def: 2000, exactTimes: [], utilization: 0.1, cycles:0 HDD: EP:0, estimated time: 2000ms, utilization: 0.01, size:0B Memory: EP:20, estimated time: 2000ms, utilization: 0.04, size:0B
+		Application atomic operations: [] atomic operation consumptions: [] connectors: [send_data(R), Usage4(R), Usage10(R)] deployable on: PC - Usage: CPU: EP:150, estimated milliseconds on def: 200, exactTimes: [], utilization: 0.7, cycles:0 HDD: EP:50, estimated time: 200ms, utilization: 0.4, size:0B Memory: EP:30, estimated time: 200ms, utilization: 0.8, size:0B
+		Browser atomic operations: [] atomic operation consumptions: [] connectors: [Usage0(R)] deployable on: PC - Usage: CPU: EP:40, estimated milliseconds on def: 100, exactTimes: [], utilization: 0.4, cycles:0 HDD: EP:0, estimated time: 200ms, utilization: 0.6, size:0B Memory: EP:20, estimated time: 200ms, utilization: 0.9, size:0B
 		Comment atomic operations: [] atomic operation consumptions: [] connectors: [Realization1(P), Usage5(R)] deployable on: Server - Usage: CPU: EP:10, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
 		Content visualizer atomic operations: [ id:4 number:184,  id:5 number:384,  id:1 number:280,  id:2 number:3300,  id:3 number:800] atomic operation consumptions: [ id:1 cost:0.0021 on Intel i7 3770K,  id:3 cost:6.0E-4 on Intel i7 3770K,  id:2 cost:1.0E-4 on Intel i7 3770K,  id:4 cost:0.003 on Intel i7 3770K,  id:5 cost:8.0E-4 on Intel i7 3770K] connectors: [Realization3(P), Usage7(R)] deployable on: Server - Usage: CPU: EP:30, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
 		Data layer atomic operations: [] atomic operation consumptions: [] connectors: [DB_response(P), Realization4(P)] deployable on: Server - Usage: CPU: EP:40, estimated milliseconds on def: 100, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:60, estimated time: 0ms, utilization: 0.0, size:10240B Memory: EP:30, estimated time: 0ms, utilization: 0.0, size:3072B
-		Login atomic operations: [] atomic operation consumptions: [] connectors: [login_response(P), read_DB(R)] deployable on: Server or PC - Usage: CPU: EP:30, estimated milliseconds on def: 120, exactTimes: [85ms on Intel i5 2500K, 70ms on Intel i7 3770K], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
-		Publish atomic operations: [] atomic operation consumptions: [] connectors: [publish_response(P), write_DB(R), authorization(R)] deployable on: Server or PC - Usage: CPU: EP:100, estimated milliseconds on def: 400, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
-		Website atomic operations: [] atomic operation consumptions: [] connectors: [Realization0(P), send_data(R), request_login(R), Usage1(R), Usage2(R), Usage3(R)] deployable on: Server - Usage: CPU: EP:20, estimated milliseconds on def: 2000, exactTimes: [], utilization: 0.04, cycles:0 HDD: EP:40, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:20, estimated time: 0ms, utilization: 0.0, size:3072B
+		Login atomic operations: [] atomic operation consumptions: [] connectors: [login_response(P), read_DB(R)] deployable on: Server or PC - Usage: CPU: EP:30, estimated milliseconds on def: 50, exactTimes: [35ms on Intel i5 2500K, 30ms on Intel i7 3770K], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Publish atomic operations: [] atomic operation consumptions: [] connectors: [publish_response(P), write_DB(R), authorization(R)] deployable on: Server or PC - Usage: CPU: EP:100, estimated milliseconds on def: 40, exactTimes: [], utilization: 1.0, cycles:0 HDD: EP:0, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:10, estimated time: 0ms, utilization: 0.0, size:3072B
+		Website atomic operations: [] atomic operation consumptions: [] connectors: [Realization0(P), send_data(R), request_login(R), Usage1(R), Usage2(R), Usage3(R)] deployable on: Server - Usage: CPU: EP:20, estimated milliseconds on def: 200, exactTimes: [], utilization: 0.4, cycles:0 HDD: EP:40, estimated time: 0ms, utilization: 0.0, size:3072B Memory: EP:20, estimated time: 0ms, utilization: 0.0, size:3072B
 
 	Connectors:
 		Provided interface Realization0 = component:Website interface:browse EP:30 size:3072B
@@ -125,278 +125,43 @@ Project model status:
 
 	Hardware set alternatives:
 		Server:
-		1: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		2: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		1: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
 		PC:
-		1: PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		2: PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
-		3: PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		4: PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		1: PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
 
 	Hardware systems:
-		1: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		2: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		3: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
-		4: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
-		5: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		6: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
-		7: Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
-		8: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1
+		1: Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 - PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1
 
 	Systems:
 		System 1:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
 		
 		System 2:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
 		
 		System 3:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
 		
 		System 4:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
 		
 		System 5:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
 		
 		System 6:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
 		
 		System 7:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
+		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
+		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
 		
 		System 8:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 9:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 10:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 11:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 12:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 13:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 14:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 15:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 16:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 17:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 18:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 19:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 20:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 21:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 22:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 23:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 24:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 25:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 26:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 27:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 28:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 29:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 30:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 31:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 32:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 33:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 34:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 35:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 36:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 37:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 38:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 39:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 40:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 41:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 42:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 43:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 44:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 45:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 46:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 47:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 48:
 		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
 		PC= CPU alt 2 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 49:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 50:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 51:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 52:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 53:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 54:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 55:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 56:
-		Server= CPU alt 1 HDD alt 1 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
-		
-		System 57:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser
-		
-		System 58:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser
-		
-		System 59:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login
-		
-		System 60:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Publish, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login
-		
-		System 61:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Publish
-		
-		System 62:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Login, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Publish
-		
-		System 63:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Application, Browser, Login, Publish
-		
-		System 64:
-		Server= CPU alt 1 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Comment, Content visualizer, Data layer, Website
-		PC= CPU alt 2 HDD alt 2 Memory alt 1 Platform alt 1 Other alt 1 hosts Administration, Application, Browser, Login, Publish
 		

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20130303" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="depW20130303" name="model">
+<uml:Model xmi:version="20130304" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="depW20130304" name="model">
 	<packagedElement xmi:type="uml:Device" xmi:id="_F_YY4FG5EeKJ8Nvo-F5dJA" name="Server">
 		<nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_YNM0MFG5EeKJ8Nvo-F5dJA" name="Platform alt 1">
 			<nestedClassifier xmi:type="uml:Artifact" xmi:id="_lKiWgHE4EeKnfu10FQG0SA" name="Website" />
@@ -10,7 +10,7 @@
 			<nestedClassifier xmi:type="uml:Artifact" xmi:id="_mwdygHE4EeKnfu10FQG0SA" name="Publish" />
 		</nestedNode>
 		<nestedNode xmi:id="_crBtkFG9EeKJ8Nvo-F5dJA" name="Intel i7 3770K"/>
-		<nestedNode xmi:id="_e1HmkFG9EeKJ8Nvo-F5dJA" name="Western Digital Caviar Black 2TB"/>
+		<nestedNode xmi:id="_0YyNIFNOEeKHZKGWw06VCQ" name="Seagate Barracuda XT 3TB"/>
 		<nestedNode xmi:id="_GaSG4FNTEeKHZKGWw06VCQ" name="Kingston 4GB DDR3-1600"/>
 		<nestedNode xmi:id="_PCFDIFNTEeKHZKGWw06VCQ" name="Kingston 4GB DDR3-1600"/>
 		<nestedNode xmi:id="_ae0vcHq0EeKyKOxEI4dRTg" name="Cisco 3825/3825-NOVPN"/>

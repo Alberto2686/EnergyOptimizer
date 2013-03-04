@@ -17,6 +17,7 @@ public class Project {
 	private List<Interface> interfaces = new ArrayList<>();
 	private List<DeploymentAlternative> deploymentAlternatives = new ArrayList<>();
 	private List<HardwareSystem> hardwareSystems = new ArrayList<>();
+	private List<HardwareSystem> hardwareSystemsCalculated = new ArrayList<>();
 	private List<HardwareSystem> hardwareSystemsEP = new ArrayList<>();
 	private List<HardwareSystem> hardwareSystemsW = new ArrayList<>();
 	private List<SoftwareSystem> systemsEP = new ArrayList<>();
@@ -132,6 +133,14 @@ public class Project {
 		this.systems = systems;
 	}
 
+	public List<HardwareSystem> getHardwareSystemsCalculated() {
+		return hardwareSystemsCalculated;
+	}
+
+	public void setHardwareSystemsCalculated(List<HardwareSystem> hardwareSystemsCalculated) {
+		this.hardwareSystemsCalculated = hardwareSystemsCalculated;
+	}
+
 	public boolean isActor(String id) {
 		boolean isActor = false;
 		for (Stakeholder stakeholder : stakeholders)
@@ -154,6 +163,17 @@ public class Project {
 		systems.addAll((new AlternativesGenerator(this)).generateAlternatives());
 	}
 
+	public void generateAlternativesGeneration(int generation) {
+		newGeneration();
+		systems.addAll((new AlternativesGenerator(this)).generateAlternatives(generation));
+	}
+
+	private void newGeneration() {
+		hardwareSystemsCalculated.addAll(hardwareSystems);
+		hardwareSystems.clear();
+		systems.clear();
+	}
+
 	public void generateAlternativesEP() {
 		systemsEP.addAll((new AlternativesGenerator(this)).generateAlternativesEP());
 	}
@@ -174,7 +194,7 @@ public class Project {
 				for (SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()) {
 					double[] consumption = calculator.calculateEnergyConsumption(system, functionalRequirement, sequenceAlternative);
 					double[] staticConsumption = calculator.calculatePlatformAndOtherConsuptions(system, functionalRequirement);
-
+					// TODO: controllare condizioni
 					if (system.getConsumptionEnergyPoints()[j] == -1 || consumption[0] < system.getConsumptionEnergyPoints()[j]) {
 						system.getConsumptionEnergyPoints()[j] = Math.round(consumption[0] + staticConsumption[0]);
 						system.getBestSequenceAlternativesEnergyPoint().add(sequenceAlternative);
@@ -192,6 +212,39 @@ public class Project {
 		}
 	}
 
+	public boolean calculateEnergyConsumptionGeneration() {
+		int i = 1;
+		boolean feasible = false;
+		System.out.println("EVALUATING SYSTEMS\n");
+		for (SoftwareSystem system : systems) {
+			System.out.println("\tSystem " + (i++) + "\n\t\t" + system);
+			int j = 0;
+			double totalTime = 0;
+			Calculator calculator = new Calculator(this);
+			for (FunctionalRequirement functionalRequirement : functionalRequirements) {
+				double functionalRequirementTime = 0;
+				for (SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()) {
+					double[] consumption = calculator.calculateEnergyConsumptionW(system, functionalRequirement, sequenceAlternative);
+					if (system.getConsumptionWatt()[j] == -1 || consumption[1] > 0 && consumption[1] < system.getConsumptionWatt()[j]) {
+						functionalRequirementTime = consumption[0];
+						system.getConsumptionWatt()[j] = Math.round(consumption[1] * 100) / 100.0;
+						system.getBestSequenceAlternativesWatt().add(sequenceAlternative);
+					}
+				}
+				totalTime += functionalRequirementTime;
+				j++;
+			}
+			if (totalTime <= 3600) {
+				feasible = true;
+				system.setValid(true);
+				system.calculateTotalsW();
+				system.printAnalysisResultsSummaryW();
+			}
+			System.out.println("\n\n");
+		}
+		return feasible;
+	}
+
 	public void calculateEnergyConsumptionEP() {
 		int i = 1;
 		System.out.println("EVALUATING SYSTEMS\n");
@@ -201,7 +254,7 @@ public class Project {
 			Calculator calculator = new Calculator(this);
 
 			for (FunctionalRequirement functionalRequirement : functionalRequirements) {
-				if(i==6 && functionalRequirement.getName().contains("FR7"))
+				if (i == 6 && functionalRequirement.getName().contains("FR7"))
 					System.out.print(true);
 				for (SequenceAlternative sequenceAlternative : functionalRequirement.getSequenceAlternatives()) {
 					double consumption = calculator.calculateEnergyConsumptionEP(system, functionalRequirement, sequenceAlternative);
@@ -238,6 +291,19 @@ public class Project {
 		}
 	}
 
+	public void findBestSystemGeneration() {
+		for (SoftwareSystem softwareSystem : systems)
+			softwareSystem.refine();
+		bestSoftwareSystemW = systems.get(0);
+		worstSoftwareSystemW = systems.get(0);
+		for (SoftwareSystem softwareSystem : systems) {
+			if (softwareSystem.getSystemConsumptionW() < bestSoftwareSystemW.getSystemConsumptionW())
+				bestSoftwareSystemW = softwareSystem;
+			else if (softwareSystem.getSystemConsumptionW() > worstSoftwareSystemW.getSystemConsumptionW())
+				worstSoftwareSystemW = softwareSystem;
+		}
+	}
+
 	public void findBestSystemEP() {
 		for (SoftwareSystem softwareSystem : systemsEP)
 			softwareSystem.refine();
@@ -261,6 +327,10 @@ public class Project {
 		visualizer.visualize();
 	}
 
+	public void visualizeGeneration(String path) {
+		new Visualizer(name, path, isWReliable, bestSoftwareSystemW, worstSoftwareSystemW).visualizeW();
+	}
+
 	public void visualizeEP(String path) {
 		new Visualizer(name, path, bestSoftwareSystemEP, worstSoftwareSystemEP).visualizeEP();
 	}
@@ -277,6 +347,25 @@ public class Project {
 
 	public void setWReliable(boolean isWReliable) {
 		this.isWReliable = isWReliable;
+	}
+
+	public int sortHardwareAlternatives() {
+		int maxDepth = 1;
+		for (HardwareSet hardwareSet : hardwareSets) {
+			maxDepth = hardwareSet.getCpuAlternatives().size() > maxDepth ? hardwareSet.getCpuAlternatives().size() : maxDepth;
+			maxDepth = hardwareSet.getHddAlternatives().size() > maxDepth ? hardwareSet.getHddAlternatives().size() : maxDepth;
+			maxDepth = hardwareSet.getMemoryAlternatives().size() > maxDepth ? hardwareSet.getMemoryAlternatives().size() : maxDepth;
+			maxDepth = hardwareSet.getNetworkAlternatives().size() > maxDepth ? hardwareSet.getNetworkAlternatives().size() : maxDepth;
+			maxDepth = hardwareSet.getPlatformAlternatives().size() > maxDepth ? hardwareSet.getPlatformAlternatives().size() : maxDepth;
+			maxDepth = hardwareSet.getOtherAlternatives().size() > maxDepth ? hardwareSet.getOtherAlternatives().size() : maxDepth;
+			hardwareSet.setCpuAlternatives(Utils.sortHardwareAlternatives(hardwareSet.getCpuAlternatives()));
+			hardwareSet.setHddAlternatives(Utils.sortHardwareAlternatives(hardwareSet.getHddAlternatives()));
+			hardwareSet.setMemoryAlternatives(Utils.sortHardwareAlternatives(hardwareSet.getMemoryAlternatives()));
+			hardwareSet.setNetworkAlternatives(Utils.sortHardwareAlternatives(hardwareSet.getNetworkAlternatives()));
+			hardwareSet.setPlatformAlternatives(Utils.sortHardwareAlternatives(hardwareSet.getPlatformAlternatives()));
+			hardwareSet.setOtherAlternatives(Utils.sortHardwareAlternatives(hardwareSet.getOtherAlternatives()));
+		}
+		return maxDepth;
 	}
 
 	public String toString() {

@@ -9,25 +9,31 @@ import energyOptimizer.elements.*;
 public class AlternativesGenerator {
 	private Project project;
 
-	/**
-	 * @param functionalRequirements
-	 * @param components
-	 */
 	public AlternativesGenerator(Project project) {
 		this.project = project;
 	}
 
 	public List<SoftwareSystem> generateAlternatives() {
+		if (project.getDeploymentAlternatives().size()==0)
+			generateAllDeploymentAlternatives();
 		generateHardwareSetAlternatives();// O(HWS)*O(cpuAlt*hddAlt*memAlt*netAlt*plaAlt*othAlt)
-		generateAllDeploymentAlternatives();
 		generateHardwareSystemAlternatives();
 		return generateSystems();
 	}
 
+	public List<SoftwareSystem> generateAlternatives(int generation) {
+		if (project.getDeploymentAlternatives().size()==0)
+			generateAllDeploymentAlternatives();
+		generateHardwareSetAlternativesGeneration(generation);
+		generateHardwareSystemAlternativesGeneration();
+		return generateSystems();
+	}
+
 	public List<SoftwareSystem> generateAlternativesEP() {
-		generateHardwareSetAlternativesEP();// O(HWS)*O(cpuAlt*hddAlt*memAlt*netAlt*plaAlt*othAlt)
+		if (project.getDeploymentAlternatives().size()==0)
+			generateAllDeploymentAlternatives();
+		generateHardwareSetAlternativesEP();
 		generateHardwareSystemAlternativesEP();
-		generateAllDeploymentAlternatives();
 		return generateSystemsEP();
 	}
 
@@ -76,6 +82,11 @@ public class AlternativesGenerator {
 	private void generateHardwareSetAlternatives() {
 		for (HardwareSet hws : project.getHardwareSets())
 			hws.generateHardwareSetAlternatives();
+	}
+
+	private void generateHardwareSetAlternativesGeneration(int generation) {
+		for (HardwareSet hws : project.getHardwareSets())
+			hws.generateHardwareSetAlternativesGeneration(generation);
 	}
 
 	private void generateHardwareSetAlternativesEP() {
@@ -147,6 +158,19 @@ public class AlternativesGenerator {
 		generateHardwareSystems(alternatives, possibilities, repetitions);
 	}
 
+	private void generateHardwareSystemAlternativesGeneration() {
+		int alternatives = 1;
+		int possibilities[] = new int[project.getHardwareSets().size()];
+		int repetitions[] = new int[project.getHardwareSets().size()];
+		int i = 0;
+		for (HardwareSet hws : project.getHardwareSets()) {
+			alternatives *= hws.getHardwareSetAlternatives().size();
+			possibilities[i] = hws.getHardwareSetAlternatives().size();
+			repetitions[i++] = alternatives / hws.getHardwareSetAlternatives().size();
+		}
+		generateHardwareSystemsGeneration(alternatives, possibilities, repetitions);
+	}
+
 	private void generateHardwareSystemAlternativesEP() {
 		int alternatives = 1;
 		int possibilities[] = new int[project.getHardwareSets().size()];
@@ -172,6 +196,19 @@ public class AlternativesGenerator {
 		}
 	}
 
+	private void generateHardwareSystemsGeneration(int alternatives, int[] possibilities, int[] repetitions) {
+		for (int i = 0; i < alternatives; i++) {
+			HardwareSystem hardwareSystem = new HardwareSystem();
+			for (int j = 0; j < project.getHardwareSets().size(); j++) {
+				int index = (i / repetitions[j]) % project.getHardwareSets().get(j).getHardwareSetAlternatives().size();
+				HardwareSetAlternative hwa = project.getHardwareSets().get(j).getHardwareSetAlternatives().get(index);
+				hardwareSystem.getHardwareSetAlternatives().add(hwa);
+			}
+			hardwareSystem.initializeId();
+			addHardwareSystemIfNew(hardwareSystem);
+		}
+	}
+
 	private void generateHardwareSystemsEP(int alternatives, int[] possibilities, int[] repetitions) {
 		for (int i = 0; i < alternatives; i++) {
 			HardwareSystem hardwareSystem = new HardwareSystem();
@@ -182,6 +219,15 @@ public class AlternativesGenerator {
 			}
 			project.getHardwareSystemsEP().add(hardwareSystem);
 		}
+	}
+
+	private void addHardwareSystemIfNew(HardwareSystem hardwareSystem) {
+		for(HardwareSystem  hardwareSystemPresent : project.getHardwareSystemsCalculated())
+			if(hardwareSystemPresent.getId().equals(hardwareSystem.getId()))
+				return;
+
+		project.getHardwareSystems().add(hardwareSystem);
+		
 	}
 
 	public void addHardwareSetIfNotPresent(List<HardwareSet> sequenceHardwareSets, HardwareSet hardwareSet) {

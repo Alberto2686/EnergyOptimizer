@@ -12,7 +12,8 @@ public class HardwareSet extends ModelElement {
 			networkAlternatives = new LinkedList<>(),
 			platformAlternatives = new LinkedList<>(),
 			otherAlternatives = new LinkedList<>();
-	private List<HardwareSetAlternative> hardwareSetAlternatives = new LinkedList<>(), hardwareSetCheapestAlternatives = new LinkedList<>();
+	private List<HardwareSetAlternative> hardwareSetAlternatives = new LinkedList<>(),
+			hardwareSetCheapestAlternatives = new LinkedList<>();
 
 	public HardwareSet(String id, String name) {
 		setName(name);
@@ -98,6 +99,29 @@ public class HardwareSet extends ModelElement {
 								hardwareSetAlternative.setNetworkAlternative(networkAlternative);
 								hardwareSetAlternative.setPlatformAlternatives(platformAlternative);
 								hardwareSetAlternative.setOtherAlternative(otherAlternative);
+								hardwareSetAlternative.initializeId();
+								hardwareSetAlternatives.add(hardwareSetAlternative);
+							}
+	}
+
+	public void generateHardwareSetAlternativesGeneration(int generation) {
+		hardwareSetAlternatives.clear();
+		generateDummyHardwareAlternatives();
+		for (int i = 0; i < Math.min(generation, cpuAlternatives.size()); i++)
+			for (int j = 0; j < Math.min(generation, hddAlternatives.size()); j++)
+				for (int k = 0; k < Math.min(generation, memoryAlternatives.size()); k++)
+					for (int l = 0; l < Math.min(generation, networkAlternatives.size()); l++)
+						for (int m = 0; m < Math.min(generation, platformAlternatives.size()); m++)
+							for (int n = 0; n < Math.min(generation, otherAlternatives.size()); n++) {
+								HardwareSetAlternative hardwareSetAlternative = new HardwareSetAlternative(this);
+								hardwareSetAlternative.setCpuAlternative(cpuAlternatives.get(i));
+								hardwareSetAlternative.setHddAlternative(hddAlternatives.get(j));
+								hardwareSetAlternative.setMemoryAlternative(memoryAlternatives.get(k));
+								hardwareSetAlternative.setNetworkAlternative(networkAlternatives.get(l));
+								hardwareSetAlternative.setPlatformAlternatives(platformAlternatives.get(m));
+								hardwareSetAlternative.setOtherAlternative(otherAlternatives.get(n));
+								hardwareSetAlternative.initializeId();
+
 								hardwareSetAlternatives.add(hardwareSetAlternative);
 							}
 	}
@@ -111,6 +135,7 @@ public class HardwareSet extends ModelElement {
 		hardwareSetAlternative.setNetworkAlternative(Utils.selectCheapest(networkAlternatives));
 		hardwareSetAlternative.setPlatformAlternatives(Utils.selectCheapest(platformAlternatives));
 		hardwareSetAlternative.setOtherAlternative(Utils.selectCheapest(otherAlternatives));
+		hardwareSetAlternative.initializeId();
 		hardwareSetCheapestAlternatives.add(hardwareSetAlternative);
 	}
 

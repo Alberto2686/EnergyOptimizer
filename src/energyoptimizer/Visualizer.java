@@ -17,6 +17,14 @@ public class Visualizer {
 		this.bestSoftwareSystemW = bestSoftwareSystemW;
 		this.worstSoftwareSystemW = worstSoftwareSystemW;
 	}
+	
+	public Visualizer(String name, String path, boolean isWReliable, SoftwareSystem bestSoftwareSystemW, SoftwareSystem worstSoftwareSystemW) {
+		this.name = name;
+		this.savePath = path.substring(0, path.lastIndexOf("/"));
+		this.isWReliable = isWReliable;
+		this.bestSoftwareSystemW = bestSoftwareSystemW;
+		this.worstSoftwareSystemW = worstSoftwareSystemW;
+	}
 
 	public Visualizer(String name, String path, SoftwareSystem bestSoftwareSystemEP, SoftwareSystem worstSoftwareSystemEP) {
 		this.name = name;
@@ -28,6 +36,11 @@ public class Visualizer {
 	public void visualize() {
 		visualizeBestAndWorstSystems();
 		createDeploymentDiagram();
+	}
+
+	public void visualizeW() {
+		visualizeBestAndWorstSystemsW();
+		createDeploymentDiagramW();
 	}
 
 	public void visualizeEP() {
@@ -46,6 +59,14 @@ public class Visualizer {
 		System.out.println("Efficiency improvement: " + ratioEP + "% EP and " + ratioW + "% W");
 	}
 
+	private void createDeploymentDiagramW() {
+		Utils.writeFile(savePath, "bestW.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW" + Utils.getVersionFromDate(), name, false));
+		System.out.println(UMLcreator.createDeploymentDiagram(bestSoftwareSystemW, "depW" + Utils.getVersionFromDate(), name, false));
+
+		double ratioW = Math.round(10000 - (10000 * bestSoftwareSystemW.getSystemConsumptionW()) / worstSoftwareSystemW.getSystemConsumptionW()) / 100.0;
+		System.out.println("Efficiency improvement: " + ratioW + "% W");
+	}
+
 	private void createDeploymentDiagramEP() {
 		Utils.writeFile(savePath, "bestEP.uml", UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP" + Utils.getVersionFromDate(), name, true));
 		System.out.println(UMLcreator.createDeploymentDiagram(bestSoftwareSystemEP, "depEP" + Utils.getVersionFromDate(), name, true));
@@ -62,10 +83,18 @@ public class Visualizer {
 		System.out.println("WORST OF BESTS: " + worstSoftwareSystemEP.getSystemConsumptionEP() + "EP " + worstSoftwareSystemW.getSystemConsumptionW() + "W");
 	}
 
+	private void visualizeBestAndWorstSystemsW() {
+		String reliability = isWReliable ? "" : "but some consumption parameters were missing";
+		String results = "BEST SYSTEMS:\nEVALUATING WATT CONSUMPTION:\n" + bestSoftwareSystemW.bestWToString() + "\nBEST OF BESTS: " + bestSoftwareSystemW.getSystemConsumptionW() + "KW " + reliability;
+		System.out.println("\n\n\n" + results);
+		Utils.writeFile(savePath, "resultsW.txt", results);
+		System.out.println("WORST OF BESTS: " + worstSoftwareSystemW.getSystemConsumptionW() + "KW\n\n");
+	}
+
 	private void visualizeBestAndWorstSystemsEP() {
 		String results = "BEST SYSTEMS:\nEVALUATING ENERGY POINTS:\n" + bestSoftwareSystemEP.bestEpToString() + "\n" + bestSoftwareSystemEP.getSystemConsumptionEP();
 		System.out.println("\n\n\n" + results);
-		Utils.writeFile(savePath, "results.txt", results);
-		System.out.println("WORST OF BESTS: " + worstSoftwareSystemEP.getSystemConsumptionEP() + "EP");
+		Utils.writeFile(savePath, "resultsEP.txt", results);
+		System.out.println("WORST OF BESTS: " + worstSoftwareSystemEP.getSystemConsumptionEP() + "EP\n\n");
 	}
 }

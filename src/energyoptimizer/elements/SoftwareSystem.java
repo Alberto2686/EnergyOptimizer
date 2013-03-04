@@ -16,6 +16,7 @@ public class SoftwareSystem {
 	private List<SequenceAlternative> bestSequenceAlternativesEnergyPoint;
 	private double systemConsumptionEP = 0;
 	private double systemConsumptionW = 0;
+	private boolean valid = false; 
 
 	public SoftwareSystem(HardwareSystem hardwareSystem, DeploymentAlternative deploymentAlternative, int numberOfFunctionalRequirements) {
 		this.hardwareSystem = hardwareSystem;
@@ -112,6 +113,14 @@ public class SoftwareSystem {
 		this.deploymentW = deploymentW;
 	}
 
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
 	public List<HardwareSet> getActuallyUsedHardwareSets() {
 		return actuallyUsedHardwareSets;
 	}
@@ -133,6 +142,7 @@ public class SoftwareSystem {
 	public void calculateTotalsW() {
 		for (double w : consumptionWatt)
 			systemConsumptionW += w;
+		systemConsumptionW=Math.round(systemConsumptionW*100)/100000.0;
 	}
 
 	public void refine() {
@@ -164,7 +174,7 @@ public class SoftwareSystem {
 		for (int i = 0; i < bestSequenceAlternativesEnergyPoint.size(); i++)
 			string += i + ": " + bestSequenceAlternativesEnergyPoint.get(i) + "CONSUMPTION:" + consumptionEnergyPoints[i] + "EP\n";
 		for (int i = 0; i < bestSequenceAlternativesWatt.size(); i++)
-			string += i + ": " + bestSequenceAlternativesWatt.get(i) + "CONSUMPTION:" + consumptionWatt[i] + "W\n";
+			string += i + ": " + bestSequenceAlternativesWatt.get(i) + "CONSUMPTION:" + consumptionWatt[i] + "KW\n";
 		System.out.println(string);
 	}
 
@@ -205,10 +215,17 @@ public class SoftwareSystem {
 		for (int i = 0; i < consumptionWatt.length; i++) {
 			String res = "uncalculable\n";
 			if (consumptionWatt[i] > 0)
-				res = (consumptionWatt[i] /1000.0) + "KW\n";
+				res = consumptionWatt[i] + "W\n";
 			string += "FR" + (i + 1) + " = " + res;
 		}
 		return string;
+	}
+
+	public void initializeTime(HardwareSet hardwareSet) {
+		for(HardwareSetAlternative hardwareSetAlternative : hardwareSystem.getHardwareSetAlternatives())
+			if(hardwareSetAlternative.getHardwareSet().equals(hardwareSet)){
+				hardwareSetAlternative.initializeTime();
+			}
 	}
 
 	public void printAnalysisResultsSummary() {
@@ -219,6 +236,14 @@ public class SoftwareSystem {
 		for (int i = 0; i < consumptionWatt.length; i++)
 			string += "\t\tFR" + (i + 1) + ": " + consumptionWatt[i] + "W\n";
 		string += "\n\t\tTOTAL : " + systemConsumptionEP + "EP and " + systemConsumptionW + "W";
+		System.out.println(string);
+	}
+
+	public void printAnalysisResultsSummaryW() {
+		String string = "";
+		for (int i = 0; i < consumptionWatt.length; i++)
+			string += "\t\tFR" + (i + 1) + ": " + consumptionWatt[i] + "KW\n";
+		string += "\n\t\tTOTAL : " + systemConsumptionW + "W";
 		System.out.println(string);
 	}
 

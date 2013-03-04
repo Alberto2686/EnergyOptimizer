@@ -34,6 +34,35 @@ public class Calculator {
 		return consumption;
 	}
 
+	public double[] calculateEnergyConsumptionW(SoftwareSystem system, FunctionalRequirement functionalRequirement, SequenceAlternative sequenceAlternative) {
+		double consumption[] = { 0, 0 };
+		for (HardwareSet hardwareSet : system.getActuallyUsedHardwareSets())
+			system.initializeTime(hardwareSet);
+		system.getActuallyUsedHardwareSets().clear();
+
+		for (Message message : sequenceAlternative.getMessages()) {
+			double[] componentConsumption = calculateComponentConsumptionW(message.getReceiver(), system);
+			if (componentConsumption[1] != -1) {
+				consumption[1] += componentConsumption[1];
+				consumption[0] += componentConsumption[0];
+			}
+
+			if (usesNetwork(message, system)) {
+				double[] networkConsumption = calculateNetworkConsumptionW(message, system);
+				if (networkConsumption[1] != -1) {
+					consumption[1] += networkConsumption[1];
+					consumption[0] += networkConsumption[0];
+				} else
+					project.setWReliable(false);
+			}
+		}
+		consumption[1] += calculatePlatformAndOtherConsuptionsW(system);
+
+		consumption[0] *= functionalRequirement.getCoefficient();
+		consumption[1] *= functionalRequirement.getCoefficient();
+		return consumption;
+	}
+
 	public double calculateEnergyConsumptionEP(SoftwareSystem system, FunctionalRequirement functionalRequirement, SequenceAlternative sequenceAlternative) {
 		double consumption = 0;
 		system.getActuallyUsedHardwareSets().clear();
@@ -66,6 +95,18 @@ public class Calculator {
 			}
 		consumption[0] *= functionalRequirement.getCoefficient();
 		consumption[1] *= functionalRequirement.getCoefficient();
+
+		return consumption;
+	}
+
+	public double calculatePlatformAndOtherConsuptionsW(SoftwareSystem system) {
+		double consumption = 0;
+		for (HardwareSetAlternative hardwareSetAlternative : system.getHardwareSystem().getHardwareSetAlternatives())
+			if (system.getActuallyUsedHardwareSets().contains(hardwareSetAlternative.getHardwareSet())) {
+				double consumptionOther = Utils.consumptionOther((Other) hardwareSetAlternative.getOtherAlternative().getHardwareComponents().toArray()[0], hardwareSetAlternative.getTime());
+				double consumptionPlatform = Utils.consumptionPlatform((Platform) hardwareSetAlternative.getPlatformAlternative().getHardwareComponents().toArray()[0], hardwareSetAlternative.getTime());
+				consumption += consumptionOther + consumptionPlatform;
+			}
 
 		return consumption;
 	}
@@ -146,6 +187,33 @@ public class Calculator {
 		return componentConsumption;
 	}
 
+	private double[] calculateComponentConsumptionW(LifelineElement receiver, SoftwareSystem system) {
+		double componentConsumption[] = { 0, 0 };
+		try {
+			Component component = (Component) receiver;
+			HardwareSetAlternative hardwareSetAlternative = null;
+			for (DeployedComponent dc : system.getDeploymentAlternative().getDeployedComponents())
+				if (dc.getComponent().equals(component))
+					for (HardwareSetAlternative hsa : system.getHardwareSystem().getHardwareSetAlternatives())
+						if (dc.getHardwareSet().equals(hsa.getHardwareSet()))
+							hardwareSetAlternative = hsa;
+			double componentConsumptionCPU[] = calculateCPUConsumptionW(component, hardwareSetAlternative.getCpuAlternative());
+			double componentConsumptionHDD[] = calculateHDDConsumptionW(component, hardwareSetAlternative.getHddAlternative());
+			double componentConsumptionMemory[] = calculateMemoryConsumptionW(component, hardwareSetAlternative.getMemoryAlternative());
+			componentConsumption[0] = componentConsumptionCPU[0] + componentConsumptionHDD[0] + componentConsumptionMemory[0];
+			if (componentConsumptionCPU[1] == -1 || componentConsumptionHDD[1] == -1 || componentConsumptionMemory[1] == -1)
+				project.setWReliable(false);
+			if (componentConsumptionCPU[1] != -1)
+				componentConsumption[1] += componentConsumptionCPU[1];
+			if (componentConsumptionHDD[1] != -1)
+				componentConsumption[1] += componentConsumptionHDD[1];
+			if (componentConsumptionMemory[1] != -1)
+				componentConsumption[1] += componentConsumptionMemory[1];
+		} catch (Exception e) {
+		}
+		return componentConsumption;
+	}
+
 	private double calculateComponentConsumptionEP(LifelineElement receiver) {
 		double componentConsumption = 0;
 		try {
@@ -161,7 +229,16 @@ public class Calculator {
 		for (Connector connector : project.getConnectors())
 			if (connector.getComponent().equals(message.getSender()) && connector.getToInterface().equals(message.getSignature())) {
 				consumption[0] = connector.getEnergyPoints();
-				consumption[1] = Utils.consumptionNetwork(connector.getSize(), getNetworkDevices((Component) message.getSender(), system), getNetworkDevices((Component) message.getReceiver(), system));
+				consumption[1] = Utils.consumptionNetwork(connector.getSize(), getNetworkDevices((Component) message.getSender(), system), getNetworkDevices((Component) message.getReceiver(), system))[1];
+			}
+		return consumption;
+	}
+
+	private double[] calculateNetworkConsumptionW(Message message, SoftwareSystem system) {
+		double consumption[] = { 0, 0 };
+		for (Connector connector : project.getConnectors())
+			if (connector.getComponent().equals(message.getSender()) && connector.getToInterface().equals(message.getSignature())) {
+				consumption = Utils.consumptionNetwork(connector.getSize(), getNetworkDevices((Component) message.getSender(), system), getNetworkDevices((Component) message.getReceiver(), system));
 			}
 		return consumption;
 	}
@@ -179,7 +256,7 @@ public class Calculator {
 		double consumption[] = { -1, -1 };
 		consumption[0] = component.getUsageCPU().getEnergyPoints();
 		for (HardwareComponent cpu : hardwareAlternative.getHardwareComponents()) {
-			Double temp = Utils.consumptionCPU((Cpu) cpu, component.getUsageCPU(), project.getDefaultCpuScore(), component.getAtomicOperations(), component.getAtomicOperationConsumptions());
+			double temp = Utils.consumptionCPU((Cpu) cpu, component.getUsageCPU(), project.getDefaultCpuScore(), component.getAtomicOperations(), component.getAtomicOperationConsumptions())[1];
 			if (temp != -1 && (temp < consumption[1] || consumption[1] == -1))
 				consumption[1] = temp;
 		}
@@ -190,7 +267,7 @@ public class Calculator {
 		double consumption[] = { -1, -1 };
 		consumption[0] = component.getUsageHDD().getEnergyPoints();
 		for (HardwareComponent hdd : hardwareAlternative.getHardwareComponents()) {
-			Double temp = Utils.consumptionHDD((Hdd) hdd, component.getUsageHDD());
+			double temp = Utils.consumptionHDD((Hdd) hdd, component.getUsageHDD())[1];
 			if (temp != -1 && (temp < consumption[1] || consumption[1] == -1))
 				consumption[1] = temp;
 		}
@@ -201,9 +278,45 @@ public class Calculator {
 		double consumption[] = { -1, -1 };
 		consumption[0] = component.getUsageMemory().getEnergyPoints();
 		for (HardwareComponent memory : hardwareAlternative.getHardwareComponents()) {
-			Double temp = Utils.consumptionMemory((Memory) memory, component.getUsageMemory());
+			double temp = Utils.consumptionMemory((Memory) memory, component.getUsageMemory())[1];
 			if (temp != -1 && (temp < consumption[1] || consumption[1] == -1))
 				consumption[1] = temp;
+		}
+		return consumption;
+	}
+
+	private double[] calculateCPUConsumptionW(Component component, HardwareAlternative hardwareAlternative) {
+		double consumption[] = { 0, -1 };
+		for (HardwareComponent cpu : hardwareAlternative.getHardwareComponents()) {
+			double temp[] = Utils.consumptionCPU((Cpu) cpu, component.getUsageCPU(), project.getDefaultCpuScore(), component.getAtomicOperations(), component.getAtomicOperationConsumptions());
+			if (temp[1] != -1 && (temp[1] < consumption[1] || consumption[1] == -1)) {
+				consumption[1] = temp[1];
+				consumption[0] = temp[0];
+			}
+		}
+		return consumption;
+	}
+
+	private double[] calculateHDDConsumptionW(Component component, HardwareAlternative hardwareAlternative) {
+		double consumption[] = { 0, -1 };
+		for (HardwareComponent hdd : hardwareAlternative.getHardwareComponents()) {
+			double temp[] = Utils.consumptionHDD((Hdd) hdd, component.getUsageHDD());
+			if (temp[1] != -1 && (temp[1] < consumption[1] || consumption[1] == -1)) {
+				consumption[1] = temp[1];
+				consumption[0] = temp[0];
+			}
+		}
+		return consumption;
+	}
+
+	private double[] calculateMemoryConsumptionW(Component component, HardwareAlternative hardwareAlternative) {
+		double consumption[] = { 0, -1 };
+		for (HardwareComponent memory : hardwareAlternative.getHardwareComponents()) {
+			double temp[] = Utils.consumptionMemory((Memory) memory, component.getUsageMemory());
+			if (temp[1] != -1 && (temp[1] < consumption[1] || consumption[1] == -1)) {
+				consumption[1] = temp[1];
+				consumption[0] = temp[0];
+			}
 		}
 		return consumption;
 	}
